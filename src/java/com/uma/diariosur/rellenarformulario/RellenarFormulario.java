@@ -11,12 +11,12 @@ import java.text.ParseException;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -46,7 +46,15 @@ public class RellenarFormulario {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
-     
+    
+    public UploadedFile getImg() {
+        return img;
+    }
+
+    public void setImg(UploadedFile img) {
+        this.img = img;
+    }
+    
     public void click() {
         RequestContext requestContext = RequestContext.getCurrentInstance();
          
@@ -54,13 +62,6 @@ public class RellenarFormulario {
         requestContext.execute("PF('dlg').show()");
     }
     
-    public UploadedFile getFile() {
-        return img;
-    }
- 
-    public void setFile(UploadedFile file) {
-        img = file;
-    }
     
     public void upload() {
         if(img != null) {
@@ -126,6 +127,7 @@ public class RellenarFormulario {
     
     /**
      * Creates a new instance of RellenarFormulario
+     * @throws java.text.ParseException
      */
     public RellenarFormulario() throws ParseException {
         
@@ -138,14 +140,13 @@ public class RellenarFormulario {
     }
     
     
-    public String enviar(){
-        upload();
-        return null;
+    public void enviar(ActionEvent actionEvent){
+        
+        
     }
     
-    public void comprobar (){
-        
-        FacesContext ctx = FacesContext.getCurrentInstance();
+    public String comprobar(){
+       
         boolean encontrado = false;
         int i=0;
         
@@ -155,14 +156,20 @@ public class RellenarFormulario {
             }
             i++;
         }
-        
         if (encontrado){
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El evento ya esta creado", "El evento ya esta creado"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento ya esta en el sistema !"));
+        }
+        else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento no esta en el sistema !"));
         }
         
-        
-        
-        
-        
+        return "";
     }
+    
+    
+    
+    public String home() {
+        return "index.xhtml";
+    }
+    
 }
