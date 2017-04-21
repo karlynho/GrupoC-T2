@@ -5,9 +5,21 @@
  */
 package com.uma.diariosur.rellenarformulario;
 
-import com.uma.diariosur.modelo.Imagen;
+import com.uma.diariosur.modelo.Evento;
+import java.text.DateFormat;
+import java.text.ParseException;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 /**
  *
  * @author Carlos
@@ -19,17 +31,59 @@ public class RellenarFormulario {
     private String nombre;
     private String categoria;
     private String descripcion;
-    private String hora_inicio;
-    private Integer dia_inicio;
-    private Integer dia_fin;
-    private Integer hora_fin;
-    private String mes_inicio;
-    private String mes_fin;
-    private Integer anio;
-    private Imagen img;
+    private Date fecha_inicio;
+    private Date fecha_fin;
+    private UploadedFile img;
     private String ubicacion;
     private Double precio;
     
+    private List<Evento> eventos;
+    
+    
+    
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+     
+    public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+         
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
+    
+    public UploadedFile getFile() {
+        return img;
+    }
+ 
+    public void setFile(UploadedFile file) {
+        img = file;
+    }
+    
+    public void upload() {
+        if(img != null) {
+            FacesMessage message = new FacesMessage("Succesful", img.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+    
+     public Date getFecha_inicio() {
+        return fecha_inicio;
+    }
+
+    public void setFecha_inicio(Date fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public Date getFecha_fin() {
+        return fecha_fin;
+    }
+
+    public void setFecha_fin(Date fecha_fin) {
+        this.fecha_fin = fecha_fin;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -53,74 +107,7 @@ public class RellenarFormulario {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public Integer getDia_inicio() {
-        return dia_inicio;
-    }
-
-    public Integer getDia_fin() {
-        return dia_fin;
-    }
-
-    public String getMes_fin() {
-        return mes_fin;
-    }
-
-    public void setMes_fin(String mes_fin) {
-        this.mes_fin = mes_fin;
-    }
-
-    public void setDia_fin(Integer dia_fin) {
-        this.dia_fin = dia_fin;
-    }
-
-    public Integer getHora_fin() {
-        return hora_fin;
-    }
-
-    public void setHora_fin(Integer hora_fin) {
-        this.hora_fin = hora_fin;
-    }
-
-    public String getHora_inicio() {
-        return hora_inicio;
-    }
-
-    public void setHora_inicio(String hora_inicio) {
-        this.hora_inicio = hora_inicio;
-    }
-
     
-    public void setDia_inicio(Integer dia_inicio) {
-        this.dia_inicio = dia_inicio;
-    }
-
-    public String getMes_inicio() {
-        return mes_inicio;
-    }
-
-    public void setMes_inicio(String mes_inicio) {
-        this.mes_inicio = mes_inicio;
-    }
-
-    public Integer getAnio() {
-        return anio;
-    }
-
-    public void setAnio(Integer anio) {
-        this.anio = anio;
-    }
-
-    
-
-    public Imagen getImg() {
-        return img;
-    }
-
-    public void setImg(Imagen img) {
-        this.img = img;
-    }
-
     public String getUbicacion() {
         return ubicacion;
     }
@@ -140,11 +127,42 @@ public class RellenarFormulario {
     /**
      * Creates a new instance of RellenarFormulario
      */
-    public RellenarFormulario() {
+    public RellenarFormulario() throws ParseException {
+        
+        eventos = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        Date date = (Date)formatter.parse("05/15/11");
+        eventos.add(new Evento("Starlite","ahahah","Conciertos",date, date, 210.00, "la mina"));
+        eventos.add(new Evento("Moha","ahahah","Conciertos",date, date, 210.00, "la mina"));
+        eventos.add(new Evento("La barca","ahahah","Conciertos",date,date, 210.00, "la mina"));
     }
     
     
     public String enviar(){
+        upload();
         return null;
+    }
+    
+    public void comprobar (){
+        
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        boolean encontrado = false;
+        int i=0;
+        
+        while (i<eventos.size() && !encontrado){
+            if (eventos.get(i).getNombre().equalsIgnoreCase(nombre)){
+                encontrado = true;
+            }
+            i++;
+        }
+        
+        if (encontrado){
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El evento ya esta creado", "El evento ya esta creado"));
+        }
+        
+        
+        
+        
+        
     }
 }

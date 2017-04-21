@@ -1,79 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" >
     <h:head>
         <title>Formulario</title>
     </h:head>
     <h:body>
+        <div> <h:commandButton value="Volver a Pagina Principal" action="#{rellenarFormulario.comprobar()}" /> </div>
         <div>A continuación rellene los campos del evento, no deje campos vacíos.</div>
         <br> </br>
         <h:form enctype="multipart/form-data">
-            <div> Nombre:  <h:inputText size="30" value="#{rellenarFormulario.nombre}" required=""/> </div>
+            <p:outputLabel style=" font-size: medium" value="Nombre:" /> <p:inputText size="30" value="#{rellenarFormulario.nombre}" required=""/>
+            &nbsp;&nbsp; <h:commandButton value="Comprobar" action="#{rellenarFormulario.comprobar()}" /> &nbsp;&nbsp; Compruebe si el evento no esta creado ya
             <br> </br>
-            <div> Descripcion: </div>
-            <h:inputTextarea rows="4" cols="20" value="#{rellenarFormulario.descripcion}" required=""/>
+            <p:outputLabel style=" font-size: medium" value="Descripción:" />
             <br> </br>
-            <div> Categoria:
-                <h:selectOneRadio value="#{rellenarFormulario.categoria}" required="">
-                    <f:selectItem itemLabel="Charlas y Conferencias" />
-                    <f:selectItem itemLabel="Conciertos" />
-                    <f:selectItem itemLabel="Espectaculo" />
-                    <f:selectItem itemLabel="Exposicion" />
-                    <f:selectItem itemLabel="Ferias y Fiestas" />
-                    <f:selectItem itemLabel="Deportes" />
-                    <f:selectItem itemLabel="Gastronomia" />
-                    <f:selectItem itemLabel="Moda" />
-                </h:selectOneRadio>
-            </div>
+            <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="" counter="display" maxlength="150" counterTemplate="{0} caracteres restantes." autoResize="false"/>
             <br> </br>
-            <div> Ubicacion: <h:inputText size="50" value="#{rellenarFormulario.ubicacion}" required=""/> </div>
-            <br> </br>
-            <div> Precio: <h:inputText size="3" value="#{rellenarFormulario.precio}" required=""/> </div>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
+                <p:outputLabel style=" font-size: medium" for="Categoria" value="Categoria:" />
+                    <p:selectOneListbox style=" font-size: medium" id="Categoria" value="#{rellenarFormulario.categoria}">
+                        <f:selectItem itemLabel="Charlas y Conferencias" itemValue="1" />
+                        <f:selectItem itemLabel="Conciertos" itemValue="2" />
+                        <f:selectItem itemLabel="Espectaculo" itemValue="3" />
+                        <f:selectItem itemLabel="Exposicion" itemValue="4" />
+                        <f:selectItem itemLabel="Ferias y Fiestas" itemValue="5" />
+                        <f:selectItem itemLabel="Deportes" itemValue="6" />
+                        <f:selectItem itemLabel="Gastronomia" itemValue="7"/>
+                        <f:selectItem itemLabel="Moda" itemValue="8"/>
+                    </p:selectOneListbox>
+            </h:panelGrid>
             
+            <p:outputLabel style=" font-size: medium" value="Ubicación:" /> <p:inputText size="50" value="#{rellenarFormulario.ubicacion}" required=""/>
             <br> </br>
-            <div> Fecha de Inicio </div>
-            <p>
-                Hora: <h:inputText size="3" value="#{rellenarFormulario.hora_inicio}" required=""/> 
-                Mes: <h:selectOneMenu value="#{rellenarFormulario.mes_inicio}" required="" label="Mes">
-                        <f:selectItem itemLabel="Enero" />
-                        <f:selectItem itemLabel="Febrero" />
-                        <f:selectItem itemLabel="Marzo" />
-                        <f:selectItem itemLabel="Abril" />
-                        <f:selectItem itemLabel="Mayo" />
-                        <f:selectItem itemLabel="Junio" />
-                        <f:selectItem itemLabel="Agosto" />
-                        <f:selectItem itemLabel="Septiembre" />
-                        <f:selectItem itemLabel="Octubre" />
-                        <f:selectItem itemLabel="Noviembre" />
-                        <f:selectItem itemLabel="Diciembre" />
-                      </h:selectOneMenu>
-                Año: <h:selectOneMenu value="#{rellenarFormulario.anio}" required="" label="Año">
-                        <f:selectItem itemLabel="2017" />
-                        <f:selectItem itemLabel="2018" />
-                        <f:selectItem itemLabel="2019" />
-                      </h:selectOneMenu>
-            </p>
-            <div> Fecha de Fin </div>
-            <p>
-                Hora: <h:inputText size="3" value="#{rellenarFormulario.hora_fin}" required=""/> 
-                Mes: <h:selectOneMenu value="#{rellenarFormulario.mes_fin}" required="" label="Mes">
-                        <f:selectItem itemLabel="Enero" />
-                        <f:selectItem itemLabel="Febrero" />
-                        <f:selectItem itemLabel="Marzo" />
-                        <f:selectItem itemLabel="Abril" />
-                        <f:selectItem itemLabel="Mayo" />
-                        <f:selectItem itemLabel="Junio" />
-                        <f:selectItem itemLabel="Agosto" />
-                        <f:selectItem itemLabel="Septiembre" />
-                        <f:selectItem itemLabel="Octubre" />
-                        <f:selectItem itemLabel="Noviembre" />
-                        <f:selectItem itemLabel="Diciembre" />
-                      </h:selectOneMenu>
-            </p>
-            <div> Inserte una imagen <h:inputFile value="#{rellenarFormulario.img}" required=""/> </div>
+            <p:outputLabel style=" font-size: medium" value="Precio:" /><p:inputNumber size="2" value="#{rellenarFormulario.precio}" required=""/>
+            <br> </br>
+            
+            <p:growl id="msgs" showDetail="true" />
+ 
+            <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel style=" font-size: medium" for="datetime1" value="Fecha Inicio:" />
+            <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" />
+            </h:panelGrid>
+            
+            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                <h:outputText value="Fecha Inicio:" />
+            <h:outputText value="#{rellenarFormulario.fecha_inicio}">
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+            </h:outputText>
+            </p:panelGrid>
+                
+            </p:dialog>
+            
+            <p:growl id="msgs2" showDetail="true" />
+ 
+            <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel style=" font-size: medium" for="datetime2" value="Fecha Fin:" />
+            <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" />
+            </h:panelGrid>
+            
+            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+            <p:panelGrid id="display2" columns="2" columnClasses="label,value">
+                <h:outputText  value="Fecha Inicio:" />
+            <h:outputText value="#{rellenarFormulario.fecha_fin}">
+                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+            </h:outputText>
+            </p:panelGrid>
+                
+            </p:dialog>
+            
+            
+            
+            
+            <p:growl id="messages" showDetail="true" />
+ 
+            <p:fileUpload value="#{rellenarFormulario.file}" mode="simple" skinSimple="true" required="" label="Subir" />
          
             
-            <div> <h:commandButton value="Enviar" action="#{rellenarFormulario.enviar()}" /> </div>
+            <div> <h:commandButton value="Enviar" action="#{rellenarFormulario.enviar()}"/> </div>
+            
             
         </h:form>
     </h:body>
