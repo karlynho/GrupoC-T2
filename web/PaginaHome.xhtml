@@ -3,8 +3,9 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                    
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+               
     
     <ui:define name="title">Pagina Principal</ui:define>
     <ui:define name="content">
@@ -27,9 +28,10 @@
                             <f:selectItem itemLabel="Deportivo" value="#{controlBusquedaEvento.evento}"/>
                             <f:selectItem itemLabel="Evento"/>
                         </h:selectOneMenu>
-                        <h:selectOneMenu>
-                            <f:selectItem itemLabel="Fecha" value="#{controlBusquedaEvento.fech}"/>
-                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                       <p:outputLabel style=" font-size: medium" for="datetime1" value="Fecha Inicio:" />
+                       <p:calendar id="datetime1" value="#{controlBusquedaEvento.fecha}" pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:panelGrid>
                    
                     <h:commandButton value="Filtrar" action="#{controlBusquedaEvento.comprobación()}"/>

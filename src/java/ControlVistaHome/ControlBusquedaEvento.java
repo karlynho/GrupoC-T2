@@ -24,20 +24,22 @@ public class ControlBusquedaEvento implements Serializable {
     private String evento;
     private String ubicacion;
     private String categoria;
-    private String fech;
     private Date fecha;
+
+    
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
     
     
-    public String getFech() {
-        return fech;
+   
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFech(String fech) {
-        this.fech = fech;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
-   
+    
     public void setEvento(String evento){
         this.evento=evento;
     }

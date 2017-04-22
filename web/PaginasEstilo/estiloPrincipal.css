@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : steven
 */
 
-cabecera {
+#cabecera {
     background-image: url("EVENTOS.jpg");
+}
+
+#p_outputLabelid{
+    font-size: medium;
 }
