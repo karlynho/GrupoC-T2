@@ -3,18 +3,37 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                >
+                    
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="title">Pagina Principal</ui:define>
     <ui:define name="content">
         <c:choose>
             <c:when test="#{empty controlHome.usuario}">
                 <h:form id="controlHome">
-                    <table>
-                        <tr>
-                            <td>Filtra tu busqueda</td>
-                        </tr>
-                    </table>
+                    <h:panelGrid columns="1">
+                        <f:facet name="header">
+                            <h:outputText value="Filtra tu Busqueda"/>
+                        </f:facet>
+                        <h:selectOneMenu>
+                            <f:selectItem itemLabel="Malaga" value="#{controlBusquedaEvento.ubicacion}"/>
+                            <f:selectItem itemLabel="Marbella" value="#{controlBusquedaEvento.ubicacion}"/> 
+                            <f:selectItem itemLabel="Torre del Mar" value="#{controlBusquedaEvento.ubicacion}"/>
+                            <f:selectItem itemLabel="Ciudad"/>
+                        </h:selectOneMenu>
+                        <h:selectOneMenu>
+                            <f:selectItem itemLabel="Musical" value="#{controlBusquedaEvento.evento}"/>
+                            <f:selectItem itemLabel="Teatro" value="#{controlBusquedaEvento.evento}"/>
+                            <f:selectItem itemLabel="Deportivo" value="#{controlBusquedaEvento.evento}"/>
+                            <f:selectItem itemLabel="Evento"/>
+                        </h:selectOneMenu>
+                        <h:selectOneMenu>
+                            <f:selectItem itemLabel="Fecha" value="#{controlBusquedaEvento.fech}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                   
+                    <h:commandButton value="Filtrar" action="#{controlBusquedaEvento.comprobación()}"/>
+
                 </h:form>
             </c:when>
         </c:choose>

@@ -23,11 +23,21 @@ public class ControlBusquedaEvento implements Serializable {
  
     private String evento;
     private String ubicacion;
-    private String ciudad;
     private String categoria;
-    private Date fecha;
+    private String fech;
+     private Date fecha;
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
+    
+    
+    public String getFech() {
+        return fech;
+    }
+
+    public void setFech(String fech) {
+        this.fech = fech;
+    }
+   
     
     
     
@@ -50,6 +60,7 @@ public class ControlBusquedaEvento implements Serializable {
     
     public ControlBusquedaEvento() {
         eventos = new ArrayList<Evento>();
+        eventos = null;
         //Se deben añadir los eventos que se van a buscar para testear la aplicación
     }
     
