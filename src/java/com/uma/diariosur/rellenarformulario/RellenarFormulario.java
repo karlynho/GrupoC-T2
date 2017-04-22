@@ -6,6 +6,8 @@
 package com.uma.diariosur.rellenarformulario;
 
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Formulario;
+import com.uma.diariosur.modelo.Usuario;
 import java.text.DateFormat;
 import java.text.ParseException;
 import javax.inject.Named;
@@ -16,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -38,7 +39,7 @@ public class RellenarFormulario {
     private Double precio;
     
     private List<Evento> eventos;
-    
+    private Usuario u;
     
     
     public void onDateSelect(SelectEvent event) {
@@ -140,12 +141,33 @@ public class RellenarFormulario {
     }
     
     
-    public void enviar(ActionEvent actionEvent){
+    public String enviar(){
+        
+        if(comprobar()){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento ya esta en el sistema !"));
+            return "";
+        }
+        
+        if (nombre==null || descripcion==null || categoria==null || fecha_inicio==null || fecha_fin==null || img==null || ubicacion==null || precio==null){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Faltan atributos por introducir!"));
+        }
         
         
+//       /// Aqui iria comprobación de si es un usuario o un periodista
+        
+//       // SI ES UN USUARIO SE CREA UN FORMULARIO
+
+        else{
+            Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
+            // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+            return "index.xhtml";
+        }
+        
+        
+        return "index.xhtml";
     }
     
-    public String comprobar(){
+    public boolean comprobar(){
        
         boolean encontrado = false;
         int i=0;
@@ -156,17 +178,13 @@ public class RellenarFormulario {
             }
             i++;
         }
-        if (encontrado){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento ya esta en el sistema !"));
-        }
-        else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento no esta en el sistema !"));
-        }
-        
-        return "";
+       error();
+       return encontrado;
     }
     
-    
+    public void error() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+    }
     
     public String home() {
         return "index.xhtml";
