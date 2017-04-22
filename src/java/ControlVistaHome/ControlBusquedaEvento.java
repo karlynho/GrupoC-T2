@@ -8,6 +8,9 @@ package ControlVistaHome;
 import com.uma.diariosur.modelo.Evento;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,10 +60,16 @@ public class ControlBusquedaEvento implements Serializable {
     }
     
     
-    public ControlBusquedaEvento() {
+    public ControlBusquedaEvento() throws ParseException {
         eventos = new ArrayList<Evento>();
-        eventos = null;
+        
         //Se deben añadir los eventos que se van a buscar para testear la aplicación
+        eventos = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        Date date = (Date)formatter.parse("12/05/17");
+        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga"));
+        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
+        eventos.add(new Evento("Offspring","concierto","Conciertos",date,date, 210.00, "Malaga"));
     }
     
     public String comprobación(){
