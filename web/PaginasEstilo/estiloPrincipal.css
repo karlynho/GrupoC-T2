@@ -7,9 +7,7 @@ and open the template in the editor.
     Created on : 21-abr-2017, 11:25:07
     Author     : steven
 */
-h1{
-  color: blue;  
-  font-style: italic;
-  
-  
+
+cabecera {
+    background-image: url("EVENTOS.jpg");
 }

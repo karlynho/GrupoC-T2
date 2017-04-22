@@ -51,6 +51,22 @@ public class ControlHome implements Serializable{
         }
     }
     
+    public String login(){
+        if(this.usuario == null){
+            if(this.periodista == null){
+                //No hay usuario, por tanto redirigimos a pagina Login
+                return "Login.xhtml";
+            }else{
+                return "PaginaHomePeriodista.xhtml";
+            }
+        }else{
+                return "PaginaHomeUsuarioNormal.xhtml";
+        }
+    }
+    
+    public String registro(){
+        return "Registro.xhtml";
+    }
     public String logout(){
         //Cerramos la sesion
         FacesContext ctx = FacesContext.getCurrentInstance();
@@ -58,6 +74,10 @@ public class ControlHome implements Serializable{
         periodista = null;
         usuario = null;
         return "login.xhtml";
+    }
+    
+    public String perfil(){
+        return "ajustes.xhtml";
     }
     
     
