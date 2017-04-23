@@ -96,7 +96,7 @@ public class ControlBusquedaEvento implements Serializable {
         Date date = (Date)formatter.parse("12/05/2017");
         eventos.add(new Evento("Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Offspring","concierto","Conciertos",date,date, 210.00, "Malaga"));
+        eventos.add(new Evento("Renault","concierto","Conciertos",date,date, 210.00, "Malaga"));
     }
     
     public String comprobacion(){

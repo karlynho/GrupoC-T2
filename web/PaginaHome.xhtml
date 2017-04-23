@@ -37,21 +37,16 @@
                     <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
                     
                     <p:dataGrid var="evento" value="#{creacionDeEventos.crearEventos()}" columns="3"  rows="3"  id="eventos">
-                        <h:panelGrid columns="1">
-                            <p:graphicImage name="/web/PaginasEstilo/#{eventos.nombre}.jpg"/>
+                        <p:panel header="estrellas">
+                            <h:panelGrid columns="1">
+                            <h:graphicImage id="" value="PaginasEstilo/#{evento.nombre}.jpg"/>
+                            <h:outputText value="#{evento.fecha_inicio}"/>
+                            <h:outputText value="#{evento.nombre}"/>
                             <h:outputText value="#{evento.ubicacion}"/>
-                            
                         </h:panelGrid>
+                        </p:panel>
+                        
                     </p:dataGrid>
-               
-               <!--
-               <h:dataTable id="eventos" value="#{creacionDeEventos.crearEventos()}" var="evento">
-                    <h:column>
-                       #{evento.nombre}
-                       <h:graphicImage value="/web/PaginasEstilo/#{evento.nombre}.jpg"/>
-                    </h:column>
-                </h:dataTable>
-                   --> 
                  </h:form>
             </c:when>
         </c:choose>
