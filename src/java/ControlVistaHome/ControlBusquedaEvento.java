@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 /**
  *
@@ -28,13 +31,19 @@ public class ControlBusquedaEvento implements Serializable {
     private String ubicacion;
     private String categoria;
     private Date fecha;
-
-    
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
     
+    @Inject ControlHome ctrlhome;
     
-   
+   public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
     public Date getFecha() {
         return fecha;
     }
@@ -61,42 +70,56 @@ public class ControlBusquedaEvento implements Serializable {
     
     
     public ControlBusquedaEvento() throws ParseException {
-        eventos = new ArrayList<Evento>();
+       
         
         //Se deben añadir los eventos que se van a buscar para testear la aplicación
-        eventos = new ArrayList<>();
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        Date date = (Date)formatter.parse("12/05/17");
+        eventos = new ArrayList<Evento>();
+        eventosFiltrados = new ArrayList<Evento>();
+        
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = (Date)formatter.parse("12/05/2017");
         eventos.add(new Evento("Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Offspring","concierto","Conciertos",date,date, 210.00, "Malaga"));
     }
     
-    public String comprobación(){
-       boolean encontrado = false;
+    public String comprobacion(){
+      
+        boolean encontrado = false;
        int tam = eventos.size();
        int i= 0;
        
-       while(i<tam || !encontrado){
-           if(eventos.get(i).getNombre().equalsIgnoreCase(this.evento)){
+       while(i<tam && !encontrado){
+           
+           if(eventos.get(i).getNombre().equalsIgnoreCase(this.evento) && this.evento!=null){
                //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
                eventosFiltrados.add(eventos.get(i));
+               encontrado = true;
            }else if(eventos.get(i).getUbicacion().equalsIgnoreCase(this.ubicacion)){
                //La ubicacion coincide,  comprobamos la categoria
                if(eventos.get(i).getCategoria().equalsIgnoreCase(this.categoria)){
                    //La categoria coincide, comprobamos la fecha
-                   if((eventos.get(i).getFecha_inicio().after(this.fecha)&& eventos.get(i).getFecha_final().before(this.fecha)) || 
-                      eventos.get(i).getFecha_inicio().equals(this.fecha)){
+                   if(eventos.get(i).getFecha_inicio().equals(this.fecha)){
                        //Coinciden las tres condiciones del filtro, entonces añadimos a la lista de filtrados
                        eventosFiltrados.add(eventos.get(i));
+                       
                    }
                }
                
            }
+           
            i++;
            
        }
-       return "ControlHomeFiltro.xhtml";
+       
+       if(eventosFiltrados.isEmpty()){
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error No hay coincidencias", "Error no hay coincidencias"));
+            return null;
+       }else{
+            return ctrlhome.filtroEvento();
+       }
+      
     }
     
 }

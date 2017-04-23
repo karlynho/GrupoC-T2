@@ -16,34 +16,25 @@
                         <f:facet name="header">
                             <h:outputText value="Filtra tu Busqueda"/>
                         </f:facet>
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Malaga" value="#{controlBusquedaEvento.ubicacion}"/>
-                            <f:selectItem itemLabel="Marbella" value="#{controlBusquedaEvento.ubicacion}"/> 
-                            <f:selectItem itemLabel="Torre del Mar" value="#{controlBusquedaEvento.ubicacion}"/>
-                            <f:selectItem itemLabel="Ciudad"/>
+                        <p:selectOneMenu id="selectUbicacion" value="#{controlBusquedaEvento.ubicacion}">
+                            <f:selectItem itemLabel="Ciudad" itemValue=" "/>
+                            <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
+                            <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
+                            <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu>
-                            <f:selectItem itemLabel="Musical" value="#{controlBusquedaEvento.evento}"/>
-                            <f:selectItem itemLabel="Teatro" value="#{controlBusquedaEvento.evento}"/>
-                            <f:selectItem itemLabel="Deportivo" value="#{controlBusquedaEvento.evento}"/>
-                            <f:selectItem itemLabel="Evento"/>
+                        <p:selectOneMenu id="selectCategoria" value="#{controlBusquedaEvento.categoria}">
+                            <f:selectItem itemLabel="Evento" itemValue=" "/>
+                            <f:selectItem itemLabel="Musical" itemValue="Musical"/>
+                            <f:selectItem itemLabel="Teatro" itemValue="Teatro"/>
+                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
                         </p:selectOneMenu>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                       <p:outputLabel style=" font-size: medium" for="datetime1"/>
-                       <p:calendar id="datetime1" value="#{controlBusquedaEvento.fecha}" pattern="MM/dd/yyyy HH:mm:ss" showOn="button"/>
                     </h:panelGrid>
                     
-                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                        <h:outputText value="Fecha Inicio:" />
-                    <h:outputText value="#{rellenarFormulario.fecha_inicio}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    </p:panelGrid>
-                    </p:dialog>
-                   
-                    <p:commandButton value="Filtrar" action="#{controlBusquedaEvento.comprobación()}"/>
+                    <h:panelGrid columns="2">
+                        <p:calendar id="datetime1" value="#{controlBusquedaEvento.fecha}" pattern="MM/dd/yyyy" showOn="button"/>
+                    </h:panelGrid>
+                    <h:messages showDetail="true" />
+                    <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
 
                 </h:form>
             </c:when>

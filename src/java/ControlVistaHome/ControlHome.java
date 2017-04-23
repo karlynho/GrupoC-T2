@@ -80,6 +80,9 @@ public class ControlHome implements Serializable{
         return "ajustes.xhtml";
     }
     
+    public String filtroEvento(){
+        return "ControlHomeFiltro.xhtml";
+    }
     
     /**
      * Creates a new instance of ControlHome
