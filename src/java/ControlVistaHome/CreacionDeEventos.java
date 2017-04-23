@@ -13,10 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ApplicationScoped;
+
+import javax.inject.Named;
+
+
+
 
 /**
  *
@@ -26,6 +28,9 @@ import javax.faces.bean.ApplicationScoped;
 @SessionScoped
 public class CreacionDeEventos implements Serializable{
     private List<Evento>eventos;
+    private int dia;
+    private int mes;
+    private int año;
 
     public List<Evento> getEventos() {
         return eventos;
