@@ -26,6 +26,14 @@ import javax.faces.bean.ApplicationScoped;
 @SessionScoped
 public class CreacionDeEventos implements Serializable{
     private List<Evento>eventos;
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
     
     public List<Evento> crearEventos() throws ParseException{
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");

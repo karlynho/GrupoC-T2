@@ -35,23 +35,23 @@
                     </h:panelGrid>
                     <h:messages showDetail="true" />
                     <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
-                  <!--  
-                   <p:dataGrid var="evento" value="{vistaEventos.eventos}" columns="3"  rows="3"  id="eventos">
+                    
+                    <p:dataGrid var="evento" value="#{creacionDeEventos.crearEventos()}" columns="3"  rows="3"  id="eventos">
                         <h:panelGrid columns="1">
-                            <p:graphicImage name="/web/PaginasEstilo/{eventos.nombre}.jpg"/>
-                            <h:outputText value="{evento.ubicacion}"/>
+                            <p:graphicImage name="/web/PaginasEstilo/#{eventos.nombre}.jpg"/>
+                            <h:outputText value="#{evento.ubicacion}"/>
                             
                         </h:panelGrid>
                     </p:dataGrid>
-               -->
                
-               <h:dataTable id="eventos" value="#{vistaEventos.eventos}" var="evento">
+               <!--
+               <h:dataTable id="eventos" value="#{creacionDeEventos.crearEventos()}" var="evento">
                     <h:column>
-                        <h:outputText value="#{evento.ubicacion}"/>
-                        <h:graphicImage value="\web\PaginasEstilo\#{evento.nombre}"/>
+                       #{evento.nombre}
+                       <h:graphicImage value="/web/PaginasEstilo/#{evento.nombre}.jpg"/>
                     </h:column>
                 </h:dataTable>
-                    
+                   --> 
                  </h:form>
             </c:when>
         </c:choose>
