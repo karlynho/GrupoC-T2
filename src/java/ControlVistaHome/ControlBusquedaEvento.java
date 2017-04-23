@@ -48,6 +48,22 @@ public class ControlBusquedaEvento implements Serializable {
         return fecha;
     }
 
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public List<Evento> getEventosFiltrados() {
+        return eventosFiltrados;
+    }
+
+    public void setEventosFiltrados(List<Evento> eventosFiltrados) {
+        this.eventosFiltrados = eventosFiltrados;
+    }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
