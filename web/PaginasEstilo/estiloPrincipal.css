@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21-abr-2017, 11:25:07
+    Author     : steven
+*/
+
+#cabecera {
+    background-image: url("EVENTOS.jpg");
+}
+
+#p_outputLabelid{
+    font-size: medium;
+}
+fotosPrincipal{
+    width: 50px; height: 50px;
+}
