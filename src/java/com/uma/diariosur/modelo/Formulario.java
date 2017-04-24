@@ -38,6 +38,9 @@ public class Formulario implements Serializable {
     private Double precio;
     private String ubicacion;
 
+    public Formulario() {
+    }
+
     public Double getPrecio() {
         return precio;
     }
@@ -143,6 +146,8 @@ public class Formulario implements Serializable {
         this.id = id;
     }
 
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -168,4 +173,20 @@ public class Formulario implements Serializable {
         return "com.mycompany.diariosur1.Formulario[ id=" + id + " ]";
     }
     
+    public Formulario(String nombre, String descripcion, String categoria, Date fecha_ini, Date fecha_fin, String ubicacion, 
+            Double precio,String estado, Date fecha_subida, Usuario u){
+        
+        setNombre(nombre);
+        setDescripcion(descripcion);
+        setCategoria(categoria);
+        setFecha_inicio(fecha_inicio);
+        setFecha_fin(fecha_fin);
+        setFecha_subida(fecha_subida);
+        setUbicacion(ubicacion);
+        setPrecio(precio);
+        setEstado(estado);
+        setFecha_subida(fecha_subida);
+        setUsuario(u);
+        
+    }
 }
