@@ -41,7 +41,7 @@ h1{
     position: absolute;
     color: white;
     margin-top: 200px;
-    margin-left: 480px; 
+    margin-left: 525px; 
     font: bold 100% sans-serif;
 }
 
@@ -58,9 +58,10 @@ ul.menulist li{
 }
 
 .BarraBusqueda{
-    width: 300px;
+    width: 670px;
+    height: 20px;
     margin-top:300px;
-    margin-left: 500px;
+    margin-left: 350px;
 }
 
 
