@@ -31,6 +31,7 @@ public class VistaEventos implements Serializable {
      
      @PostConstruct
      public void init() {
+       
         try {
             eventos = creacion.crearEventos();
         } catch (ParseException ex) {

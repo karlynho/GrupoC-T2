@@ -64,6 +64,10 @@ public class ControlHome implements Serializable{
         }
     }
     
+    public String verEvento(){
+        return "VerEvento.xhtml";
+    }
+    
     public String registro(){
         return "Registro.xhtml";
     }
