@@ -1,6 +1,7 @@
 package com.uma.diariosur.formularios;
 
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Formulario;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -13,21 +14,25 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class DataScrollerView implements Serializable {
       
-    private List<Evento> eventos;
+    private List<Formulario> formularios;
           
-    @ManagedProperty("#{countryService}")
-    private CountryService service;
+    @ManagedProperty("#{formularioService}")
+    private FormulariosService service;
       
     @PostConstruct
     public void init() {
-        eventos = service.createCountries();
+        formularios = service.createForms();
     }
   
-    public List<Evento> getEventos() {
-        return eventos;
+    public List<Formulario> getFormularios() {
+        return formularios;
     }
   
-    public void setService(CountryService service) {
+    public void setService(FormulariosService service) {
         this.service = service;
+    }
+    
+    public String home() {
+        return "PaginaHome.xhtml";
     }
 }

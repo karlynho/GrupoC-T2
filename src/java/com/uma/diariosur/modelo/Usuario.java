@@ -99,6 +99,10 @@ public class Usuario implements Serializable {
     public String getNombre() {
         return nombre;
     }
+    
+    public String getNick(){
+        return nick;
+    }
 
     public String getApellidos() {
         return apellidos;
