@@ -8,6 +8,7 @@ package com.uma.diariosur.rellenarformulario;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Usuario;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import javax.inject.Named;
@@ -21,13 +22,15 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
+import javax.faces.bean.ManagedBean;
 /**
  *
  * @author Carlos
  */
+@ManagedBean
 @Named(value = "rellenarFormulario")
 @RequestScoped
-public class RellenarFormulario {
+public class RellenarFormulario implements Serializable{
 
     private String nombre;
     private String categoria;
@@ -135,9 +138,16 @@ public class RellenarFormulario {
         eventos = new ArrayList<>();
         DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
         Date date = (Date)formatter.parse("05/15/11");
-        eventos.add(new Evento("Starlite","ahahah","Conciertos",date, date, 210.00, "la mina"));
-        eventos.add(new Evento("Moha","ahahah","Conciertos",date, date, 210.00, "la mina"));
-        eventos.add(new Evento("La barca","ahahah","Conciertos",date,date, 210.00, "la mina"));
+        Evento e1 = new Evento();
+        e1.setNombre("Starlite");
+        e1.setDescripcion("pijos");
+        e1.setCategoria("conciertos");
+        e1.setFecha_final(date);
+        e1.setFecha_inicio(date);
+        e1.setUbicacion("la mina");
+        e1.setPrecio(20.99);
+        
+        eventos.add(e1);
     }
     
     
@@ -178,13 +188,9 @@ public class RellenarFormulario {
             }
             i++;
         }
-       error();
        return encontrado;
     }
     
-    public void error() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-    }
     
     public String home() {
         return "index.xhtml";

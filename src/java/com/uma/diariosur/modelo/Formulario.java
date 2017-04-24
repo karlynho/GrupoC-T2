@@ -38,6 +38,9 @@ public class Formulario implements Serializable {
     private Double precio;
     private String ubicacion;
 
+    public Formulario() {
+    }
+
     public Double getPrecio() {
         return precio;
     }

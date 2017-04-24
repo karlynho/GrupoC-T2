@@ -31,7 +31,7 @@
             <p:growl id="msgs" showDetail="true" />
                 <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; position: absolute; top: 260px;">
                     <p:outputLabel style=" font-size: small" for="datetime1" value="Fecha Inicio:" />
-                    <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" required="true"/>
+                    <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" required="true" showOn="button"/>
                 </h:panelGrid>
             
                 <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
@@ -47,7 +47,7 @@
             <p:growl id="msgs2" showDetail="true" />
                 <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 350px; position: absolute"  >
                 <p:outputLabel style=" font-size: small" for="datetime2" value="Fecha Fin:" />
-                <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" required="true" />
+                <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" required="true" showOn="button" />
                 </h:panelGrid>
             
                 <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">

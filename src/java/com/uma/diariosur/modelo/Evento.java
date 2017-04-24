@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +22,6 @@ import javax.persistence.TemporalType;
  *
  * @author Carmen
  */
-@Entity
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,18 +60,6 @@ public class Evento implements Serializable {
     public Evento (){
         
     }
-
-    public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_final = fecha_final;
-        this.precio = precio;
-        this.ubicacion = ubicacion;
-
-    }
-    
     
     public List<Imagen> getImagenes() {
         return imagenes;
