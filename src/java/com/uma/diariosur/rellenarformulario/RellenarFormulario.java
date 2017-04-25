@@ -8,6 +8,11 @@ package com.uma.diariosur.rellenarformulario;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Usuario;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,12 +22,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import javax.faces.bean.ManagedBean;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 /**
  *
  * @author Carlos
@@ -71,8 +80,40 @@ public class RellenarFormulario implements Serializable{
         if(img != null) {
             FacesMessage message = new FacesMessage("Succesful", img.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage("myform:img", message);
+            try {
+                save();
+            } catch (IOException ex) {
+                Logger.getLogger(RellenarFormulario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
+    
+    private String sacar_ext(String s){
+        
+        int index = s.lastIndexOf('.');
+            
+        if (index == -1) {
+                  return "";
+            } else {
+                  return s.substring(index + 1);
+            }
+        
+    }
+    
+    public void save() throws IOException {
+        String ext = sacar_ext(img.getFileName());
+        String aux2 = this.nombre.concat(".");
+        String filename = aux2.concat(ext);
+        InputStream input = img.getInputstream();
+        OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Desktop\\Informatica", filename));
+
+        try {
+            IOUtils.copy(input, output);
+        } finally {
+            IOUtils.closeQuietly(input);
+            IOUtils.closeQuietly(output);
+        }
+}
     
      public Date getFecha_inicio() {
         return fecha_inicio;
@@ -146,6 +187,7 @@ public class RellenarFormulario implements Serializable{
         e1.setFecha_inicio(date);
         e1.setUbicacion("la mina");
         e1.setPrecio(20.99);
+        
         
         eventos.add(e1);
     }
