@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -90,16 +92,7 @@ public class BeanPrincipal implements Serializable{
        
     }
     
-    static{
-         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = (Date)formatter.parse("12/05/2017");
-        
-        eventos = new ArrayList<Evento>();
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
-        
-    }
+
     
     
     //COMPROBACION DE EVENTOS FILTRADOS

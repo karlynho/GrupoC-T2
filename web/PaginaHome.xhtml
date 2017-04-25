@@ -35,7 +35,7 @@
                     </h:panelGrid>
                     <h:messages showDetail="true" />
                     <p:commandButton   value="Buscar" action="#{beanPrincipal.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}"/>
-                    <p:dataGrid var="evento" value="#{beanPrincioal.verEventos()}" columns="3"  rows="3"  class="eventos">
+                    <p:dataGrid var="evento" value="#{beanPrincipal.verEventos()}" columns="3"  rows="3"  class="eventos">
                         <h:panelGrid columns="1" class="eventos2">
                                 <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{evento.nombre}.jpg"/>
                                 <h:outputText value="#{evento.fecha_inicio}"/>
