@@ -12,8 +12,8 @@
     <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{rellenarFormulario.home()}" ajax="false" />
     </h:form>
         
-    <div style="margin: 20px 50px 0px 50px; background-color: #0099ff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
-        <div style="color: whitesmoke">A continuación rellene los campos del evento, no deje campos vacíos.</div>
+        <div style="margin: 20px 50px 0px 50px; background-color: #66ccff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
+        <div style="color: black">A continuación rellene los campos del evento, no deje campos vacíos.</div>
       <br> </br>
       
       <h:form id ="myform" enctype="multipart/form-data">
@@ -21,15 +21,14 @@
                 <p:outputLabel style=" font-size: small" value="Nombre:">
             <p:inputText id="nombre" size="30" value="#{rellenarFormulario.nombre}" required=""/>
             <p:commandButton id="comprobar" ajax="false" value="Comprobar" actionListener="#{rellenarFormulario.comprobar}"/>
-            &nbsp;&nbsp;
-            <p:messages style="font-size: small" showDetail="true"/>
+            <p:message for="nombre" style="font-size: small" showDetail="true"/>
                 </p:outputLabel>
             </h:panelGrid>
           
             <br> </br>
             <p:outputLabel style=" font-size: small" value="Descripción:" />
             <br> </br>
-            <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="" counter="display" maxlength="150" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+            <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="" counter="display" maxlength="150" autoResize="false"/>
             
             <p:growl id="msgs" showDetail="true" />
                 <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; position: absolute; top: 260px;">
@@ -90,12 +89,16 @@
             
                <p:growl id="messages" showDetail="true" />
                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 450px; position: absolute">
-                   <p:outputLabel style=" font-size: small" value="Adjunte una imagen:" />
-                   <p:fileUpload value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" required="" label="Subir" />
+                   <p:outputLabel style=" font-size: small" value="Adjunte una imagen:">
+                   <p:fileUpload id="img" value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" required="" label="Subir" />
+                   <p:commandButton id="Adjuntar" ajax="false" value="Adjuntar" actionListener="#{rellenarFormulario.upload}"/>
+                   <p:message for="img" style="font-size: small" showDetail="true"/>
+                   </p:outputLabel>
+                   
                </h:panelGrid>
                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 680px; position: absolute">
                    <p:commandButton id="enviar" ajax="false" value="Enviar" actionListener="#{rellenarFormulario.enviar}"/>
-                   <p:commandButton id="resetear" value="Resetear" type="reset"/>
+                   <p:commandButton id="resetear" value="Resetear" type="reset" ajax="false"/>
                </h:panelGrid>
         </h:form>
       </div>

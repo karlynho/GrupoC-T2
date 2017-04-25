@@ -70,7 +70,7 @@ public class RellenarFormulario implements Serializable{
     public void upload() {
         if(img != null) {
             FacesMessage message = new FacesMessage("Succesful", img.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesContext.getCurrentInstance().addMessage("myform:img", message);
         }
     }
     
@@ -152,33 +152,17 @@ public class RellenarFormulario implements Serializable{
     
     
     public String enviar(){
-        
-        upload();
-        
-        if (nombre==null || descripcion==null || categoria==null || fecha_inicio==null || fecha_fin==null || ubicacion==null || precio==null || img == null){
-            System.err.print("error");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Faltan atributos por introducir!"));
-            return "rellenar_formulario.xhtml";
+     
+        if(this.nombre.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Por favor introduzca un nombre");
+            FacesContext.getCurrentInstance().addMessage("myform:nombre", message);
+            return null;
         }
-        
-        
-//       /// Aqui iria comprobación de si es un usuario o un periodista
-        
-//       // SI ES UN USUARIO SE CREA UN FORMULARIO
-
-        
-         Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
-         // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
-         return "PaginaHome.xhtml";
-        
-        
-    }
-   
-     public String comprobar(){
+         
          
         boolean encontrado = false;
         int i=0;
-        System.out.print(eventos.size());
+        
         while (i<eventos.size() && !encontrado){
             if (eventos.get(i).getNombre().equalsIgnoreCase(this.nombre)){
                 encontrado = true;
@@ -188,11 +172,58 @@ public class RellenarFormulario implements Serializable{
         
         if (encontrado){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El evento ya esta en el sistema");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            FacesContext.getCurrentInstance().addMessage("myform:nombre", message);
             return null;
         }
         else{
-            return "rellenar_formulario.xhtml";
+            
+            if (this.nombre.isEmpty()|| this.descripcion.isEmpty() || this.categoria.isEmpty() || this.fecha_inicio==null || this.fecha_fin==null || this.ubicacion.isEmpty() || this.precio==null || this.img.getFileName().isEmpty()){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","Faltan atributos por introducir!"));
+                return "rellenar_formulario.xhtml";
+            }
+        
+        
+//       /// Aqui iria comprobación de si es un usuario o un periodista
+        
+//       // SI ES UN USUARIO SE CREA UN FORMULARIO
+
+            else{
+                System.out.print("OOOOOK");
+                Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
+                // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+                return "PaginaHome.xhtml";
+            }
+        }
+    }
+   
+     public String comprobar(){
+         
+        if(this.nombre.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Por favor introduzca un nombre");
+            FacesContext.getCurrentInstance().addMessage("myform:nombre", message);
+            return null;
+        }
+         
+         
+        boolean encontrado = false;
+        int i=0;
+        
+        while (i<eventos.size() && !encontrado){
+            if (eventos.get(i).getNombre().equalsIgnoreCase(this.nombre)){
+                encontrado = true;
+            }
+            i++;
+        }
+        
+        if (encontrado){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El evento ya esta en el sistema");
+            FacesContext.getCurrentInstance().addMessage("myform:nombre", message);
+            return null;
+        }
+        else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "" , "El evento no esta en el sistema");
+            FacesContext.getCurrentInstance().addMessage("myform:nombre", message);
+            return null;
         }
         
      }
