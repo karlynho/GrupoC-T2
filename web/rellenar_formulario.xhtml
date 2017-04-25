@@ -12,11 +12,14 @@
     <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{rellenarFormulario.home()}" ajax="false" />
     </h:form>
         
-        <div style="margin: 20px 50px 0px 50px; background-color: #66ccff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
+        <div style="margin: 20px 50px 0px 50px; background-color: #66ccff; height: 660px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
         <div style="color: black">A continuación rellene los campos del evento, no deje campos vacíos.</div>
       <br> </br>
       
       <h:form id ="myform" enctype="multipart/form-data">
+          
+          <p:panel id="panel" style="background: #66ccff; border: none"  >
+              
             <h:panelGrid id="grid" columns="3" cellpadding="5">
                 <p:outputLabel style=" font-size: small" value="Nombre:">
             <p:inputText id="nombre" size="30" value="#{rellenarFormulario.nombre}" required=""/>
@@ -96,10 +99,14 @@
                    </p:outputLabel>
                    
                </h:panelGrid>
-               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 680px; position: absolute">
+               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 690px; position: absolute">
                    <p:commandButton id="enviar" ajax="false" value="Enviar" actionListener="#{rellenarFormulario.enviar}"/>
-                   <p:commandButton id="resetear" value="Resetear" type="reset" ajax="false"/>
+                   <p:commandButton value="Resetear" >
+                    <p:ajax update="panel" resetValues="true" />
+            </p:commandButton>
                </h:panelGrid>
+          </p:panel>
+          
         </h:form>
       </div>
     </h:body>
