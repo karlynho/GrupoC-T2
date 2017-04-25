@@ -153,13 +153,12 @@ public class RellenarFormulario implements Serializable{
     
     public String enviar(){
         
-        if(comprobar()){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El evento ya esta en el sistema !"));
-            return "";
-        }
+        upload();
         
-        if (nombre==null || descripcion==null || categoria==null || fecha_inicio==null || fecha_fin==null || img==null || ubicacion==null || precio==null){
+        if (nombre==null || descripcion==null || categoria==null || fecha_inicio==null || fecha_fin==null || ubicacion==null || precio==null || img == null){
+            System.err.print("error");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Faltan atributos por introducir!"));
+            return "rellenar_formulario.xhtml";
         }
         
         
@@ -167,33 +166,39 @@ public class RellenarFormulario implements Serializable{
         
 //       // SI ES UN USUARIO SE CREA UN FORMULARIO
 
-        else{
-            Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
-            // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
-            return "index.xhtml";
-        }
+        
+         Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
+         // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+         return "PaginaHome.xhtml";
         
         
-        return "index.xhtml";
     }
-    
-    public boolean comprobar(){
-       
+   
+     public String comprobar(){
+         
         boolean encontrado = false;
         int i=0;
-        
+        System.out.print(eventos.size());
         while (i<eventos.size() && !encontrado){
-            if (eventos.get(i).getNombre().equalsIgnoreCase(nombre)){
+            if (eventos.get(i).getNombre().equalsIgnoreCase(this.nombre)){
                 encontrado = true;
             }
             i++;
         }
-       return encontrado;
-    }
-    
-    
+        
+        if (encontrado){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El evento ya esta en el sistema");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return null;
+        }
+        else{
+            return "rellenar_formulario.xhtml";
+        }
+        
+     }
+     
     public String home() {
-        return "index.xhtml";
+        return "PaginaHome.xhtml";
     }
     
 }

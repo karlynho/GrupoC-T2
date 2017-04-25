@@ -15,7 +15,8 @@ import javax.faces.bean.ViewScoped;
 public class DataScrollerView implements Serializable {
       
     private List<Formulario> formularios;
-          
+    
+    
     @ManagedProperty("#{formularioService}")
     private FormulariosService service;
       
@@ -35,4 +36,27 @@ public class DataScrollerView implements Serializable {
     public String home() {
         return "PaginaHome.xhtml";
     }
+    
+    public String validar(Formulario f){
+        
+        Evento e = new Evento ();
+        e.setNombre(f.getNombre());
+        e.setDescripcion(f.getDescripcion());
+        e.setCategoria(f.getCategoria());
+        e.setFecha_inicio(f.getFecha_inicio());
+        e.setFecha_final(f.getFecha_fin());
+        e.setUbicacion(f.getUbicacion());
+        e.setPrecio(f.getPrecio());
+        
+        rechazar(f);
+        
+       return "formularios.xhtml"; 
+    }
+    
+    public String rechazar(Formulario f){
+        formularios.remove(f);
+        System.out.println(formularios.size());
+        return null;
+    }
+    
 }

@@ -13,25 +13,28 @@
     </h:form>
         
     <div style="margin: 20px 50px 0px 50px; background-color: #0099ff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
-      <div>A continuación rellene los campos del evento, no deje campos vacíos.</div>
+        <div style="color: whitesmoke">A continuación rellene los campos del evento, no deje campos vacíos.</div>
       <br> </br>
-      <h:form id ="form" enctype="multipart/form-data">
+      
+      <h:form id ="myform" enctype="multipart/form-data">
             <h:panelGrid id="grid" columns="3" cellpadding="5">
-            <p:outputLabel for="nombre" style=" font-size: small" value="Nombre:" />
-            <p:inputText id="nombre" size="30" value="#{rellenarFormulario.nombre}" required="true"/>
+                <p:outputLabel style=" font-size: small" value="Nombre:">
+            <p:inputText id="nombre" size="30" value="#{rellenarFormulario.nombre}" required=""/>
+            <p:commandButton id="comprobar" ajax="false" value="Comprobar" actionListener="#{rellenarFormulario.comprobar}"/>
             &nbsp;&nbsp;
-            <p:commandButton value="Comprobar" action="#{rellenarFormulario.comprobar()}" update="grid"/> &nbsp;&nbsp; 
-            <p:message for="nombre"/>
+            <p:messages style="font-size: small" showDetail="true"/>
+                </p:outputLabel>
             </h:panelGrid>
+          
             <br> </br>
             <p:outputLabel style=" font-size: small" value="Descripción:" />
             <br> </br>
-            <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="true" counter="display" maxlength="150" counterTemplate="{0} caracteres restantes." autoResize="false"/>
+            <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="" counter="display" maxlength="150" counterTemplate="{0} caracteres restantes." autoResize="false"/>
             
             <p:growl id="msgs" showDetail="true" />
                 <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; position: absolute; top: 260px;">
                     <p:outputLabel style=" font-size: small" for="datetime1" value="Fecha Inicio:" />
-                    <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" required="true" showOn="button"/>
+                    <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" required="" showOn="button"/>
                 </h:panelGrid>
             
                 <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
@@ -47,7 +50,7 @@
             <p:growl id="msgs2" showDetail="true" />
                 <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 350px; position: absolute"  >
                 <p:outputLabel style=" font-size: small" for="datetime2" value="Fecha Fin:" />
-                <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" required="true" showOn="button" />
+                <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" required="" showOn="button" />
                 </h:panelGrid>
             
                 <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
@@ -61,7 +64,7 @@
             
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
                     <p:outputLabel style=" font-size: small" for="Categoria" value="Categoria:" />
-                        <p:selectOneListbox style=" font-size: small" id="Categoria" value="#{rellenarFormulario.categoria}" required="true">
+                        <p:selectOneListbox style=" font-size: small" id="Categoria" value="#{rellenarFormulario.categoria}" required="">
                             <f:selectItem itemLabel="Charlas y Conferencias" itemValue="1" />
                             <f:selectItem itemLabel="Conciertos" itemValue="2" />
                             <f:selectItem itemLabel="Espectaculo" itemValue="3" />
@@ -73,20 +76,25 @@
                         </p:selectOneListbox>
                 </h:panelGrid>
             
-                <p:outputLabel style=" font-size: small" value="Ubicación:" />
-                <p:inputText size="50" value="#{rellenarFormulario.ubicacion}" required="true"/>
-                <br> </br>
-                <p:outputLabel style=" font-size: small" value="Precio:" />
-                <p:inputNumber size="2" value="#{rellenarFormulario.precio}" required="true"/>
-                <br> </br>
+               <p:outputLabel style=" font-size: small" value="Ubicación:" />
+               <p:inputText size="50" value="#{rellenarFormulario.ubicacion}" required=""/>
+               <br> </br>
+               
+               
+               <h:panelGrid columns="1">
+                   <p:outputLabel style=" font-size: small" value="Precio:">
+                   <p:inputNumber id="n" size="5" value="#{rellenarFormulario.precio}" required="" symbol=" €"/>
+                   <p:slider for="n"   />
+                   </p:outputLabel>
+               </h:panelGrid>
             
                <p:growl id="messages" showDetail="true" />
                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 450px; position: absolute">
                    <p:outputLabel style=" font-size: small" value="Adjunte una imagen:" />
-                   <p:fileUpload value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" required="true" label="Subir" />
+                   <p:fileUpload value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" required="" label="Subir" />
                </h:panelGrid>
-               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 650px; position: absolute">
-                   <p:commandButton id="enviar" value="Enviar" action="#{rellenarFormulario.enviar()}"/>
+               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 680px; position: absolute">
+                   <p:commandButton id="enviar" ajax="false" value="Enviar" actionListener="#{rellenarFormulario.enviar}"/>
                    <p:commandButton id="resetear" value="Resetear" type="reset"/>
                </h:panelGrid>
         </h:form>

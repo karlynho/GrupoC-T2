@@ -60,6 +60,10 @@ public class Evento implements Serializable {
     public Evento (){
         
     }
+
+    public Evento(String red_Hot_Chili_Peppers, String coachella, String conciertos, Date date, Date date0, double d, String malaga) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public List<Imagen> getImagenes() {
         return imagenes;
