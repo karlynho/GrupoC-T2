@@ -20,6 +20,7 @@
             <h:form id="menu">
                 <ul class="menulist">
                     <c:if test="#{empty controlHome.usuario and empty controlHome.periodista}">
+                        <li><h:commandLink action="#{controlHome.login()}" value="Login"/></li>
                         <li><h:commandLink action="#{controlHome.registro()}" value="Registro"/></li>
                     </c:if>
                     <c:if test="#{!empty controlHome.usuario}">
