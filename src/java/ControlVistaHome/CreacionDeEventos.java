@@ -40,7 +40,7 @@ public class CreacionDeEventos implements Serializable{
         this.eventos = eventos;
     }
     
-    public List<Evento> crearEventos() throws ParseException{
+    public List<Evento> crearEventos(String ubicacion) throws ParseException{
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = (Date)formatter.parse("12/05/2017");
         

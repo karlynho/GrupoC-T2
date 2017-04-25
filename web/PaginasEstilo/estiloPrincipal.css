@@ -24,7 +24,7 @@ h1{
     color: darkblue;
     text-decoration: underline ;
     position: absolute;
-    font-size: 50px;
+    font-size: 90px;
     margin-left: 30px;
    
 }
@@ -64,4 +64,11 @@ ul.menulist li{
     margin-left: 350px;
 }
 
+.eventos{
+    border:none;
 
+}
+.eventos2{
+   border:none;
+  
+}
