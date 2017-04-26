@@ -14,8 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,18 +27,31 @@ import javax.inject.Named;
 @Named(value = "beanPrincipal")
 @ApplicationScoped
 public class BeanPrincipal implements Serializable{
-    private static List<Evento>eventos;
-      private List<Evento>eventosFiltrados;
-      private boolean filtrados=false;
+    private  List<Evento>eventos;
+    private List<Evento>eventosFiltrados;
+    private Boolean control = false;
+
+    public Boolean getControl() {
+        return control;
+    }
+
+    public void setControl(Boolean control) {
+        this.control = control;
+    }
+
+    public BeanPrincipal getBnp() {
+        return bnp;
+    }
+
+    public void setBnp(BeanPrincipal bnp) {
+        this.bnp = bnp;
+    }
+     
 
     @Inject 
      ControlHome ctrlHome;
-           
-    
-    
-  
-      
-      
+     BeanPrincipal bnp;
+               
       public List<Evento> getEventosFiltrados() {
         return eventosFiltrados;
     }
@@ -65,21 +76,8 @@ public class BeanPrincipal implements Serializable{
         this.eventos = eventos;
     }
     
-    
-    
-    //VISUALIZACION DE CREACION DE EVENTOS
-      public List<Evento> verEventos() throws ParseException{
-          if(filtrados){
-              //VEMOS EVENTOD FILTRADOS
-              return eventosFiltrados;
-          }else{
-             //VEMOS TODOS LOS EVENTOS
-              return eventos;
-          }
-
-    }
-    
-    public BeanPrincipal() throws ParseException{
+    //modificamos bnp con un valor de cero o uno comprobamos si entramos o no y luego realizamos el cambio de vitsas si la variable filtro esta a true
+    public List<Evento> crearEventos() throws ParseException{
         
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = (Date)formatter.parse("12/05/2017");
@@ -89,44 +87,24 @@ public class BeanPrincipal implements Serializable{
         eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
         
+        
+        if(control){
+            //Se han filtrado los eventos
+            return eventosFiltrados;
+        }else{
+             return eventos;
+        }
+        
+    }
+    
+    
+   
+    public BeanPrincipal() throws ParseException{
+        
+        
+        
        
     }
     
-
-    
-    
-    //COMPROBACION DE EVENTOS FILTRADOS
-     public String comprobacion(String evento,String ubicacion,String categoria,String fecha){
-      
-        boolean encontrado = false;
-       int tam = eventos.size();
-       int i= 0;
-       
-       while(i<tam && !encontrado){
-           
-           if(eventos.get(i).getNombre().equalsIgnoreCase(evento) && evento!=null){
-               //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
-               eventosFiltrados.add(eventos.get(i));
-               encontrado = true;
-               filtrados=true;
-           }else if(eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)){
-               //La ubicacion coincide,  comprobamos la categoria
-               if(eventos.get(i).getCategoria().equalsIgnoreCase(categoria)){
-                   //La categoria coincide, comprobamos la fecha
-                   if(eventos.get(i).getFecha_inicio().equals(fecha)){
-                       //Coinciden las tres condiciones del filtro, entonces añadimos a la lista de filtrados
-                       eventosFiltrados.add(eventos.get(i));
-                       filtrados=true;
-                   }
-               }
-               
-           }
-           
-           i++;
-           
-       }
-       return ctrlHome.home();
-       
-}
      
 }

@@ -53,8 +53,6 @@ public class ControlHome implements Serializable{
     }
     
     
-  
-    
     public String getEvento() {
         return evento;
     }
@@ -154,7 +152,6 @@ public class ControlHome implements Serializable{
         return "ControlHomeFiltro.xhtml";
     }
     
-  
     
     /**
      * Creates a new instance of ControlHome
