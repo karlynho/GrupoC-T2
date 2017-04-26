@@ -11,7 +11,7 @@
     
 <h:form> 
     <br></br>
-    <p:dataScroller value="#{dataScrollerView.formularios}" var="f" chunkSize="10" mode="inline" scrollHeight="500">
+    <p:dataScroller value="#{beanPrincipal.formularios}" var="f" chunkSize="10" mode="inline" scrollHeight="500" >
         <f:facet name="header">
             Formularios Recibidos
         </f:facet>
@@ -39,8 +39,8 @@
                     <h:outputText value="#{f.fecha_subida}" style="font-weight: bold "/>
                     <h:outputText value="Subido por:" />
                     <h:outputText value="#{f.usuario.nick}" style="font-weight: bold"/>
-                    <p:commandButton id="enviar" value="Validar" action="#{dataScrollerView.validar(f)}"/>
-                    <p:commandButton id="rechazar" value="Rechazar" action="#{dataScrollerView.rechazar(f)}">
+                    <p:commandButton id="enviar" value="Validar" action="#{dataScrollerView.validar(f)}" ajax="false"/>
+                    <p:commandButton id="rechazar" value="Rechazar" action="#{dataScrollerView.rechazar(f)}" ajax="false">
                     </p:commandButton>
                                      
                 </h:panelGrid>

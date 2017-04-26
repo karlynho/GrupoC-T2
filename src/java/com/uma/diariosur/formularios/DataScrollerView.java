@@ -1,36 +1,33 @@
 package com.uma.diariosur.formularios;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
+import java.text.ParseException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
  
   
 @ManagedBean
 @ViewScoped
 public class DataScrollerView implements Serializable {
       
-    private List<Formulario> formularios;
+    @Inject
+    private BeanPrincipal bp;
     
-    
-    @ManagedProperty("#{formularioService}")
-    private FormulariosService service;
-      
-    @PostConstruct
-    public void init() {
-        formularios = service.createForms();
-    }
   
-    public List<Formulario> getFormularios() {
-        return formularios;
+    public DataScrollerView() throws ParseException{
+        
     }
-  
-    public void setService(FormulariosService service) {
-        this.service = service;
+
+    public BeanPrincipal getBp() {
+        return bp;
+    }
+
+    public void setBp(BeanPrincipal bp) {
+        this.bp = bp;
     }
     
     public String home() {
@@ -48,14 +45,15 @@ public class DataScrollerView implements Serializable {
         e.setUbicacion(f.getUbicacion());
         e.setPrecio(f.getPrecio());
         
-        rechazar(f);
+        bp.addEvent(e);
+        bp.eliminarForm(f);
+        
         
        return "formularios.xhtml"; 
     }
     
     public String rechazar(Formulario f){
-        formularios.remove(f);
-        System.out.println(formularios.size());
+        bp.eliminarForm(f);
         return null;
     }
     

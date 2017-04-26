@@ -5,6 +5,7 @@
  */
 package com.uma.diariosur.rellenarformulario;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Imagen;
@@ -31,6 +32,7 @@ import org.primefaces.model.UploadedFile;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 /**
@@ -53,8 +55,10 @@ public class RellenarFormulario implements Serializable{
     
     private String aux_enlace;
     private String aux_ext;
-    private List<Evento> eventos;
     private Usuario u;
+    
+    @Inject
+    private BeanPrincipal bn;
     
     
     public void onDateSelect(SelectEvent event) {
@@ -178,20 +182,6 @@ public class RellenarFormulario implements Serializable{
      */
     public RellenarFormulario() throws ParseException {
         
-        eventos = new ArrayList<>();
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        Date date = (Date)formatter.parse("05/15/11");
-        Evento e1 = new Evento();
-        e1.setNombre("Starlite");
-        e1.setDescripcion("pijos");
-        e1.setCategoria("conciertos");
-        e1.setFecha_final(date);
-        e1.setFecha_inicio(date);
-        e1.setUbicacion("la mina");
-        e1.setPrecio(20.99);
-        
-        
-        eventos.add(e1);
     }
     
     
@@ -207,8 +197,8 @@ public class RellenarFormulario implements Serializable{
         boolean encontrado = false;
         int i=0;
         
-        while (i<eventos.size() && !encontrado){
-            if (eventos.get(i).getNombre().equalsIgnoreCase(this.nombre)){
+        while (i<bn.getEventos().size() && !encontrado){
+            if (bn.getEventos().get(i).getNombre().equalsIgnoreCase(this.nombre)){
                 encontrado = true;
             }
             i++;
@@ -241,19 +231,44 @@ public class RellenarFormulario implements Serializable{
                 
                 
                     System.out.print("OOOOOK");
-                    Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
-                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+                    
+                    // Creacion de la imagen
+                    
                     Imagen im = new Imagen();
                     im.setEnlace(aux_enlace);
                     im.setTipo(aux_ext);
+                    
+                   
+                    Formulario form = new Formulario();
+                    form.setNombre(nombre);
+                    form.setDescripcion(descripcion);
+                    form.setCategoria(categoria);
+                    form.setUbicacion(ubicacion);
+                    form.setPrecio(precio);
+                    form.setFecha_inicio(fecha_inicio);
+                    form.setFecha_fin(fecha_fin);
+                    form.setUsuario(u);
+                    form.setEstado("pendiente");
+                    form.setImg(im);
+                    
+                    
+                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+                    
                     im.setEvento(ev);
                     List<Imagen> imgs = new ArrayList<>();
                     imgs.add(im);
                     im.setF(form);
                     form.setImg(im);
                     ev.setImagenes(imgs);
-                    System.out.print("creadooo");
-                    return "PaginaHome.xhtml";
+                    
+                    bn.addForm(form);
+                    
+//                    bn.addImage(im);
+                    bn.addEvent(ev);
+                    
+                    System.out.print("Longitud de Array Principal eventos" + bn.getEventos().size());
+                    System.out.print("Longitud de Array Principal formularios" + bn.getFormularios().size());
+                    return "formularios.xhtml";
         }
     }
    
@@ -269,8 +284,8 @@ public class RellenarFormulario implements Serializable{
         boolean encontrado = false;
         int i=0;
         
-        while (i<eventos.size() && !encontrado){
-            if (eventos.get(i).getNombre().equalsIgnoreCase(this.nombre)){
+        while (i<bn.getEventos().size() && !encontrado){
+            if (bn.getEventos().get(i).getNombre().equalsIgnoreCase(this.nombre)){
                 encontrado = true;
             }
             i++;
