@@ -34,6 +34,15 @@ public class BeanPrincipal implements Serializable{
     private Boolean control = false;
     private List<Usuario> usuarios;
     private List<Periodista> periodistas;
+    
+    public List<Periodista> getPeriodistas() {
+        return periodistas;
+    }
+
+    public void setPeriodistas(List<Periodista> periodistas) {
+        this.periodistas = periodistas;
+    }
+
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -51,18 +60,12 @@ public class BeanPrincipal implements Serializable{
         this.control = control;
     }
 
-    public BeanPrincipal getBnp() {
-        return bnp;
-    }
-
-    public void setBnp(BeanPrincipal bnp) {
-        this.bnp = bnp;
-    }
+   
      
 
     @Inject 
      ControlHome ctrlHome;
-     BeanPrincipal bnp;
+     
                
       public List<Evento> getEventosFiltrados() {
         return eventosFiltrados;
@@ -110,12 +113,13 @@ public class BeanPrincipal implements Serializable{
         
     }
     
-    public List<Usuario> crearUsuarios(){
+    public void crearUsuarios(){
        usuarios = new ArrayList<Usuario>();
+       periodistas= new ArrayList<Periodista>();
        usuarios.add(new Usuario("Carlos","Velazquez","karlynho","carlospuli@gmail,com","buenooo"));
        periodistas.add(new Periodista("Steven","Montoya",123456,"smv@gmail.com","contrasenia"));
         
-        return usuarios;
+       
     }
    
    

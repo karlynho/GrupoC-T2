@@ -107,11 +107,11 @@ public class ControlHome implements Serializable{
                 return "PaginaHome.xhtml";
             }else{
                 //Identificado como Periodista
-                return "PaginaHomePeriodista.xhtml";
+                return "PaginaHome.xhtml";
             }
         }else{
             //Identificado como Usuario Normal
-            return "PaginaHomeUsuarioNormal.xhtml";
+            return "PaginaHome.xhtml";
         }
     }
     

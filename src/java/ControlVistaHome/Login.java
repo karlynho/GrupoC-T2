@@ -6,6 +6,7 @@
 package ControlVistaHome;
 
 
+import com.uma.diariosur.modelo.Periodista;
 import com.uma.diariosur.modelo.Usuario;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -32,10 +33,19 @@ public class Login {
     
     @Inject 
     private ControlHome ctrlhome;
+   @Inject
     private BeanPrincipal bnp;
      
      
-     
+    private List<Periodista>periodistas;
+
+    public List<Periodista> getPeriodistas() {
+        return periodistas;
+    }
+
+    public void setPeriodistas(List<Periodista> periodistas) {
+        this.periodistas = periodistas;
+    }
     private List<Usuario> usuarios;
 
     public ControlHome getCtrhome() {
@@ -59,6 +69,15 @@ public class Login {
     }
 
     private String usuario;
+    private String periodista;
+
+    public String getPeriodista() {
+        return periodista;
+    }
+
+    public void setPeriodista(String periodista) {
+        this.periodista = periodista;
+    }
     private String contrasenia;
     private boolean encontrado = false;
 
@@ -89,14 +108,17 @@ public class Login {
     public Login() {
     }
     
-    public String Autenticar(){
-          
+    public String autenticar(){
+           bnp.crearUsuarios();
            usuarios = bnp.getUsuarios();
+           periodistas = bnp.getPeriodistas();
            boolean encontrado = false;
            int tam = usuarios.size();
+           int tam2= periodistas.size();
            int i = 0;
+           int j = 0;
         
-        
+        //comprobamos primero si es usuario normal
         while(i<tam && !encontrado){
             //recorremos la lista buscando al usuario
             if(usuarios.get(i).getNombre().equals(this.usuario)){
@@ -104,6 +126,23 @@ public class Login {
                 if(usuarios.get(i).getPassword().equals(this.contrasenia)){
                     // usuario y contraseña correcto
                    ctrlhome.setUsuario(usuarios.get(i));
+                  
+                }else{
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error contraseña", "Error contraseña"));
+                }
+                
+            } 
+            i++;
+        }
+        //comprobamos si es periodista
+        while(j<tam && !encontrado){
+            //recorremos la lista buscando al usuario
+            if(periodistas.get(i).getNombre().equals(this.periodista)){
+                encontrado = true;
+                if(usuarios.get(i).getPassword().equals(this.contrasenia)){
+                    // usuario y contraseña correcto
+                   ctrlhome.setPeriodista(periodistas.get(i));
                   
                 }else{
                     FacesContext ctx = FacesContext.getCurrentInstance();
