@@ -34,7 +34,7 @@
             <p:inputTextarea rows="5" cols="30" value="#{rellenarFormulario.descripcion}" required="" counter="display" maxlength="150" autoResize="false"/>
             
             <p:growl id="msgs" showDetail="true" />
-                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; position: absolute; top: 260px;">
+                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; position: absolute; top: 240px;">
                     <p:outputLabel style=" font-size: small" for="datetime1" value="Fecha Inicio:" />
                     <p:calendar id="datetime1" value="#{rellenarFormulario.fecha_inicio}" pattern="MM/dd/yyyy HH:mm:ss" required="" showOn="button"/>
                 </h:panelGrid>
@@ -50,7 +50,7 @@
                 <br> </br>
             
             <p:growl id="msgs2" showDetail="true" />
-                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 350px; position: absolute"  >
+                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 390px; position: absolute"  >
                 <p:outputLabel style=" font-size: small" for="datetime2" value="Fecha Fin:" />
                 <p:calendar id="datetime2" value="#{rellenarFormulario.fecha_fin}" pattern="MM/dd/yyyy HH:mm:ss" required="" showOn="button" />
                 </h:panelGrid>
@@ -91,19 +91,18 @@
                </h:panelGrid>
             
                <p:growl id="messages" showDetail="true" />
-               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 450px; position: absolute">
+               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 509px; top: 180px; position: absolute">
                    <p:outputLabel style=" font-size: small" value="Adjunte una imagen:">
-                   <p:fileUpload id="img" value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" required="" label="Subir" />
-                   <p:commandButton id="Adjuntar" ajax="false" value="Adjuntar" actionListener="#{rellenarFormulario.upload}"/>
+                   <p:fileUpload id="img" value="#{rellenarFormulario.img}" mode="simple" skinSimple="true" label="Subir"  />
                    <p:message for="img" style="font-size: small" showDetail="true"/>
                    </p:outputLabel>
                    
                </h:panelGrid>
                <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 690px; position: absolute">
-                   <p:commandButton id="enviar" ajax="false" value="Enviar" actionListener="#{rellenarFormulario.enviar}"/>
+                   <p:commandButton id="enviar" value="Enviar" action="#{rellenarFormulario.enviar()}" ajax="false"/>
                    <p:commandButton value="Resetear" >
-                    <p:ajax update="panel" resetValues="true" />
-            </p:commandButton>
+                        <p:ajax update="panel" resetValues="true" />
+                   </p:commandButton>
                </h:panelGrid>
           </p:panel>
           

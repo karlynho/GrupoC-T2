@@ -7,6 +7,7 @@ package com.uma.diariosur.rellenarformulario;
 
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
+import com.uma.diariosur.modelo.Imagen;
 import com.uma.diariosur.modelo.Usuario;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,6 +51,8 @@ public class RellenarFormulario implements Serializable{
     private String ubicacion;
     private Double precio;
     
+    private String aux_enlace;
+    private String aux_ext;
     private List<Evento> eventos;
     private Usuario u;
     
@@ -74,20 +77,7 @@ public class RellenarFormulario implements Serializable{
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
     }
-    
-    
-    public void upload() {
-        if(img != null) {
-            FacesMessage message = new FacesMessage("Succesful", img.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage("myform:img", message);
-            try {
-                save();
-            } catch (IOException ex) {
-                Logger.getLogger(RellenarFormulario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
+     
     private String sacar_ext(String s){
         
         int index = s.lastIndexOf('.');
@@ -100,19 +90,31 @@ public class RellenarFormulario implements Serializable{
         
     }
     
-    public void save() throws IOException {
-        String ext = sacar_ext(img.getFileName());
-        String aux2 = this.nombre.concat(".");
-        String filename = aux2.concat(ext);
-        InputStream input = img.getInputstream();
-        OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Desktop\\Informatica", filename));
-
+    public boolean save() throws IOException {
+        
+        boolean res = true;
+        
+        if(img.getFileName().isEmpty()) {
+            res = false;
+        }
+        else{
+            String ext = sacar_ext(img.getFileName());
+            String aux2 = this.nombre.concat(".");
+            String filename = aux2.concat(ext);
+            InputStream input = img.getInputstream();
+            OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Documents\\NetBeansProjects\\DiarioSur-T2\\web\\WEB-INF\\resources", filename));
+            aux_enlace = "C:\\Users\\Carlos\\Desktop\\Informatica";
+            aux_ext = ext;
+        
         try {
             IOUtils.copy(input, output);
         } finally {
             IOUtils.closeQuietly(input);
             IOUtils.closeQuietly(output);
         }
+        }
+        
+        return res;
 }
     
      public Date getFecha_inicio() {
@@ -193,7 +195,7 @@ public class RellenarFormulario implements Serializable{
     }
     
     
-    public String enviar(){
+    public String enviar() throws IOException{
      
         if(this.nombre.isEmpty()){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Por favor introduzca un nombre");
@@ -219,22 +221,39 @@ public class RellenarFormulario implements Serializable{
         }
         else{
             
-            if (this.nombre.isEmpty()|| this.descripcion.isEmpty() || this.categoria.isEmpty() || this.fecha_inicio==null || this.fecha_fin==null || this.ubicacion.isEmpty() || this.precio==null || this.img.getFileName().isEmpty()){
+            if (this.nombre.isEmpty()|| this.descripcion.isEmpty() || this.categoria.isEmpty() || this.fecha_inicio==null || this.fecha_fin==null || this.ubicacion.isEmpty() || this.precio==null){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","Faltan atributos por introducir!"));
-                return "rellenar_formulario.xhtml";
+                return null;
             }
-        
-        
+            
+          
+            if(!save()){
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","la imagen no se subio correctamente");
+                FacesContext.getCurrentInstance().addMessage("myform:img", message);
+                return null;
+             }
+                
+                
+                
 //       /// Aqui iria comprobación de si es un usuario o un periodista
         
 //       // SI ES UN USUARIO SE CREA UN FORMULARIO
-
-            else{
-                System.out.print("OOOOOK");
-                Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
-                // Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
-                return "PaginaHome.xhtml";
-            }
+                
+                
+                    System.out.print("OOOOOK");
+                    Formulario form = new Formulario(nombre,descripcion,categoria,fecha_inicio,fecha_fin,ubicacion,precio,"pendiente",new Date(),u);
+                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+                    Imagen im = new Imagen();
+                    im.setEnlace(aux_enlace);
+                    im.setTipo(aux_ext);
+                    im.setEvento(ev);
+                    List<Imagen> imgs = new ArrayList<>();
+                    imgs.add(im);
+                    im.setF(form);
+                    form.setImg(im);
+                    ev.setImagenes(imgs);
+                    System.out.print("creadooo");
+                    return "PaginaHome.xhtml";
         }
     }
    

@@ -60,10 +60,6 @@ public class Evento implements Serializable {
     public Evento (){
         
     }
-
-    public Evento(String red_Hot_Chili_Peppers, String coachella, String conciertos, Date date, Date date0, double d, String malaga) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public List<Imagen> getImagenes() {
         return imagenes;
@@ -205,6 +201,17 @@ public class Evento implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.diariosur1.Evento[ id=" + id + " ]";
+    }
+    
+     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_final = fecha_final;
+        this.precio = precio;
+        this.ubicacion = ubicacion;
+
     }
     
 }
