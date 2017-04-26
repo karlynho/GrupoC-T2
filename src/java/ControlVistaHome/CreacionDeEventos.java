@@ -32,7 +32,7 @@ import javax.inject.Named;
 public class CreacionDeEventos implements Serializable{
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
-    private boolean filtrado = false;
+  
     
     @Inject 
     BeanPrincipal bnp;
@@ -64,10 +64,12 @@ public class CreacionDeEventos implements Serializable{
        while(i<tam && !encontrado){
            
            if(eventos.get(i).getNombre().equalsIgnoreCase(evento) && evento!=null){
+               System.out.println("Se ha recogido el nombre");
                //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
                eventosFiltrados.add(eventos.get(i));
                encontrado = true;
            }else if(eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)){
+               System.out.println("No ha recogido el nombre");
                //La ubicacion coincide,  comprobamos la categoria
                if(eventos.get(i).getCategoria().equalsIgnoreCase(categoria)){
                    //La categoria coincide, comprobamos la fecha

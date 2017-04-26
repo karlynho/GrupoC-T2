@@ -90,6 +90,7 @@ public class BeanPrincipal implements Serializable{
         
         if(control){
             //Se han filtrado los eventos
+            control = false;
             return eventosFiltrados;
         }else{
              return eventos;
