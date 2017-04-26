@@ -44,6 +44,7 @@ public class DataScrollerView implements Serializable {
         e.setFecha_final(f.getFecha_fin());
         e.setUbicacion(f.getUbicacion());
         e.setPrecio(f.getPrecio());
+        e.setImagen(f.getImg());
         
         bp.addEvent(e);
         bp.eliminarForm(f);

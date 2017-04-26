@@ -38,6 +38,14 @@ public class BeanPrincipal implements Serializable{
         return formularios;
     }
 
+    public List<Imagen> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<Imagen> imagenes) {
+        this.imagenes = imagenes;
+    }
+
     public void setFormularios(List<Formulario> formularios) {
         this.formularios = formularios;
     }
@@ -54,13 +62,41 @@ public class BeanPrincipal implements Serializable{
   
     public BeanPrincipal() throws ParseException{
         
+        imagenes = new ArrayList<>();
+        Imagen i1 = new Imagen();
+        i1.setTipo(".jpg");
+        i1.setEnlace("resources\\Malaga-RMD.jpg");
+        
+        Imagen i2 = new Imagen();
+        i2.setTipo(".jpg");
+        i2.setEnlace("resources\\Offspring.jpg");
+        
+        Imagen i3 = new Imagen();
+        i3.setTipo(".jpg");
+        i3.setEnlace("resources\\Red Hot Chili Peppers.jpg");
+        
+        Imagen i4 = new Imagen();
+        i4.setTipo(".jpg");
+        i4.setEnlace("resources\\Uni vs RMB.jpg");
+        
+        
+        Imagen i5 = new Imagen();
+        i5.setEnlace("JasonDerulo.jpg");
+        
+        
+        Imagen i6 = new Imagen();
+        i6.setEnlace("cuadros_exposicion.jpg");
+        
+        Imagen i7 = new Imagen();
+        i7.setEnlace("lebarbe1.jpg");
+       
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = (Date)formatter.parse("12/05/2017");
         
         eventos = new ArrayList<>();
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
+        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga",i1));
+        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga",i2));
+        eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga",i3));
         
         Usuario usuario = new Usuario();
         usuario.setNick("karlynho");
@@ -82,7 +118,11 @@ public class BeanPrincipal implements Serializable{
             f.setFecha_subida(new Date());
             f.setEstado("pendiente");
             f.setUsuario(usuario);
+            f.setImg(i5);
+            i5.setF(f);
             formularios.add(f);
+        
+            
             
         Formulario f1 = new Formulario();
             f1.setNombre("Seurat´s Circus Sideshow");
@@ -97,10 +137,12 @@ public class BeanPrincipal implements Serializable{
             f1.setFecha_subida(new Date());
             f1.setEstado("pendiente");
             f1.setUsuario(usuario);
+            f1.setImg(i6);
+            i6.setF(f1);
             formularios.add(f1);
             
         Formulario f2 = new Formulario();
-            f2.setNombre("Mohas´s Circus Sideshow");
+            f2.setNombre("Mohas´s Moet");
             f2.setDescripcion("Una exhibición temática dedicada a la shisha neo impresionista del pintor Moha."
                     + " Más de 123 tabacos, dibujos, impresiones e ilustraciones relacionadas "
                     + "con esta obra exhibida por primera vez en Marbella en 2088 serán puestas en exhibición. ");
@@ -112,10 +154,18 @@ public class BeanPrincipal implements Serializable{
             f2.setFecha_subida(new Date());
             f2.setEstado("pendiente");
             f2.setUsuario(usuario);
+            f2.setImg(i7);
+            i7.setF(f2);
             formularios.add(f2);
         
         
-       
+        imagenes.add(i1);
+        imagenes.add(i2);
+        imagenes.add(i3);
+        imagenes.add(i4);
+        imagenes.add(i5);
+        imagenes.add(i6);
+        imagenes.add(i7);
     }
 
     public void eliminarForm(Formulario f) {
@@ -130,4 +180,11 @@ public class BeanPrincipal implements Serializable{
         formularios.add(f);
     }
     
+    public void addImage(Imagen i){
+        imagenes.add(i);
+    }
+    
+    public void deleteImage(Imagen i){
+        imagenes.remove(i);
+    }
 }

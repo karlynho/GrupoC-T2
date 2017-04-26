@@ -53,9 +53,10 @@ public class RellenarFormulario implements Serializable{
     private String ubicacion;
     private Double precio;
     
-    private String aux_enlace;
+    
     private String aux_ext;
     private Usuario u;
+    private String img_aux;
     
     @Inject
     private BeanPrincipal bn;
@@ -105,9 +106,9 @@ public class RellenarFormulario implements Serializable{
             String ext = sacar_ext(img.getFileName());
             String aux2 = this.nombre.concat(".");
             String filename = aux2.concat(ext);
+            img_aux = filename;
             InputStream input = img.getInputstream();
-            OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Documents\\NetBeansProjects\\DiarioSur-T2\\web\\WEB-INF\\resources", filename));
-            aux_enlace = "C:\\Users\\Carlos\\Desktop\\Informatica";
+            OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Documents\\NetBeansProjects\\DiarioSur-T2\\web\\resources", filename));
             aux_ext = ext;
         
         try {
@@ -235,7 +236,7 @@ public class RellenarFormulario implements Serializable{
                     // Creacion de la imagen
                     
                     Imagen im = new Imagen();
-                    im.setEnlace(aux_enlace);
+                    im.setEnlace(img_aux);
                     im.setTipo(aux_ext);
                     
                    
@@ -249,21 +250,21 @@ public class RellenarFormulario implements Serializable{
                     form.setFecha_fin(fecha_fin);
                     form.setUsuario(u);
                     form.setEstado("pendiente");
+                    form.setFecha_subida(new Date());
                     form.setImg(im);
                     
                     
-                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion);
+                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im);
                     
                     im.setEvento(ev);
-                    List<Imagen> imgs = new ArrayList<>();
-                    imgs.add(im);
+                    
                     im.setF(form);
                     form.setImg(im);
-                    ev.setImagenes(imgs);
+                    ev.setImagen(im);
                     
                     bn.addForm(form);
                     
-//                    bn.addImage(im);
+                    bn.addImage(im);
                     bn.addEvent(ev);
                     
                     System.out.print("Longitud de Array Principal eventos" + bn.getEventos().size());
