@@ -9,6 +9,8 @@ package ControlVistaHome;
 import com.uma.diariosur.modelo.Usuario;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.inject.Inject;
 
@@ -20,14 +22,65 @@ import javax.inject.Inject;
 @RequestScoped
 public class Login {
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    @Inject 
+    private ControlHome ctrlhome;
+    private BeanPrincipal bnp;
+     
+     
+     
+    private List<Usuario> usuarios;
+
+    public ControlHome getCtrhome() {
+        return ctrlhome;
+    }
+
+    public ControlHome getCtrlhome() {
+        return ctrlhome;
+    }
+
+    public void setCtrlhome(ControlHome ctrlhome) {
+        this.ctrlhome = ctrlhome;
+    }
+
+    public BeanPrincipal getBnp() {
+        return bnp;
+    }
+
+    public boolean isEncontrado() {
+        return encontrado;
+    }
+
     private String usuario;
     private String contrasenia;
-    private List<Usuario> usuarios;
+    private boolean encontrado = false;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
     
     
-    //@Inject 
-   // private ControlHome ctrhome;
-   // private BeanPrincipal bnp;
+    
+   
     
     
     /**
@@ -36,4 +89,39 @@ public class Login {
     public Login() {
     }
     
-}
+    public String Autenticar(){
+          
+           usuarios = bnp.getUsuarios();
+           boolean encontrado = false;
+           int tam = usuarios.size();
+           int i = 0;
+        
+        
+        while(i<tam && !encontrado){
+            //recorremos la lista buscando al usuario
+            if(usuarios.get(i).getNombre().equals(this.usuario)){
+                encontrado = true;
+                if(usuarios.get(i).getPassword().equals(this.contrasenia)){
+                    // usuario y contraseña correcto
+                   ctrlhome.setUsuario(usuarios.get(i));
+                  
+                }else{
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error contraseña", "Error contraseña"));
+                }
+                
+            } 
+            i++;
+        }
+        
+        if(encontrado == false){
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error usuario inexistente", "Error usuario inexistente"));
+            return null;
+        }else{
+            return ctrlhome.home();
+        }    
+    }
+    }
+    
+

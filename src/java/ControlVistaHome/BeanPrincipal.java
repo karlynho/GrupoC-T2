@@ -7,6 +7,8 @@ package ControlVistaHome;
 
 import javax.enterprise.context.ApplicationScoped;
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Periodista;
+import com.uma.diariosur.modelo.Usuario;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -30,6 +32,16 @@ public class BeanPrincipal implements Serializable{
     private  List<Evento>eventos;
     private List<Evento>eventosFiltrados;
     private Boolean control = false;
+    private List<Usuario> usuarios;
+    private List<Periodista> periodistas;
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
     public Boolean getControl() {
         return control;
@@ -98,7 +110,14 @@ public class BeanPrincipal implements Serializable{
         
     }
     
-    
+    public List<Usuario> crearUsuarios(){
+       usuarios = new ArrayList<Usuario>();
+       usuarios.add(new Usuario("Carlos","Velazquez","karlynho","carlospuli@gmail,com","buenooo"));
+       periodistas.add(new Periodista("Steven","Montoya",123456,"smv@gmail.com","contrasenia"));
+        
+        return usuarios;
+    }
+   
    
     public BeanPrincipal() throws ParseException{
         

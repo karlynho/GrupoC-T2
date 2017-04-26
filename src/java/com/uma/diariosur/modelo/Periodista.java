@@ -119,6 +119,18 @@ public class Periodista implements Serializable {
         this.formulario = formulario;
     }
     
+    
+     public Periodista (String nombre, String apellidos, Integer id, String email, String contrasenia){
+        this.apellidos=apellidos;
+        this.id=id;
+        this.nombre=nombre;
+        this.email=email;
+        this.password=contrasenia;
+        
+    }
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -139,6 +151,7 @@ public class Periodista implements Serializable {
         return true;
     }
 
+   
     @Override
     public String toString() {
         return "com.mycompany.diariosur1.Periodista[ id=" + id + " ]";
