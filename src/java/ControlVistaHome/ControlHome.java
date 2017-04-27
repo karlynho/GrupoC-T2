@@ -84,6 +84,8 @@ public class ControlHome implements Serializable{
         return "ControlHomeFiltro.xhtml";
     }
     
+
+    
     /**
      * Creates a new instance of ControlHome
      */

@@ -52,6 +52,9 @@ public class CreacionDeEventos implements Serializable{
         return eventos;
     }
     
+    public Evento principal(){
+        return eventos.get(0);
+    }
     
     /**
      * Creates a new instance of CreacionDeEventos

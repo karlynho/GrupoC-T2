@@ -214,8 +214,5 @@ public class Evento implements Serializable {
 
     }
      
-     public Evento(){
-         
-     }
-    
+     
 }

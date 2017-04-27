@@ -12,7 +12,7 @@
         <c:choose>
             <c:when test="#{empty controlHome.usuario}">
                 <h:form id="controlHome">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid id="panel" columns="1">
                         <f:facet name="header">
                             <h:outputText value="Filtra tu Busqueda"/>
                         </f:facet>
@@ -36,7 +36,7 @@
                     <h:messages showDetail="true" />
                     <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
                     
-                    <p:dataGrid var="evento" value="#{creacionDeEventos.crearEventos()}" columns="3"  rows="3"  id="eventos">
+                    <p:dataGrid  var="evento" value="#{creacionDeEventos.crearEventos()}" columns="3"  rows="3"  id="eventos">
                        
                             <h:panelGrid columns="1">
                                 <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{evento.nombre}.jpg"/>
