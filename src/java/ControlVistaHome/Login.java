@@ -135,7 +135,7 @@ public class Login {
             } 
             i++;
         }
-        encontrado = false;
+        
         this.periodista=this.usuario;
         //comprobamos si es periodista
         while(j<tam2 && !encontrado){

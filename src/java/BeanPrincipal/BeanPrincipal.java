@@ -276,6 +276,7 @@ public class BeanPrincipal implements Serializable{
     }
 
     public void eliminarForm(Formulario f) {
+        System.out.println("Eliminado DSDE BEAN PRINCIPAL" + f.getNombre());
         formularios.remove(f);
     }
     

@@ -132,7 +132,7 @@ public class ControlHome implements Serializable{
         ctx.getExternalContext().invalidateSession();
         periodista = null;
         usuario = null;
-        return "login.xhtml";
+        return "Login.xhtml";
     }
     
     public String perfil(){

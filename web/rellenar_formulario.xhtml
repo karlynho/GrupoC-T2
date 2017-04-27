@@ -1,14 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
     <h:head>
         <title>Formulario</title>
     </h:head>
     <h:body>
+        <h:form>
+    <c:if test="#{empty controlHome.usuario and empty controlHome.periodista}">
+        <p:outputLabel value="No esta logeado, por favor registrese o inicie sesion"/>
+              <li><h:commandLink action="#{controlHome.login()}" value="Login"/></li>
+              <li><h:commandLink action="#{controlHome.registro()}" value="Registro"/></li>
+    </c:if>    
+        </h:form>
     
+    
+        
+    <c:if test="#{!empty controlHome.usuario or !empty controlHome.periodista}">    
     <h:form>
-    
-     
     <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{rellenarFormulario.home()}" ajax="false" />
     </h:form>
         
@@ -98,15 +106,20 @@
                    </p:outputLabel>
                    
                </h:panelGrid>
-               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 690px; position: absolute">
+               <h:panelGrid columns="2" cellpadding="5" style="padding-left: 640px; top: 690px; position: absolute">
+                   <c:if test="#{!empty controlHome.usuario and empty controlHome.periodista}">
                    <p:commandButton id="enviar" value="Enviar" action="#{rellenarFormulario.enviar()}" ajax="false"/>
-                   <p:commandButton value="Resetear" >
+                   </c:if>
+                   <c:if test="#{empty controlHome.usuario and !empty controlHome.periodista}">
+                       <p:commandButton id="enviar" value="Crear Evento" action="#{rellenarFormulario.enviar()}" ajax="false"/>
+                   </c:if>
+                       <p:commandButton value="Resetear" >
                         <p:ajax update="panel" resetValues="true" />
                    </p:commandButton>
                </h:panelGrid>
           </p:panel>
-          
         </h:form>
       </div>
+     </c:if>
     </h:body>
 </html>

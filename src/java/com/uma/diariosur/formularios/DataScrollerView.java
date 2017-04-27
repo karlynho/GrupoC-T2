@@ -1,10 +1,10 @@
 package com.uma.diariosur.formularios;
 
 import BeanPrincipal.BeanPrincipal;
+import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import java.io.Serializable;
-import java.text.ParseException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -12,13 +12,23 @@ import javax.inject.Inject;
   
 @ManagedBean
 @ViewScoped
+
 public class DataScrollerView implements Serializable {
       
     @Inject
     private BeanPrincipal bp;
-    
+    @Inject
+    private ControlHome ctrlhome;
+
+    public ControlHome getCtrlhome() {
+        return ctrlhome;
+    }
+
+    public void setCtrlhome(ControlHome ctrlhome) {
+        this.ctrlhome = ctrlhome;
+    }
   
-    public DataScrollerView() throws ParseException{
+    public DataScrollerView() {
         
     }
 
@@ -45,8 +55,11 @@ public class DataScrollerView implements Serializable {
         e.setUbicacion(f.getUbicacion());
         e.setPrecio(f.getPrecio());
         e.setImagen(f.getImg());
+        e.setPeriodista(ctrlhome.getPeriodista());
         
         bp.addEvent(e);
+        
+        System.out.println("Creado evento del formulario" + f.getNombre());
         bp.eliminarForm(f);
         
         
@@ -54,8 +67,10 @@ public class DataScrollerView implements Serializable {
     }
     
     public String rechazar(Formulario f){
+       
+        System.out.println("Eliminado formulario" + f.getNombre());
         bp.eliminarForm(f);
-        return null;
+        return "formularios.xhtml"; 
     }
     
 }

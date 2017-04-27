@@ -145,7 +145,7 @@ public class Periodista implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Periodista[ id=" + id + " ]";
+        return nombre;
     }
     
 }

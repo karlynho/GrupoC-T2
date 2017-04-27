@@ -6,6 +6,7 @@
 package com.uma.diariosur.rellenarformulario;
 
 import BeanPrincipal.BeanPrincipal;
+import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Imagen;
@@ -53,7 +54,24 @@ public class RellenarFormulario implements Serializable{
     private String ubicacion;
     private Double precio;
     
-    
+    @Inject 
+    private ControlHome ctrlhome;
+
+    public ControlHome getCtrlhome() {
+        return ctrlhome;
+    }
+
+    public void setCtrlhome(ControlHome ctrlhome) {
+        this.ctrlhome = ctrlhome;
+    }
+
+    public BeanPrincipal getBn() {
+        return bn;
+    }
+
+    public void setBn(BeanPrincipal bn) {
+        this.bn = bn;
+    }
     private String aux_ext;
     private Usuario u;
     private String img_aux;
@@ -181,7 +199,7 @@ public class RellenarFormulario implements Serializable{
      * Creates a new instance of RellenarFormulario
      * @throws java.text.ParseException
      */
-    public RellenarFormulario() throws ParseException {
+    public RellenarFormulario()  {
         
     }
     
@@ -224,15 +242,7 @@ public class RellenarFormulario implements Serializable{
                 return null;
              }
                 
-                
-                
-//       /// Aqui iria comprobación de si es un usuario o un periodista
-        
-//       // SI ES UN USUARIO SE CREA UN FORMULARIO
-                
-                
-                    System.out.print("OOOOOK");
-                    
+             
                     // Creacion de la imagen
                     
                     Imagen im = new Imagen();
@@ -240,36 +250,35 @@ public class RellenarFormulario implements Serializable{
                     im.setTipo(aux_ext);
                     
                    
-                    Formulario form = new Formulario();
-                    form.setNombre(nombre);
-                    form.setDescripcion(descripcion);
-                    form.setCategoria(categoria);
-                    form.setUbicacion(ubicacion);
-                    form.setPrecio(precio);
-                    form.setFecha_inicio(fecha_inicio);
-                    form.setFecha_fin(fecha_fin);
-                    form.setUsuario(u);
-                    form.setEstado("pendiente");
-                    form.setFecha_subida(new Date());
-                    form.setImg(im);
+                    if(ctrlhome.getUsuario()!=null){
                     
+                        Formulario form = new Formulario();
+                        form.setNombre(nombre);
+                        form.setDescripcion(descripcion);
+                        form.setCategoria(categoria);
+                        form.setUbicacion(ubicacion);
+                        form.setPrecio(precio);
+                        form.setFecha_inicio(fecha_inicio);
+                        form.setFecha_fin(fecha_fin);
+                        form.setUsuario(ctrlhome.getUsuario());
+                        form.setEstado("pendiente");
+                        form.setFecha_subida(new Date());
+                        form.setImg(im);
+                        im.setF(form);
+                        form.setImg(im);
+                        bn.addForm(form);
+                    }
                     
-                    Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im);
-                    
-                    im.setEvento(ev);
-                    
-                    im.setF(form);
-                    form.setImg(im);
-                    ev.setImagen(im);
-                    
-                    bn.addForm(form);
+                    if(ctrlhome.getPeriodista()!=null){
+                        Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im,ctrlhome.getPeriodista());
+                        im.setEvento(ev);
+                        ev.setImagen(im);
+                        bn.addEvent(ev);
+                    }
                     
                     bn.addImage(im);
-                    bn.addEvent(ev);
-                    
-                    System.out.print("Longitud de Array Principal eventos" + bn.getEventos().size());
-                    System.out.print("Longitud de Array Principal formularios" + bn.getFormularios().size());
-                    return "formularios.xhtml";
+           
+                return "PaginaHome.xhtml";
         }
     }
    

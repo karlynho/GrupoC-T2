@@ -195,7 +195,7 @@ public class Evento implements Serializable {
         return "com.mycompany.diariosur1.Evento[ id=" + id + " ]";
     }
     
-     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i) {
+     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -204,6 +204,7 @@ public class Evento implements Serializable {
         this.precio = precio;
         this.ubicacion = ubicacion;
         this.imagen = i;
+        this.periodista = p;
     }
     
 }
