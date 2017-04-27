@@ -113,6 +113,8 @@ public class BeanPrincipal implements Serializable{
         
     }
     
+    
+    
     public void crearUsuarios(){
        usuarios = new ArrayList<Usuario>();
        periodistas= new ArrayList<Periodista>();

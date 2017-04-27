@@ -36,6 +36,7 @@ public class CreacionDeEventos implements Serializable{
     
     @Inject 
     BeanPrincipal bnp;
+    @Inject
     ControlHome ctrlhome;
     
     public List<Evento> getEventos() {

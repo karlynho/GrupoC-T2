@@ -148,7 +148,7 @@ public class Usuario implements Serializable {
     
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Usuario[ nick=" + nick + " ]";
+        return  nombre;
     }
     
 }
