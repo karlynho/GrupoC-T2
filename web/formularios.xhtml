@@ -3,24 +3,52 @@
 <h:head> </h:head>
 <h:body>
   
+<h:form>
+    <p:growl id="growl" life="2000" />
      
+    <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{dataScrollerView.home()}" ajax="false" />
+    </h:form>
+    
 <h:form> 
-    <p:dataScroller value="#{dataScrollerView.eventos}" var="c" chunkSize="10" mode="inline" scrollHeight="500">
+    <br></br>
+    <p:dataScroller value="#{beanPrincipal.formularios}" var="f" chunkSize="10" mode="inline" scrollHeight="500" >
         <f:facet name="header">
-            Data Scroller Demo
+            Formularios Recibidos
         </f:facet>
   
-        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail" >
               
             <p:outputPanel>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Evento nombre" />
-                    <h:outputText value="#{c.nombre}" style="font-weight: bold"/>
+                <h:graphicImage  style="width:250px; height:200px; padding-left: 500px; top: 250px; position: inherit" value="resources/#{f.img.enlace}"/> 
+                <h:panelGrid columns="2" cellpadding="4" >
+                    
+                    <h:outputText value="Nombre" />
+                    <h:outputText value="#{f.nombre}" style="font-weight: bold"/>
   
                     <h:outputText value="Descripcion" />
-                    <h:outputText value="#{c.fecha_inicio}" style="font-weight: bold"/>
+                    <h:outputText value="#{f.descripcion}" style="font-weight: bold; font-size: small"/>
+                    <h:outputText value="Categoria" />
+                    <h:outputText value="#{f.categoria}" style="font-weight: bold"/>
+                    <h:outputText value="Fecha de inicio" />
+                    <h:outputText value="#{f.fecha_inicio}" style="font-weight: bold"/>
+                    <h:outputText value="Fecha de fin" />
+                    <h:outputText value="#{f.fecha_fin}" style="font-weight: bold"/>
+                    <h:outputText value="Ubicacion" />
+                    <h:outputText value="#{f.ubicacion}" style="font-weight: bold"/>
+                    <h:outputText value="Precio" />
+                    <h:outputText value="#{f.precio}" style="font-weight: bold"/>
+                    <h:outputText value="Fecha de subida" />
+                    <h:outputText value="#{f.fecha_subida}" style="font-weight: bold "/>
+                    <h:outputText value="Subido por:" />
+                    <h:outputText value="#{f.usuario.nick}" style="font-weight: bold"/>
+                    <p:commandButton id="enviar" value="Validar" action="#{dataScrollerView.validar(f)}" ajax="false"/>
+                    <p:commandButton id="rechazar" value="Rechazar" action="#{dataScrollerView.rechazar(f)}" ajax="false"/>
+                    
+                                    
                 </h:panelGrid>
+                <p:separator />
             </p:outputPanel>
+            
         </h:panelGrid>
     </p:dataScroller>
 </h:form>

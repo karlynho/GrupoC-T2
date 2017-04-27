@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,9 +25,20 @@ public class Imagen implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String tipo;
+    private String enlace;
+
+    public String getEnlace() {
+        return enlace;
+    }
+
+    public void setEnlace(String enlace) {
+        this.enlace = enlace;
+    }
     
     @ManyToOne
     private Evento evento;
+    @OneToOne
+    private Formulario f;
 
     public Evento getEvento() {
         return evento;
@@ -34,6 +46,14 @@ public class Imagen implements Serializable {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    public Formulario getF() {
+        return f;
+    }
+
+    public void setF(Formulario f) {
+        this.f = f;
     }
 
     
