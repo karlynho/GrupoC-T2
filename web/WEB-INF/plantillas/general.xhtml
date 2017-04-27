@@ -14,14 +14,14 @@
     <h:body>
         <div id="cabecera">
             <h1>SUR</h1>
-            <h3>Todos los Eventos solo en un lugar</h3>
-            <p>Encuentra y asiste a los eventos del momento</p>
+            <p class="Encabezado1">Todos los Eventos solo en un lugar</p>
+            <p class="Encabezado2">Encuentra y asiste a los eventos del momento</p>
      
             <h:form id="menu">
-                <ul class="lista">
+                <ul class="menulist">
                     <c:if test="#{empty controlHome.usuario and empty controlHome.periodista}">
                         <li><h:commandLink action="#{controlHome.login()}" value="Login"/></li>
-                        <li><h:commandLink action="#{controlHome.registro}" value="Registro"/></li>
+                        <li><h:commandLink action="#{controlHome.registro()}" value="Registro"/></li>
                     </c:if>
                     <c:if test="#{!empty controlHome.usuario}">
                         <p>¡Hola! <h:outputText value="#{controlHome.usuario}"/></p>
@@ -30,13 +30,13 @@
                     </c:if>
                     <c:if test="#{!empty controlHome.periodista}">
                         <p>¡Hola! <h:outputText value="#{controlHome.periodista}"/></p>
-                        
+             
                         <li><h:commandLink action="#{controlHome.perfil()}" value="Perfil"/></li>
                         <li><h:commandLink action="#{controlHome.logout()}" value="Cerrar Sesion"/></li>
                     </c:if>
                 </ul>
                 
-                <h:inputText value="#{controlBusquedaEvento.evento}"/>
+                <h:inputText value="#{controlHome.evento}" class="BarraBusqueda"/>
                 
             </h:form>  
         </div>

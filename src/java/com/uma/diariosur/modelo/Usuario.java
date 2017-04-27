@@ -44,6 +44,10 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Megusta> megusta;
 
+    public Usuario() {
+        
+    }
+
     public List<Valoracion> getValoraciones() {
         return valoraciones;
     }
@@ -142,7 +146,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Usuario[ nick=" + nick + " ]";
+        return nombre;
     }
     
 }

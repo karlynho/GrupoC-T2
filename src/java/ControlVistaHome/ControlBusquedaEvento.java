@@ -5,6 +5,7 @@
  */
 package ControlVistaHome;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -34,12 +35,14 @@ public class ControlBusquedaEvento implements Serializable {
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
     
-    @Inject ControlHome ctrlhome;
+    @Inject 
+    ControlHome ctrlhome;
+    @Inject
+    BeanPrincipal bnp;
     
    public String getCategoria() {
         return categoria;
     }
-
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
@@ -89,19 +92,16 @@ public class ControlBusquedaEvento implements Serializable {
        
         
         //Se deben añadir los eventos que se van a buscar para testear la aplicación
-        eventos = new ArrayList<Evento>();
-        eventosFiltrados = new ArrayList<Evento>();
         
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = (Date)formatter.parse("12/05/2017");
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga",null));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga",null));
-        eventos.add(new Evento("Renault","concierto","Conciertos",date,date, 210.00, "Malaga",null));
     }
     
-    public String comprobacion(){
+    public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
+      eventos = new ArrayList<Evento>();
+      eventosFiltrados = new ArrayList<Evento>();
+      bnp = new BeanPrincipal();
+      eventos = bnp.getEventos();
       
-        boolean encontrado = false;
+       boolean encontrado = false;
        int tam = eventos.size();
        int i= 0;
        
@@ -118,7 +118,7 @@ public class ControlBusquedaEvento implements Serializable {
                    if(eventos.get(i).getFecha_inicio().equals(this.fecha)){
                        //Coinciden las tres condiciones del filtro, entonces añadimos a la lista de filtrados
                        eventosFiltrados.add(eventos.get(i));
-                       
+                
                    }
                }
                
@@ -128,12 +128,16 @@ public class ControlBusquedaEvento implements Serializable {
            
        }
        
+       eventosFiltrados.add(eventos.get(i-1));
+       bnp.setEventosFiltrados(eventosFiltrados);
+       
        if(eventosFiltrados.isEmpty()){
+            System.out.println("No hay filtro");
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error No hay coincidencias", "Error no hay coincidencias"));
             return null;
        }else{
-            return ctrlhome.filtroEvento();
+            return ctrlhome.home();
        }
       
     }
