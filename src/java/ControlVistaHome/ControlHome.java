@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package ControlVistaHome;
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -101,6 +103,11 @@ public class ControlHome implements Serializable{
     }
     
     public String home(){
+
+        
+            return "PaginaHome.xhtml";
+        
+
         if(this.usuario == null){
             if(this.periodista==null){
                 //No hay usuario Logueado, por tanto mostramos pagina principal
@@ -113,6 +120,7 @@ public class ControlHome implements Serializable{
             //Identificado como Usuario Normal
             return "PaginaHome.xhtml";
         }
+
     }
     
     public String login(){
@@ -121,10 +129,10 @@ public class ControlHome implements Serializable{
                 //No hay usuario, por tanto redirigimos a pagina Login
                 return "Login.xhtml";
             }else{
-                return "PaginaHomePeriodista.xhtml";
+                return "PaginaHome.xhtml";
             }
         }else{
-                return "PaginaHomeUsuarioNormal.xhtml";
+                return "PaginaHome.xhtml";
         }
     }
     
@@ -161,5 +169,6 @@ public class ControlHome implements Serializable{
         
         
     }
+  
     
 }

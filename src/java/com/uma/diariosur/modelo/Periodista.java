@@ -46,6 +46,10 @@ public class Periodista implements Serializable {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
+
+    public Periodista() {
+        
+    }
     
     public Integer getId() {
         return id;

@@ -5,6 +5,7 @@
  */
 package ControlVistaHome;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -36,6 +37,7 @@ public class ControlBusquedaEvento implements Serializable {
     
     @Inject 
     ControlHome ctrlhome;
+    @Inject
     BeanPrincipal bnp;
     
    public String getCategoria() {

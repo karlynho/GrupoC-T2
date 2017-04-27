@@ -5,6 +5,7 @@
  */
 package ControlVistaHome;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -55,6 +56,9 @@ public class CreacionDeEventos implements Serializable{
     }
     
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
+
+      eventos = new ArrayList<>();
+
       eventos = bnp.getEventos();
       eventosFiltrados = new ArrayList<Evento>();
         
