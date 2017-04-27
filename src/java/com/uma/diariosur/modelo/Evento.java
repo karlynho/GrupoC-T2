@@ -205,5 +205,6 @@ public class Evento implements Serializable {
         this.ubicacion = ubicacion;
         this.imagen = i;
     }
+
     
 }

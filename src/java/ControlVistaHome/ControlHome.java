@@ -11,6 +11,8 @@ import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -101,9 +103,24 @@ public class ControlHome implements Serializable{
     }
     
     public String home(){
+
         
             return "PaginaHome.xhtml";
         
+
+        if(this.usuario == null){
+            if(this.periodista==null){
+                //No hay usuario Logueado, por tanto mostramos pagina principal
+                return "PaginaHome.xhtml";
+            }else{
+                //Identificado como Periodista
+                return "PaginaHome.xhtml";
+            }
+        }else{
+            //Identificado como Usuario Normal
+            return "PaginaHome.xhtml";
+        }
+
     }
     
     public String login(){

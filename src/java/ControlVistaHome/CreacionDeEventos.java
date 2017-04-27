@@ -56,7 +56,9 @@ public class CreacionDeEventos implements Serializable{
     }
     
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
+
       eventos = new ArrayList<>();
+
       eventos = bnp.getEventos();
       eventosFiltrados = new ArrayList<Evento>();
         

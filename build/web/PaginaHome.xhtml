@@ -35,11 +35,9 @@
                     </h:panelGrid>
                     <h:messages showDetail="true" />
                     <p:commandButton  id="buscar" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
-
-                    <p:dataGrid var="evento" value="#{beanPrincipal.eventos}" columns="3"  rows="4"  class="eventos">
+                    <p:dataGrid var="evento" value="#{beanPrincipal.crearEventos()}" columns="3"  rows="3"  class="eventos">
                         <h:panelGrid columns="1" class="eventos2">
-                            <h:graphicImage  style="width:250px; height:200px" value="resources/#{evento.imagen.enlace}"/>
-
+                                <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{evento.nombre}.jpg"/>
                                 <h:outputText value="#{evento.fecha_inicio}"/>
                                 <h:outputText value="#{evento.nombre}"/>
                                 <h:outputText value="#{evento.ubicacion}"/>
