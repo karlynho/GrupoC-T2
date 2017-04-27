@@ -5,8 +5,8 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-               
-    
+
+
     <ui:define name="title">Evento</ui:define>
     <ui:define name="content">
         <h:form id="colizq" >
@@ -16,23 +16,22 @@
                 <p>hola</p>
                 <p>hola</p>
                 <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
             </p:scrollPanel>
         </h:form>
-        <p:dataScroller value="#{BeanEvento.verEvento()}">
-            
-        </p:dataScroller>
-        
+
+        <p:dataGrid value="#{BeanEvento.verEvento()}" var="eve" columns="1"   id="eventos">
+            <h:panelGrid columns="2" style="width:100%">
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="#{eve.nombre}"/>
+                        <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{eve.nombre}.jpg"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataGrid>
+
+
+
+
     </ui:define>
 </ui:composition>

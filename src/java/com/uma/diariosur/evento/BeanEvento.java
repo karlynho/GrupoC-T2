@@ -9,6 +9,8 @@ import ControlVistaHome.ControlHome;
 import ControlVistaHome.CreacionDeEventos;
 import com.uma.diariosur.modelo.Evento;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
@@ -22,18 +24,16 @@ import javax.inject.Inject;
 @SessionScoped
 public class BeanEvento   implements Serializable {
 
-    /**
-     * Creates a new instance of BeanEvento
-     */
-    public BeanEvento() {
-    }
     
+    List<Evento>eventos;
     @Inject
     CreacionDeEventos ctreve;
-    public Evento verEvento(){
-        return ctreve.principal();
-    }
-
+    public List<Evento> verEvento(){
+        eventos = new ArrayList<Evento>();
+        eventos.add(ctreve.principal());
+        return  eventos;
+    } 
+    
     public CreacionDeEventos getCtreve() {
         return ctreve;
     }
@@ -42,4 +42,9 @@ public class BeanEvento   implements Serializable {
         this.ctreve = ctreve;
     }
     
+    /**
+     * Creates a new instance of BeanEvento
+     */
+    public BeanEvento() {
+    }
 }
