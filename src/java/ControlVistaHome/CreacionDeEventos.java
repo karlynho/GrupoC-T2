@@ -50,8 +50,7 @@ public class CreacionDeEventos implements Serializable{
         this.eventos = eventos;
     }
     
-   
-    
+
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
 
       eventos = new ArrayList<>();
@@ -96,7 +95,6 @@ public class CreacionDeEventos implements Serializable{
        }else{
            System.out.println("Si hay filtro");
             bnp.setEventosFiltrados(eventosFiltrados);
-         
             return "PaginaHome.xhtml";
        }
        

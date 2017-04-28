@@ -182,7 +182,7 @@ public class Formulario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Formulario[ id=" + id + " ]";
+        return  nombre;
     }
     
 }
