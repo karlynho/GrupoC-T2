@@ -2,29 +2,73 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Ajustes</title>
     </h:head>
     <h:body>
+        <div style="margin: 20px 50px 0px 50px; background-color: #0099ff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
+        
       <h:form>
         <p:growl id="growl" life="2000" />
-     
-     
-         <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{Ajustes.home()}" ajax="false" />
+        
+ 
+        <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{ajustes.home()}" ajax="false" />
       </h:form>
-        <div style="margin: 20px 50px 0px 50px; background-color: #0099ff; height: 650px; width: 990px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
-    
-        <p>Mi cuenta</p>
+         
+            <h:panelGrid columns="1">
+                <p:outputLabel style="font-size: xx-large; color: #006; padding: 15px" value="Mi cuenta"    />
+            </h:panelGrid>
+            <hr></hr>
         <br> </br>
-        <p>Mis datos</p>
+        <h:panelGrid columns="1">
+                <p:outputLabel style="font-size: large; color: darkgray; padding: 15px" value="Mis datos"    />
+            </h:panelGrid>
+        
         <br> </br>
         <h:form>
             <h:panelGrid id="Grid" columns="4" >
-                <p:outputLabel style="font-size: medium" value="Nombre de usuario" />
-                <h:outputText value="#{beanPrincipal.usuario}" style="font-size: medium" />
-                
+                <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Nombre de usuario" />
+                <h:outputText value="#{ajustes.usuario}" style="font-size: medium" />
+                <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Email" />
+                <h:outputText value="#{ajustes.correo}" style ="font-size: medium" />
+                <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Nombre" />
+                <h:outputText value="#{ajustes.nombre}" style="font-size:medium" />
+                <p:outputLabel style="font-size: medium; padding: 20px;color:  #006" value="Fecha de nacimiento" />
+                <h:outputText value ="#{ajustes.fecha_nacimiento}" style="font-size: medium" />
             </h:panelGrid>
+            
+            <br></br>
+            
+            <h:panelGrid columns="1">
+                <p:outputLabel style="font-size: large; color: darkgray; padding: 15px" value="Cambiar contraseña"    />
+            </h:panelGrid>
+            
+            <h:panelGrid id="Grid1" columns="2">
+                <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Contraseña actual"/>
+                <p:inputText size="20" value="#{ajustes.contraseña}"/>
+            </h:panelGrid> 
+            <h:panelGrid id="Grid2" columns="4">
+                <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Contraseña nueva"/>
+                <p:inputText size="20" value="#{ajustes.contraseñanueva}" />
+                <p:outputLabel style="font-size: medium; padding:20px; color: #006" value="Repetir contraseña"/>
+                <p:inputText size="20" value="#{ajustes.contraseñanueva1}" />
+            </h:panelGrid>
+            
+            <h:panelGrid columns="1">
+                <p:outputLabel style="font-size: large; color: darkgray; padding: 15px" value="Idioma"    />
+            </h:panelGrid>
+            <select size="1" name="Idiomas" style="font-size: large; padding: 100px; color: #006">
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Francés">Francés</option>
+                <option value="Alemán">Alemán</option>
+            </select>
+             <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 650px; position: absolute">
+                   <p:commandButton id="Aplicar" value="Aplicar" action="#{ajustes.home()}" ajax="false"/>
+                   <p:commandButton id="Cancelar" value="Cancelar" action="#{ajustes.home()}" ajax="false"/>
+               </h:panelGrid>
         </h:form>
      
      

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,10 +29,102 @@ import javax.inject.Named;
 @Named(value = "beanPrincipal")
 @SessionScoped
 public class BeanPrincipal implements Serializable{
+    
     private  List<Evento>eventos;
     private List<Evento>eventosFiltrados;
     private Boolean control = false;
     private String Usuario = "Carlos";
+    private String Nombre = "Carlos Dominguez";
+    private String Correo = "carlos_@hotmail.com";
+    private String fecha_nacimiento = "03/02/1991";
+    private String contraseña;
+    private String contraseñanueva;
+    private String contraseñanueva1;
+    private List<String> idiomas;
+    private String[] selectedIdioma;
+
+    
+    @PostConstruct
+    public void idioma() {
+        
+        idiomas = new ArrayList<String>();
+        idiomas.add("Español");
+        idiomas.add("Inglés");
+        idiomas.add("Alemán");
+        idiomas.add("Francés");
+        
+    }
+
+    public String[] getSelectedIdioma() {
+        return selectedIdioma;
+    }
+
+    public void setSelectedIdioma(String[] selectedIdioma) {
+        this.selectedIdioma = selectedIdioma;
+    }
+    
+    
+    
+    
+    public String getContraseñanueva1() {
+        return contraseñanueva1;
+    }
+
+    public void setContraseñanueva1(String contraseñanueva1) {
+        this.contraseñanueva1 = contraseñanueva1;
+    }
+    
+    
+
+    public String getContraseñanueva() {
+        return contraseñanueva;
+    }
+
+    public void setContraseñanueva(String contraseñanueva) {
+        this.contraseñanueva = contraseñanueva;
+    }
+    
+    
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    
+    
+
+    public String getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+    
+    
+    
+    public String getCorreo() {
+        return Correo;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+            
+    
+    
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+    
+    
 
     public String getUsuario() {
         return Usuario;
@@ -115,9 +208,12 @@ public class BeanPrincipal implements Serializable{
     public BeanPrincipal() throws ParseException{
         
         
-        
-       
+         
     }
     
+     public String home() {
+        return "PaginaHome.xhtml";
+    }
+      
      
 }
