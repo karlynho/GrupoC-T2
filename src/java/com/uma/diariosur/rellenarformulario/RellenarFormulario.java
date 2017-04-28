@@ -17,22 +17,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
-import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -40,7 +34,6 @@ import org.apache.commons.io.IOUtils;
  *
  * @author Carlos
  */
-@ManagedBean
 @Named(value = "rellenarFormulario")
 @RequestScoped
 public class RellenarFormulario implements Serializable{
@@ -73,18 +66,11 @@ public class RellenarFormulario implements Serializable{
         this.bn = bn;
     }
     private String aux_ext;
-    private Usuario u;
     private String img_aux;
     
     @Inject
     private BeanPrincipal bn;
     
-    
-    public void onDateSelect(SelectEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
-    }
     
     public UploadedFile getImg() {
         return img;
@@ -94,13 +80,6 @@ public class RellenarFormulario implements Serializable{
         this.img = img;
     }
     
-    public void click() {
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-         
-        requestContext.update("form:display");
-        requestContext.execute("PF('dlg').show()");
-    }
-     
     private String sacar_ext(String s){
         
         int index = s.lastIndexOf('.');
@@ -140,7 +119,7 @@ public class RellenarFormulario implements Serializable{
         return res;
 }
     
-     public Date getFecha_inicio() {
+    public Date getFecha_inicio() {
         return fecha_inicio;
     }
 
@@ -195,10 +174,7 @@ public class RellenarFormulario implements Serializable{
         this.precio = precio;
     }
     
-    /**
-     * Creates a new instance of RellenarFormulario
-     * @throws java.text.ParseException
-     */
+ 
     public RellenarFormulario()  {
         
     }
@@ -251,7 +227,7 @@ public class RellenarFormulario implements Serializable{
                     
                    
                     if(ctrlhome.getUsuario()!=null){
-                    
+                        System.out.print("Creando formulario");
                         Formulario form = new Formulario();
                         form.setNombre(nombre);
                         form.setDescripcion(descripcion);
@@ -270,6 +246,7 @@ public class RellenarFormulario implements Serializable{
                     }
                     
                     if(ctrlhome.getPeriodista()!=null){
+                        System.out.print("CREANDO EVENTO");
                         Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im,ctrlhome.getPeriodista());
                         im.setEvento(ev);
                         ev.setImagen(im);
@@ -280,6 +257,8 @@ public class RellenarFormulario implements Serializable{
            
                 return "PaginaHome.xhtml";
         }
+        
+       
     }
    
      public String comprobar(){

@@ -12,7 +12,7 @@
     <c:if test="#{!empty controlHome.usuario}">
         <p:outputLabel value="Esta zona es solo para periodistas, acceso denegado"/>
         <br></br>
-        <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{dataScrollerView.home()}" ajax="false" />
+        <p:commandButton value="Volver a pagina principal" id="volver_home" action="#{dataScrollerView.home()}" />
     </c:if>    
         </h:form>
     
@@ -30,7 +30,7 @@
     
 <h:form> 
     <br></br>
-    <p:dataScroller  value="#{beanPrincipal.formularios}" var="f" chunkSize="10" mode="inline" scrollHeight="500"  >
+    <p:dataScroller  value="#{beanPrincipal.getFormularios()}" var="f" chunkSize="10" mode="inline" scrollHeight="500"   >
         <f:facet name="header">
             Formularios Recibidos
         </f:facet>

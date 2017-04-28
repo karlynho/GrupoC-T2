@@ -48,13 +48,6 @@ public class CreacionDeEventos implements Serializable{
         this.eventos = eventos;
     }
     
-   //modificamos bnp con un valor de cero o uno comprobamos si entramos o no y luego realizamos el cambio de vitsas si la variable filtro esta a true
-    public List<Evento> crearEventos() throws ParseException{
-        bnp = new BeanPrincipal();
-        return bnp.getEventos();
-        
-    }
-    
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
       eventos = new ArrayList<>();
       eventos = bnp.getEventos();
@@ -97,7 +90,6 @@ public class CreacionDeEventos implements Serializable{
        }else{
            System.out.println("Si hay filtro");
             bnp.setEventosFiltrados(eventosFiltrados);
-            bnp.setControl(true);
             return "PaginaHome.xhtml";
        }
        

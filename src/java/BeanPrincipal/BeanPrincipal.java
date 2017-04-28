@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,8 +28,8 @@ import javax.inject.Named;
  *
  * @author Carlos
  */
-@Named(value = "beanPrincipal")
 @ManagedBean(eager=true)
+@Named(value = "beanPrincipal")
 @ApplicationScoped
 
 
@@ -37,9 +38,7 @@ public class BeanPrincipal implements Serializable{
       private List<Formulario> formularios;
       private List<Imagen> imagenes;
 
-    
     private List<Evento>eventosFiltrados;
-    private Boolean control = false;
     private List<Usuario> usuarios;
     private List<Periodista> periodistas;
 
@@ -78,15 +77,6 @@ public class BeanPrincipal implements Serializable{
         this.usuarios = usuarios;
     }
 
-    public Boolean getControl() {
-        return control;
-    }
-
-    public void setControl(Boolean control) {
-        this.control = control;
-    }
-
-      
     public List<Formulario> getFormularios() {
         return formularios;
     }
@@ -276,8 +266,21 @@ public class BeanPrincipal implements Serializable{
     }
 
     public void eliminarForm(Formulario f) {
-        System.out.println("Eliminado DSDE BEAN PRINCIPAL" + f.getNombre());
-        formularios.remove(f);
+       
+        int i = 0;
+        int aux=0;
+        boolean encontrado = false;
+        while (i<formularios.size() && !encontrado){
+            if(formularios.get(i).getNombre().equalsIgnoreCase(f.getNombre())){
+                encontrado = true;
+                aux = i;
+                
+            }
+            i++;
+        }
+        
+        formularios.remove(aux);
+      
     }
     
     public void addEvent(Evento e){

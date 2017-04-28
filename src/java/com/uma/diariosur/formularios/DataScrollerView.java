@@ -5,13 +5,15 @@ import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.NoneScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
  
   
 @ManagedBean
-@ViewScoped
+@SessionScoped
 
 public class DataScrollerView implements Serializable {
       
@@ -58,8 +60,6 @@ public class DataScrollerView implements Serializable {
         e.setPeriodista(ctrlhome.getPeriodista());
         
         bp.addEvent(e);
-        
-        System.out.println("Creado evento del formulario" + f.getNombre());
         bp.eliminarForm(f);
         
         
@@ -67,8 +67,6 @@ public class DataScrollerView implements Serializable {
     }
     
     public String rechazar(Formulario f){
-       
-        System.out.println("Eliminado formulario" + f.getNombre());
         bp.eliminarForm(f);
         return "formularios.xhtml"; 
     }
