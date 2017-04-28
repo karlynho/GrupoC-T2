@@ -5,10 +5,12 @@
  */
 package com.uma.diariosur.evento;
 
+import BeanPrincipal.BeanPrincipal;
 import ControlVistaHome.ControlHome;
 import ControlVistaHome.CreacionDeEventos;
 import com.uma.diariosur.modelo.Evento;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -22,23 +24,31 @@ import javax.inject.Inject;
  */
 @Named(value = "beanEvento")
 @SessionScoped
-public class BeanEvento   implements Serializable {
+public class BeanEvento implements Serializable {
 
     
-    List<Evento>eventos;
+   private Evento eventos;
     @Inject
-    CreacionDeEventos ctreve;
-    public List<Evento> verEvento(){
-        eventos = new ArrayList<Evento>();
-        eventos.add(ctreve.principal());
-        return  eventos;
-    } 
+    BeanPrincipal ctreve;
     
-    public CreacionDeEventos getCtreve() {
+    public Evento verEvento(){
+        System.out.print("HOLAAAa");
+        return ctreve.getEventos().get(0);
+    }
+
+    public Evento getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(Evento eventos) {
+        this.eventos = eventos;
+    }
+
+    public BeanPrincipal getCtreve() {
         return ctreve;
     }
 
-    public void setCtreve(CreacionDeEventos ctreve) {
+    public void setCtreve(BeanPrincipal ctreve) {
         this.ctreve = ctreve;
     }
     

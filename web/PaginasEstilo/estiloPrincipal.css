@@ -20,7 +20,13 @@ and open the template in the editor.
 fotosPrincipal{
     width: 50px; height: 50px;
 }
-#eventos, #panel{
-    float:right;
-    
+#eventos, #panel, #colizq,#tyf,#ineve{
+    float:left;
+}
+#colizq{
+    border-style: none;
+    background-color: orange;
+}
+#same{
+   text-align: center;
 }

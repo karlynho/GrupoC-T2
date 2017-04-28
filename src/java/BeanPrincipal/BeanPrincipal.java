@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
@@ -54,13 +55,16 @@ public class BeanPrincipal implements Serializable{
   
     public BeanPrincipal() throws ParseException{
         
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy",new Locale("es","ES"));
         Date date = (Date)formatter.parse("12/05/2017");
         
         eventos = new ArrayList<>();
         eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
         eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
+        eventos.add(new Evento("Melendi","concierto","Musical",date,date,30.00,"Malaga"));
+        eventos.add(new Evento("Dani Martin","concierto","Musical",date,date,40.00,"Malaga"));
+        eventos.add(new Evento("Leiva","concierto","Musical",date,date,35.00,"Malaga"));
         
         Usuario usuario = new Usuario();
         usuario.setNick("karlynho");

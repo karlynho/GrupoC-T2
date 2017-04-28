@@ -10,21 +10,49 @@
     <ui:define name="title">Evento</ui:define>
     <ui:define name="content">
         <h:form id="colizq" >
-            <p:scrollPanel style="height: 300px; width:250px;">
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
-                <p>hola</p>
+            <p:scrollPanel style="height: 500px;" id="scrolizq"  >
+                <p:dataGrid var="ev" value="#{beanPrincipal.eventos}" columns="1" id="same">
+                    <c:if test="${not(beanPrincipal.eventos.get(0).categoria eq ev.categoria) or beanPrincipal.eventos.get(0).nombre == ev.nombre}">
+                        <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{ev.nombre}.jpg"/><br></br>
+                        <h:outputText value="#{ev.nombre}"/>
+                    </c:if>
+                </p:dataGrid>
             </p:scrollPanel>
         </h:form>
 
-        <p:dataGrid value="#{BeanEvento.verEvento()}" var="eve" columns="1"   id="eventos">
+        <p:dataGrid value="#{beanPrincipal.eventos.get(0)}" var="eve"     id="eventos" >
             <h:panelGrid columns="2" style="width:100%">
                 <p:outputPanel>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="#{eve.nombre}"/>
+                    <h:panelGrid columns="1" cellpadding="5" id="tyf"  columnClasses="logo,detail">
+
+                        <h:outputText value="#{eve.nombre}" />
                         <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{eve.nombre}.jpg"/>
+                        <h:form>
+                        <p:growl id="messages" showDetail="true" />
+                        <p:rating value="#{RatingView.rating3}">
+                            <p:ajax event="rate" listener="#{RatingView.onrate}" update="messages" />
+                            <p:ajax event="cancel" listener="#{RatingView.oncancel}" update="messages" />
+                        </p:rating>
+                        </h:form>
+                    </h:panelGrid> 
+                    <h:panelGrid columns="1" id="ineve">
+                        <h:outputText value="Descripción: #{eve.descripcion}" />
+                        <h:outputText value="Fecha de inicio: #{eve.fecha_inicio}" />
+                        <h:outputText value="Fecha de final: #{eve.fecha_final}" />
+                        <c:choose>
+                            <c:when test="${ eve.precio eq 0 }">
+                                <h:outputText value="Precio: Gratis" />
+                            </c:when>
+                            <c:otherwise>
+                                <h:form>
+                                <h:outputText value="Precio: #{eve.precio} €" />
+                                <br></br><h:commandLink action="#" value="Comprar entrada "/>
+                                </h:form>
+                            </c:otherwise>
+                        </c:choose>
+                        <h:outputText value="Ubicación: #{eve.ubicacion}" />
+                        <h:outputText value="Categoria: #{eve.categoria}" />
+                        <h:outputText value="" />
                     </h:panelGrid>
                 </p:outputPanel>
             </h:panelGrid>
