@@ -144,9 +144,21 @@ public class Usuario implements Serializable {
         return true;
     }
 
+    
+    public Usuario(String nombre, String apellidos, String nick, String email, String contrasenia){
+        this.apellidos=apellidos;
+        this.nick=nick;
+        this.nombre=nombre;
+        this.email=email;
+        this.password=contrasenia;
+        
+    }
+    
     @Override
     public String toString() {
+
         return nombre;
+
     }
     
 }

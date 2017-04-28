@@ -17,6 +17,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import javax.inject.Named;
@@ -29,7 +30,8 @@ import javax.inject.Named;
  * @author steven
  */
 @Named(value = "creacionDeEventos")
-@SessionScoped
+//@SessionScoped
+@ViewScoped
 public class CreacionDeEventos implements Serializable{
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
@@ -48,8 +50,11 @@ public class CreacionDeEventos implements Serializable{
         this.eventos = eventos;
     }
     
+
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
+
       eventos = new ArrayList<>();
+
       eventos = bnp.getEventos();
       eventosFiltrados = new ArrayList<Evento>();
         

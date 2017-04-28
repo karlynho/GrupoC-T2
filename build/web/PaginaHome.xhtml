@@ -1,0 +1,71 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+               
+    
+    <ui:define name="title">Pagina Principal</ui:define>
+    <ui:define name="content">
+                <h:form id="controlHome">
+                    <h:panelGrid columns="1">
+                        <f:facet name="header">
+                            <h:outputText value="Filtra tu Busqueda"/>
+                        </f:facet>
+                        <p:selectOneMenu id="selectUbicacion" value="#{controlHome.ubicacion}">
+                            <f:selectItem itemLabel="Ciudad" itemValue=" "/>
+                            <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
+                            <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
+                            <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
+                        </p:selectOneMenu>
+                        <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}">
+                            <f:selectItem itemLabel="Evento" itemValue=" "/>
+                            <f:selectItem itemLabel="Musical" itemValue="Conciertos"/>
+                            <f:selectItem itemLabel="Teatro" itemValue="Teatro"/>
+                            <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="2">
+                        <p:calendar id="datetime1" value="#{controlHome.fecha}" pattern="MM/dd/yyyy" showOn="button"/>
+                    </h:panelGrid>
+                    <h:messages showDetail="true" />
+                    <p:commandButton  id="buscar" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
+                    <p:commandButton value="Rehacer" action="#{controlHome.rehacer()}" ajax="false"/>
+                    <c:if test="#{empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha}">
+                         <p:dataGrid var="evento" value="#{beanPrincipal.eventos}" columns="3"  rows="4"  class="eventos">
+                            <h:panelGrid columns="1" class="eventos2">
+                                <h:graphicImage  style="width:250px; height:200px" value="resources/#{evento.imagen.enlace}"/>
+
+                                    <h:outputText value="#{evento.fecha_inicio}"/>
+                                    <h:outputText value="#{evento.nombre}"/>
+                                    <h:outputText value="#{evento.ubicacion}"/>
+                                    <h:commandLink action="#{controlHome.verEvento()}" value="VER EVENTO"/>
+                            </h:panelGrid>
+                        </p:dataGrid>
+                    </c:if>
+                    <c:if test="#{!empty controlHome.ubicacion and !empty controlHome.categoria and  !empty controlHome.fecha}">
+                        <p:dataGrid var="evento" value="#{beanPrincipal.eventosFiltrados}" columns="3"  rows="4"  class="eventos">
+                            <h:panelGrid columns="1" class="eventos2">
+                                <h:graphicImage  style="width:250px; height:200px" value="resources/#{evento.imagen.enlace}"/>
+
+                                    <h:outputText value="#{evento.fecha_inicio}"/>
+                                    <h:outputText value="#{evento.nombre}"/>
+                                    <h:outputText value="#{evento.ubicacion}"/>
+                                    <h:commandLink action="#{controlHome.verEvento()}" value="VER EVENTO"/>
+                            </h:panelGrid>
+                        </p:dataGrid>
+                    </c:if>
+                    <c:if test="#{!empty controlHome.usuario or !empty controlHome.periodista }">
+                        <p>Crea tu evento</p>
+                        <p>Accede al formukario
+                           para crar un evenro</p>
+                        <p:commandButton value="Acceder" action="#{controlHome.accederEvento()}"/>
+                       </c:if>
+                 </h:form>
+          
+    </ui:define>
+                    
+</ui:composition>

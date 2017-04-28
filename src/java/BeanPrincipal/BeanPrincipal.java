@@ -184,7 +184,7 @@ public class BeanPrincipal implements Serializable{
         
         Evento e3 = new Evento();
         e3.setNombre("Offspring");
-        e3.setCategoria("Concierto");
+        e3.setCategoria("Conciertos");
         e3.setDescripcion("musicaaal");
         e3.setFecha_inicio(date);
         e3.setFecha_final(date);
@@ -293,6 +293,10 @@ public class BeanPrincipal implements Serializable{
     
     public void addImage(Imagen i){
         imagenes.add(i);
+    }
+    
+    public void añadirUsuario(Usuario u){
+        usuarios.add(u);
     }
     
     public void deleteImage(Imagen i){

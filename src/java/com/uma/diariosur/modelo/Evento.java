@@ -206,5 +206,6 @@ public class Evento implements Serializable {
         this.imagen = i;
         this.periodista = p;
     }
+
     
 }
