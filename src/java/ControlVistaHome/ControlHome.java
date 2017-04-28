@@ -173,12 +173,14 @@ public class ControlHome implements Serializable{
         return "ajustes.xhtml";
     }
     
+
     public String rehacer(){
         this.ubicacion = stringVacio;
         this.categoria = stringVacio;
         this.fecha     = fechaVacia;
         return "PaginaHome.xhtml";
     }
+
     
     public String RevisarEvento(){
         return "formularios.xhtml";
