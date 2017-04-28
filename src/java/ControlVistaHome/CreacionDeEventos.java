@@ -17,6 +17,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import javax.inject.Named;
@@ -29,7 +30,8 @@ import javax.inject.Named;
  * @author steven
  */
 @Named(value = "creacionDeEventos")
-@SessionScoped
+//@SessionScoped
+@ViewScoped
 public class CreacionDeEventos implements Serializable{
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
@@ -48,12 +50,7 @@ public class CreacionDeEventos implements Serializable{
         this.eventos = eventos;
     }
     
-   //modificamos bnp con un valor de cero o uno comprobamos si entramos o no y luego realizamos el cambio de vitsas si la variable filtro esta a true
-    public List<Evento> crearEventos() throws ParseException{
-        bnp = new BeanPrincipal();
-        return bnp.getEventos();
-        
-    }
+   
     
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{
 
@@ -99,7 +96,7 @@ public class CreacionDeEventos implements Serializable{
        }else{
            System.out.println("Si hay filtro");
             bnp.setEventosFiltrados(eventosFiltrados);
-            bnp.setControl(true);
+         
             return "PaginaHome.xhtml";
        }
        

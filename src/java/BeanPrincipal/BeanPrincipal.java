@@ -39,7 +39,6 @@ public class BeanPrincipal implements Serializable{
 
     
     private List<Evento>eventosFiltrados;
-    private Boolean control = false;
     private List<Usuario> usuarios;
     private List<Periodista> periodistas;
 
@@ -78,13 +77,7 @@ public class BeanPrincipal implements Serializable{
         this.usuarios = usuarios;
     }
 
-    public Boolean getControl() {
-        return control;
-    }
 
-    public void setControl(Boolean control) {
-        this.control = control;
-    }
 
       
     public List<Formulario> getFormularios() {
@@ -194,7 +187,7 @@ public class BeanPrincipal implements Serializable{
         
         Evento e3 = new Evento();
         e3.setNombre("Offspring");
-        e3.setCategoria("Concierto");
+        e3.setCategoria("Conciertos");
         e3.setDescripcion("musicaaal");
         e3.setFecha_inicio(date);
         e3.setFecha_final(date);
@@ -276,6 +269,7 @@ public class BeanPrincipal implements Serializable{
     }
 
     public void eliminarForm(Formulario f) {
+       
         formularios.remove(f);
     }
     
@@ -289,6 +283,10 @@ public class BeanPrincipal implements Serializable{
     
     public void addImage(Imagen i){
         imagenes.add(i);
+    }
+    
+    public void añadirUsuario(Usuario u){
+        usuarios.add(u);
     }
     
     public void deleteImage(Imagen i){

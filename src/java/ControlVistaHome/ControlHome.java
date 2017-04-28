@@ -31,6 +31,24 @@ public class ControlHome implements Serializable{
     private String ubicacion;
     private String categoria;
     private Date fecha;
+    private String stringVacio;
+    private Date   fechaVacia;
+
+    public String getStringVavio() {
+        return stringVacio;
+    }
+
+    public void setStringVavio(String stringVavio) {
+        this.stringVacio = stringVavio;
+    }
+
+    public Date getFechaVacia() {
+        return fechaVacia;
+    }
+
+    public void setFechaVacia(Date fechaVacia) {
+        this.fechaVacia = fechaVacia;
+    }
 
     public List<Evento> getEventos() {
         return eventos;
@@ -105,8 +123,7 @@ public class ControlHome implements Serializable{
     public String home(){
 
         
-            return "PaginaHome.xhtml";
-        
+         
 
         if(this.usuario == null){
             if(this.periodista==null){
@@ -149,15 +166,26 @@ public class ControlHome implements Serializable{
         ctx.getExternalContext().invalidateSession();
         periodista = null;
         usuario = null;
-        return "login.xhtml";
+        return "Login.xhtml";
     }
     
     public String perfil(){
         return "ajustes.xhtml";
     }
     
-    public String filtroEvento(){
-        return "ControlHomeFiltro.xhtml";
+    public String rehacer(){
+        this.ubicacion = stringVacio;
+        this.categoria = stringVacio;
+        this.fecha     = fechaVacia;
+        return "PaginaHome.xhtml";
+    }
+    
+    public String RevisarEvento(){
+        return "formularios.xhtml";
+    }
+    
+    public String accederEvento(){
+        return "rellenar_formulario.xhtml";
     }
     
     

@@ -108,7 +108,7 @@ public class RellenarFormulario implements Serializable{
             String filename = aux2.concat(ext);
             img_aux = filename;
             InputStream input = img.getInputstream();
-            OutputStream output = new FileOutputStream(new File("C:\\Users\\Carlos\\Documents\\NetBeansProjects\\DiarioSur-T2\\web\\resources", filename));
+            OutputStream output = new FileOutputStream(new File("C:\\Users\\steven\\Documents\\NetBeansProjects\\GrupoC-T2-master\\build\\web\\resources", filename));
             aux_ext = ext;
         
         try {
