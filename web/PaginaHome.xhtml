@@ -9,8 +9,6 @@
     
     <ui:define name="title">Pagina Principal</ui:define>
     <ui:define name="content">
-      <!--  <c:choose>-->
-         <!--   <c:when test="#{empty controlHome.usuario and empty controlHome.periodista}">-->
                 <h:form id="controlHome">
                     <h:panelGrid columns="1">
                         <f:facet name="header">
@@ -35,7 +33,8 @@
                     </h:panelGrid>
                     <h:messages showDetail="true" />
                     <p:commandButton  id="buscar" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
-                    <c:if test="#{empty controlHome.ubicacion and empty controlHome.categoria and  empty controlHome.fecha}">
+                    <p:commandButton value="Rehacer" action="#{controlHome.rehacer()}" ajax="false"/>
+                    <c:if test="#{empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha}">
                          <p:dataGrid var="evento" value="#{beanPrincipal.eventos}" columns="3"  rows="4"  class="eventos">
                             <h:panelGrid columns="1" class="eventos2">
                                 <h:graphicImage  style="width:250px; height:200px" value="resources/#{evento.imagen.enlace}"/>
@@ -63,12 +62,10 @@
                         <p>Crea tu evento</p>
                         <p>Accede al formukario
                            para crar un evenro</p>
-                        
                         <p:commandButton value="Acceder" action="#{controlHome.accederEvento()}"/>
                        </c:if>
                  </h:form>
-          <!--  </c:when>
-        </c:choose>-->
+          
     </ui:define>
                     
 </ui:composition>
