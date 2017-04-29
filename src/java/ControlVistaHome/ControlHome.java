@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package ControlVistaHome;
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 /**
  *
  * @author steven
@@ -18,6 +20,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ControlHome implements Serializable{
 
+    @Inject
+    private BeanPrincipal bp;
     private Usuario usuario;
     private Periodista periodista;
     
@@ -26,6 +30,10 @@ public class ControlHome implements Serializable{
     }
     public Usuario getUsuario(){
         return usuario;
+    }
+    
+    public Usuario User(){
+        return bp.user();
     }
     
     public void setPeriodista(Periodista periodista){

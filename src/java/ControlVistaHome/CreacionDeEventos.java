@@ -6,6 +6,7 @@
 package ControlVistaHome;
 
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Usuario;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,6 +32,7 @@ public class CreacionDeEventos implements Serializable{
     private int dia;
     private int mes;
     private int año;
+    private List<Usuario> usuarios;
 
     public List<Evento> getEventos() {
         return eventos;
@@ -52,6 +54,22 @@ public class CreacionDeEventos implements Serializable{
         return eventos;
     }
     
+    public List<Usuario> listaUsuario() throws ParseException{
+         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = (Date)formatter.parse("12/05/2017");
+        
+         usuarios = new ArrayList<>();
+        Usuario user = new Usuario();
+        user.setNombre("Carlos");
+        user.setApellidos("Moreno");
+        user.setEmail("carlos_@hotmail.com");
+        user.setNick("Karlynho");
+        user.setFecha_nacimiento(date);
+        user.setPassword("1234");
+        usuarios.add(user);
+        
+        return usuarios;
+    }
     
     /**
      * Creates a new instance of CreacionDeEventos

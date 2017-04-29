@@ -25,7 +25,7 @@
     </session-config>
     <welcome-file-list>
 
-        <welcome-file>faces/Ajustes.xhtml</welcome-file>
+        <welcome-file>faces/Megusta.xhtml</welcome-file>
 
 
     </welcome-file-list>

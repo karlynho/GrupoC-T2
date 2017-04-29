@@ -28,17 +28,18 @@
         
         <br> </br>
         <h:form>
-            <h:panelGrid id="Grid" columns="4" >
+            <p:dataGrid var="Usuario" value="#{beanPrincipal.usuarios}" columns="4"  rows="4"  id="usuario" style=" background-color: #0099ff">
+            <h:panelGrid id="Grid" columns="4" style=" background-color: #0099ff">
                 <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Nombre de usuario" />
-                <h:outputText value="#{ajustes.usuario}" style="font-size: medium" />
+                <h:outputText value="#{Usuario.nick}" style="font-size: medium" />
                 <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Email" />
-                <h:outputText value="#{ajustes.correo}" style ="font-size: medium" />
+                <h:outputText value="#{Usuario.email}" style ="font-size: medium" />
                 <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Nombre" />
-                <h:outputText value="#{ajustes.nombre}" style="font-size:medium" />
+                <h:outputText value="#{Usuario.nombre}" style="font-size:medium" />
                 <p:outputLabel style="font-size: medium; padding: 20px;color:  #006" value="Fecha de nacimiento" />
-                <h:outputText value ="#{ajustes.fecha_nacimiento}" style="font-size: medium" />
+                <h:outputText value ="#{Usuario.fecha_nacimiento}" style="font-size: medium" />
             </h:panelGrid>
-            
+            </p:dataGrid>
             <br></br>
             
             <h:panelGrid columns="1">
@@ -66,8 +67,8 @@
                 <option value="Alemán">Alemán</option>
             </select>
              <h:panelGrid columns="2" cellpadding="5" style="padding-left: 709px; top: 650px; position: absolute">
-                   <p:commandButton id="Aplicar" value="Aplicar" action="#{ajustes.home()}" ajax="false"/>
-                   <p:commandButton id="Cancelar" value="Cancelar" action="#{ajustes.home()}" ajax="false"/>
+                 <p:commandButton id="Aplicar" value="Aplicar" action="#{ajustes.comprueba()}" ajax="false"/>
+                 <p:commandButton id="Cancelar" value="Cancelar" action="#{ajustes.home()}" ajax="false"/>
                </h:panelGrid>
         </h:form>
      

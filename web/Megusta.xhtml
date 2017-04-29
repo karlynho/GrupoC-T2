@@ -8,9 +8,33 @@
                     
     
     <ui:define name="title">Pagina MeGusta</ui:define>
-    <ui:define name="content"></ui:define>
-    <h:form>
-        <p:dataScroller value="#{beanPrincipal.eventos}" var="megusta" 
-    </h:form>
-    
+    <ui:define name="content">
+        
+            <h:form>
+             <br> </br>
+             <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Me gusta" />
+             <p:commandButton id="Bt" value="Atrás" action="#{ajustes.home()}" style=" right: 10px; float: right; top: -20px"/>
+           
+             <hr style="color: red; border-top-color: red; right: 1px"></hr>   
+             
+             <p:dataScroller var="evento" value="#{creacionDeEventos.crearEventos()}"   rows="3"  id="eventos">
+               
+                       
+                            <h:panelGrid columns="4"  >
+                                <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{evento.nombre}.jpg"/>
+                                <p:outputPanel>
+                                    <h:panelGrid columns="1" cellpadding="5">
+                                
+                                <h:outputText value="#{evento.nombre}"/>
+                                <h:outputText value="#{evento.ubicacion}" style="color: darkgray"/>
+                                <h:outputText value="#{evento.fecha_inicio}" style="color: darkgray"/>
+                                </h:panelGrid>
+                                </p:outputPanel>
+                                </h:panelGrid>
+                
+                          
+             </p:dataScroller>       
+            </h:form>
+      
+    </ui:define>
 </ui:composition>

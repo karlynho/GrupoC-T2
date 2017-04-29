@@ -34,6 +34,8 @@ public class Usuario implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_nacimiento;
     private String password;
+    private String nombreUsuario;
+    
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Valoracion> valoraciones;
@@ -43,6 +45,21 @@ public class Usuario implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Megusta> megusta;
+
+    
+    public Usuario(){
+        
+    }
+    
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    
+    
 
     public List<Valoracion> getValoraciones() {
         return valoraciones;
@@ -115,6 +132,12 @@ public class Usuario implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public String getNick() {
+        return nick;
+    }
+    
+    
     
     @Override
     public int hashCode() {
@@ -123,6 +146,8 @@ public class Usuario implements Serializable {
         return hash;
     }
 
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -140,5 +165,17 @@ public class Usuario implements Serializable {
     public String toString() {
         return "com.mycompany.diariosur1.Usuario[ nick=" + nick + " ]";
     }
+    
+    public Usuario(String nick, String nombre, String apellidos, String email, Date fecha_nacimiento, String password){
+        
+        this.nick = nick;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.password = password;
+        
+    }
+    
     
 }
