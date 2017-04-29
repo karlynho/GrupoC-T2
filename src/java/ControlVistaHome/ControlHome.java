@@ -196,7 +196,9 @@ public class ControlHome implements Serializable{
      */
     public ControlHome() {
        
-        
+        String path = FacesContext.getCurrentInstance().getExternalContext()
+            .getRealPath("/");
+       System.out.print(path);
         
     }
   

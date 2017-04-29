@@ -14,28 +14,26 @@
                     <h:panelGrid columns="3">
                         <h:outputText value="Nombre:"/>
                         <h:inputText id="nombre" value="#{registro.nombre}"/>
-                       <!--
                         <h:message for="nombre"/>
                         <h:outputText value="Apellidos:"/>
-                        <h:inputText id="apellidos" value="{registro.usuario.apellidos}"/>
+                        <h:inputText id="apellidos" value="#{registro.apellidos}"/>
                         <h:message for="apellidos"/>
                         <h:outputText value="E-mail:"/>
-                        <h:inputText id="email" value="{registro.usuario.email}" required="true"
+                        <h:inputText id="email" value="#{registro.email}" required="true"
                                      validatorMessage="Compruebe que ha introducido un e-mail correcto">
                             <f:validateRegex pattern=".+@.+"/>
                         </h:inputText>
                         <h:message for="email"/>
                         <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" value="{registro.usuario.cuenta}" required="true"/>
+                        <h:inputText id="nick" value="#{registro.nick}" required="true"/>
                         <h:message for="user"/>
-                       -->
+                       
                         <h:outputText value="Contraseña:"/>
                         <h:inputSecret id="pass" value="#{registro.contraseña}" required="true"/>
-                        
-                 <!--
+                        <h:message for ="pass"/>
                         <h:outputText value="Repita contraseña:"/>
-                        <h:inputSecret id="repass" value="{registro.repass}" required="true"/>
-                        <h:message for="repass"/>-->
+                        <h:inputSecret id="repass" value="#{registro.repas}" required="true"/>
+                        <h:message for="repass"/>
                         <h:commandButton value="Crear usuario" action="#{registro.registrarUsuario()}"/>
                         <h:link outcome="Login.xhtml">Volver a la página de login</h:link>
                     </h:panelGrid>

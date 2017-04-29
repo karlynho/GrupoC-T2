@@ -14,6 +14,7 @@
                         <f:facet name="header">
                             <h:outputText value="Filtra tu Busqueda"/>
                         </f:facet>
+                        
                         <p:selectOneMenu id="selectUbicacion" value="#{controlHome.ubicacion}">
                             <f:selectItem itemLabel="Ciudad" itemValue=" "/>
                             <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
@@ -31,9 +32,27 @@
                     <h:panelGrid columns="2">
                         <p:calendar id="datetime1" value="#{controlHome.fecha}" pattern="MM/dd/yyyy" showOn="button"/>
                     </h:panelGrid>
-                    <h:messages showDetail="true" />
-                    <p:commandButton  id="buscar" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
+                    <p:message for="principal" style="font-size: small" showDetail="true"/>
+                    <p:commandButton  id="principal" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
                     <p:commandButton value="Rehacer" action="#{controlHome.rehacer()}" ajax="false"/>
+                    
+    
+                            <c:if test="#{!empty controlHome.usuario}">
+                                <div style="top: 410px; position: absolute">
+                                <p:outputLabel value="Para solicitar la creacion de un evento rellene el siguiente formulario:       " style="padding-left: 500px; font-size: small" />
+                            <p:commandButton value="Rellenar formulario" action="#{controlHome.accederEvento()}"/>
+                                </div>
+                            </c:if>
+                    <div style="padding-left: 900px; top: 410px; position: absolute" >
+                            <c:if test="#{!empty controlHome.periodista}">
+                                <p:commandButton value="Crear evento" action="#{controlHome.accederEvento()}"/> 
+                                <p:commandButton action="#{controlHome.RevisarEvento()}" value="Revisar Eventos"/>
+                            </c:if>
+                            </div>
+                    <p:outputLabel style="padding-left: 700px;">
+                    <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" >
+                    </p:link>
+                    </p:outputLabel>
                     <c:if test="#{empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha}">
                          <p:dataGrid var="evento" value="#{beanPrincipal.eventos}" columns="3"  rows="4"  class="eventos">
                             <h:panelGrid columns="1" class="eventos2">
@@ -58,14 +77,7 @@
                             </h:panelGrid>
                         </p:dataGrid>
                     </c:if>
-                    <c:if test="#{!empty controlHome.usuario or !empty controlHome.periodista }">
-                        <p>Crea tu evento</p>
-                        <p>Accede al formukario
-                           para crar un evenro</p>
-
-                        <p:commandButton value="Acceder" action="#{controlHome.accederEvento()}"/>
-
-                       </c:if>
+                    
                  </h:form>
           
     </ui:define>
