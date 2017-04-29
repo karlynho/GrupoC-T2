@@ -118,46 +118,62 @@ public class Login {
            int i = 0;
            int j = 0;
         
+        if(this.usuario.isEmpty() || this.contrasenia.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Rellene los dos campos por favor");
+            FacesContext.getCurrentInstance().addMessage("login:pass", message);
+            return null;
+        }
+           
+           
         //comprobamos primero si es usuario normal
         while(i<tam && !encontrado){
             //recorremos la lista buscando al usuario
             if(usuarios.get(i).getNombre().equals(this.usuario)){
                 encontrado = true;
+                
                 if(usuarios.get(i).getPassword().equals(this.contrasenia)){
                     // usuario y contraseña correcto
-                   ctrlhome.setUsuario(usuarios.get(i));
+                    ctrlhome.setUsuario(usuarios.get(i));
                   
                 }else{
-                    FacesContext ctx = FacesContext.getCurrentInstance();
-                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error contraseña", "Error contraseña"));
-                }
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Usuario-Contraseña incorrecto");
+                    FacesContext.getCurrentInstance().addMessage("login:pass", message);
+                    return null;
+            }
                 
-            } 
+            }
+            
             i++;
         }
+        
+        
         
         this.periodista=this.usuario;
         //comprobamos si es periodista
         while(j<tam2 && !encontrado){
             //recorremos la lista buscando al usuario
             if(periodistas.get(j).getNombre().equals(this.periodista)){
-                encontrado = true;
+                encontrado = true; 
+                
                 if(periodistas.get(j).getPassword().equals(this.contrasenia)){
                     // usuario y contraseña correcto
                    ctrlhome.setPeriodista(periodistas.get(j));
                   
-                }else{
-                    FacesContext ctx = FacesContext.getCurrentInstance();
-                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error contraseña", "Error contraseña"));
+            }  else{
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Usuario-Contraseña incorrecto");
+                    FacesContext.getCurrentInstance().addMessage("login:pass", message);
+                    return null;
                 }
-                
-            } 
+            }
+            
             j++;
         }
         
-        if(encontrado == false){
-            FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error usuario inexistente", "Error usuario inexistente"));
+        
+        
+        if(!encontrado){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El nombre de usuario no existe");
+            FacesContext.getCurrentInstance().addMessage("login:usuario", message);
             return null;
         }else{
             return ctrlhome.home();
