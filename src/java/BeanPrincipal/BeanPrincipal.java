@@ -170,7 +170,23 @@ public class BeanPrincipal implements Serializable{
     
     
     public void eliminarMegusta(Evento e){
-        megusta.remove(e);
+        int i = 0;
+        
+        int aux=0;
+        
+        boolean encontrado = false;
+        while (i<megusta.size() && !encontrado){
+            if(megusta.get(i).getNombre().equalsIgnoreCase(e.getNombre())){
+                encontrado = true;
+                aux = i;
+                
+            }
+            i++;
+        }
+        
+        megusta.remove(aux);
+        
+      
     }
     
     public void addMegusta(Evento e){

@@ -17,7 +17,7 @@
            
              <hr style="color: red; border-top-color: red; right: 1px"></hr>   
              
-             <p:dataScroller var="evento" value="#{megusta.crearMegusta()}"   rows="3"  id="eventos">
+             <p:dataScroller var="evento" value="#{beanPrincipal.megusta}"   rows="3"  id="eventos">
                
                        
                             <h:panelGrid columns="4"  >
@@ -28,7 +28,7 @@
                                 <h:outputText value="#{evento.nombre}"/>
                                 <h:outputText value="#{evento.ubicacion}" style="color: darkgray"/>
                                 <h:outputText value="#{evento.fecha_inicio}" style="color: darkgray"/>
-                                <p:commandButton icon="ui-icon-star" action="#{megusta.megusta()}"></p:commandButton>
+                                <p:commandButton icon="ui-icon-star" action="#{megusta.noMegusta(evento)}" ajax="false"></p:commandButton>
                                 </h:panelGrid>
                                   </h:panelGrid>
                                 </p:outputPanel>

@@ -36,46 +36,17 @@ public class Megusta implements Serializable{
     @Inject
     private BeanPrincipal bp;
     
-    private List<Evento>megusta;
-    private int dia;
-    private int mes;
-    private int año;
-    
   
-
-    public List<Evento> getMegusta() {
-        return megusta;
-    }
-
-    public void setMegusta(List<Evento> eventos) {
-        this.megusta = eventos;
-    }
+   
     
-    public List<Evento> crearMegusta() throws ParseException{
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = (Date)formatter.parse("12/05/2017");
+    public String noMegusta(Evento e){
         
-        megusta = new ArrayList<Evento>();
-        megusta.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
-        megusta.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        megusta.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
-        
-        return megusta;
-    }
-    
-    
-    
-    public String megusta(){
-        
-        
-        
-        
+        bp.eliminarMegusta(e);
         return "Megusta.xhtml";
         
         
     }
   
-    
     
    
     
