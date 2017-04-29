@@ -9,6 +9,8 @@ package ControlVistaHome;
 import BeanPrincipal.BeanPrincipal;
 
 import com.uma.diariosur.modelo.Usuario;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -29,8 +31,8 @@ public class Registro {
     private String Nick;
     private String email;
     private String repas;
-
-
+    
+    private Pattern pattern;
     
     public String getRepas() {
         return repas;
@@ -47,34 +49,74 @@ public class Registro {
     
     public String registrarUsuario(){
          usuario = new Usuario();
-         
-        if(nombre.isEmpty() && apellidos.isEmpty() && Nick.isEmpty()){
-             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Los campos nombre, apellidos y Nick  deben estar rellenados");
-             FacesContext.getCurrentInstance().addMessage("nombre:principal", message);
-            
+         System.out.println("Entra en funcion");
+        if(this.nombre.isEmpty()){
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo nombre no puede estar vacio");
+             FacesContext.getCurrentInstance().addMessage("registro:nombre", message);
+             return null;
         }else{
             usuario.setNombre(nombre);
+        }
+        
+        if(this.apellidos.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo apellido no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:apellidos", message);
+            return null;
+        }else{
             usuario.setApellidos(apellidos);
         }
         
-        if(!contraseña.equalsIgnoreCase(repas)){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Las contraseñas no coinciden");
-            FacesContext.getCurrentInstance().addMessage("apellidos:principal", message);
+        if(this.email.isEmpty()){
+           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no puede estar vacio");
+           FacesContext.getCurrentInstance().addMessage("registro:email", message);
+           return null;
+       }else{
+            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+           Matcher mather = pattern.matcher(email);
+           if (mather.find() == true) {
+              usuario.setEmail(email);
+           } else {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no tiene la estructura adecuada");
+             FacesContext.getCurrentInstance().addMessage("registro:email", message);
+             return null;
+            }
+       }
+        
+        
+        if(this.Nick.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Nombre de Usuario no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:nick", message);
+            return null;
         }else{
-            usuario.setPassword(contraseña);
+            usuario.setNick(Nick);
+        }
+         
+        if(this.contraseña.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "La contraseña no puede estar vacia");
+            FacesContext.getCurrentInstance().addMessage("registro:pass", message);
+            return null;
+        }else if(this.repas.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Debe repetir la contraseña");
+            FacesContext.getCurrentInstance().addMessage("registro:repass", message);
+            return null;
+        }else if(this.contraseña.equals(this.repas)){
+               usuario.setPassword(contraseña);
+        }else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Las contraseña no coinciden");
+            FacesContext.getCurrentInstance().addMessage("registro:repass", message);
+            return null;       
+               
+            }
+               
+            bnp.añadirUsuario(usuario);
+             return "Login.xhtml";   
         }
         
        
        
-       
-  
-        
-        usuario.setEmail(email);
-        
-        bnp.añadirUsuario(usuario);
-        return "Login.xhtml";
-    }
-      public String getApellidos() {
+    
+
+    public String getApellidos() {
         return apellidos;
     }
 

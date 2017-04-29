@@ -31,9 +31,18 @@
                         <tr>
                             <td colspan="2">
                                 <h:commandButton value="Autenticar" action="#{login.autenticar()}"/>
-                                <h:commandLink value="Registro" action="#{controlHome.registro()}"/>
-                                <h:commandLink value="Principal" action="#{controlHome.home()}"/>
                             </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandLink value="Registro" action="#{controlHome.registro()}"/>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandLink value="Acceda como invitado" action="#{controlHome.home()}"/>
+                            </td> 
                         </tr>
                     </table>
                 </h:form>
