@@ -28,7 +28,7 @@
                                 <h:outputText value="#{evento.nombre}"/>
                                 <h:outputText value="#{evento.ubicacion}" style="color: darkgray"/>
                                 <h:outputText value="#{evento.fecha_inicio}" style="color: darkgray"/>
-                                <p:button icon="ui-icon-star"></p:button>
+                                <p:commandButton icon="ui-icon-star" action="#{megusta.megusta()}"></p:commandButton>
                                 </h:panelGrid>
                                   </h:panelGrid>
                                 </p:outputPanel>

@@ -36,6 +36,17 @@ public class BeanPrincipal implements Serializable{
       private List<Imagen> imagenes;
       private List<Usuario> usuarios;
       private Usuario usuario;
+      private List<Evento> megusta;
+
+    public List<Evento> getMegusta() {
+        return megusta;
+    }
+
+    public void setMegusta(List<Evento> megusta) {
+        this.megusta = megusta;
+    }
+      
+      
 
     public List<Formulario> getFormularios() {
         return formularios;
@@ -78,6 +89,13 @@ public class BeanPrincipal implements Serializable{
         user.setFecha_nacimiento(date);
         user.setPassword("1234");
         usuarios.add(user);
+        
+        
+        megusta = new ArrayList<Evento>();
+        megusta.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
+        megusta.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
+        megusta.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
+        
         
         
         formularios = new ArrayList<>();
@@ -151,6 +169,13 @@ public class BeanPrincipal implements Serializable{
     }
     
     
+    public void eliminarMegusta(Evento e){
+        megusta.remove(e);
+    }
+    
+    public void addMegusta(Evento e){
+        megusta.add(e);
+    }
     
     public Usuario user(){
         return this.usuario;

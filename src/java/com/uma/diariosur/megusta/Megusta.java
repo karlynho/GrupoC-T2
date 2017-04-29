@@ -5,6 +5,7 @@
  */
 package com.uma.diariosur.megusta;
 
+import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Usuario;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -30,6 +32,9 @@ public class Megusta implements Serializable{
     /**
      * Creates a new instance of Megusta
      */
+    
+    @Inject
+    private BeanPrincipal bp;
     
     private List<Evento>megusta;
     private int dia;
@@ -58,6 +63,15 @@ public class Megusta implements Serializable{
         return megusta;
     }
     
+    
+    
+    public String megusta(){
+        
+        
+        
+        
+        return "Megusta.xhtml";
+    }
   
     
    
