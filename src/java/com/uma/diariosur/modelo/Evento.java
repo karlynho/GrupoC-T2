@@ -47,11 +47,9 @@ public class Evento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<Anuncio> anuncios;
     
-    @OneToOne(optional = true)
-    private Video video;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-    private List<Imagen> imagenes;
+    @OneToOne(optional = false)
+    private Imagen imagen;
     
     @ManyToOne
     private Periodista periodista;
@@ -60,14 +58,16 @@ public class Evento implements Serializable {
     public Evento (){
         
     }
-    
-    public List<Imagen> getImagenes() {
-        return imagenes;
+
+    public Imagen getImagen() {
+        return imagen;
     }
 
-    public void setImagenes(List<Imagen> imagenes) {
-        this.imagenes = imagenes;
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
+    
+    
     
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -161,14 +161,6 @@ public class Evento implements Serializable {
     public void setPeriodista(Periodista periodista) {
         this.periodista = periodista;
     }
-
-    public Video getVideo() {
-        return video;
-    }
-
-    public void setVideo(Video video) {
-        this.video = video;
-    }
     
     public Integer getId() {
         return id;
@@ -203,7 +195,7 @@ public class Evento implements Serializable {
         return "com.mycompany.diariosur1.Evento[ id=" + id + " ]";
     }
     
-     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion) {
+     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -211,9 +203,9 @@ public class Evento implements Serializable {
         this.fecha_final = fecha_final;
         this.precio = precio;
         this.ubicacion = ubicacion;
-
+        this.imagen = i;
+        this.periodista = p;
     }
-     
-  
+
     
 }

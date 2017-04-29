@@ -5,13 +5,21 @@
  */
 package ControlVistaHome;
 import BeanPrincipal.BeanPrincipal;
+import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 /**
  *
  * @author steven
@@ -20,20 +28,91 @@ import javax.inject.Inject;
 @SessionScoped
 public class ControlHome implements Serializable{
 
-    @Inject
-    private BeanPrincipal bp;
     private Usuario usuario;
     private Periodista periodista;
+    private String evento;
+    private String ubicacion;
+    private String categoria;
+    private Date fecha;
+    private String stringVacio;
+    private Date   fechaVacia;
+
+    public String getStringVavio() {
+        return stringVacio;
+    }
+
+    public void setStringVavio(String stringVavio) {
+        this.stringVacio = stringVavio;
+    }
+
+    public Date getFechaVacia() {
+        return fechaVacia;
+    }
+
+    public void setFechaVacia(Date fechaVacia) {
+        this.fechaVacia = fechaVacia;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+    private List<Evento>eventos;
+
+    
+    @Inject 
+    BeanPrincipal bnp;
+
+    public BeanPrincipal getBnp() {
+        return bnp;
+    }
+
+    public void setBnp(BeanPrincipal bnp) {
+        this.bnp = bnp;
+       
+    }
+    
+    
+    public String getEvento() {
+        return evento;
+    }
+
+    public void setEvento(String evento) {
+        this.evento = evento;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
     public Usuario getUsuario(){
         return usuario;
-    }
-    
-    public Usuario User(){
-        return bp.user();
     }
     
     public void setPeriodista(Periodista periodista){
@@ -45,18 +124,23 @@ public class ControlHome implements Serializable{
     }
     
     public String home(){
+
+        
+         
+
         if(this.usuario == null){
             if(this.periodista==null){
                 //No hay usuario Logueado, por tanto mostramos pagina principal
                 return "PaginaHome.xhtml";
             }else{
                 //Identificado como Periodista
-                return "PaginaHomePeriodista.xhtml";
+                return "PaginaHome.xhtml";
             }
         }else{
             //Identificado como Usuario Normal
-            return "PaginaHomeUsuarioNormal.xhtml";
+            return "PaginaHome.xhtml";
         }
+
     }
     
     public String login(){
@@ -65,11 +149,15 @@ public class ControlHome implements Serializable{
                 //No hay usuario, por tanto redirigimos a pagina Login
                 return "Login.xhtml";
             }else{
-                return "PaginaHomePeriodista.xhtml";
+                return "PaginaHome.xhtml";
             }
         }else{
-                return "PaginaHomeUsuarioNormal.xhtml";
+                return "PaginaHome.xhtml";
         }
+    }
+    
+    public String verEvento(){
+        return "VerEvento.xhtml";
     }
     
     public String registro(){
@@ -81,22 +169,37 @@ public class ControlHome implements Serializable{
         ctx.getExternalContext().invalidateSession();
         periodista = null;
         usuario = null;
-        return "login.xhtml";
+        return "Login.xhtml";
     }
     
     public String perfil(){
         return "ajustes.xhtml";
     }
     
-    public String filtroEvento(){
-        return "ControlHomeFiltro.xhtml";
+
+    public String rehacer(){
+        this.ubicacion = stringVacio;
+        this.categoria = stringVacio;
+        this.fecha     = fechaVacia;
+        return "PaginaHome.xhtml";
     }
+
+    
+    public String RevisarEvento(){
+        return "formularios.xhtml";
+    }
+    
+    public String accederEvento(){
+        return "rellenar_formulario.xhtml";
+    }
+    
     
     /**
      * Creates a new instance of ControlHome
      */
     public ControlHome() {
-        
+       
     }
+  
     
 }

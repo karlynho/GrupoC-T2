@@ -10,9 +10,9 @@ import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Usuario;
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 /**
@@ -21,7 +21,7 @@ import javax.inject.Inject;
  */
 @Named(value = "ajustes")
 
-@SessionScoped
+@ViewScoped
 
 public class Ajustes implements Serializable{
 
@@ -40,6 +40,17 @@ public class Ajustes implements Serializable{
     private String contraseña;
     private String contraseñanueva;
     private String contraseñanueva1;
+    private String emailnuevo;
+
+    public String getEmailnuevo() {
+        return emailnuevo;
+    }
+
+    public void setEmailnuevo(String emailnuevo) {
+        this.emailnuevo = emailnuevo;
+    }
+    
+    
 
     public ControlHome getCh() {
         return ch;
@@ -110,15 +121,38 @@ public class Ajustes implements Serializable{
     
     
     
+    
+    
     public String comprueba(){
         
-        
-        if(!contraseñanueva.equals(contraseñanueva1)){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Las contraseñas no coinciden"));
-        }else{
-          return "PaginaHome.xhtml";  
-        }
+        if(!emailnuevo.isEmpty() && (contraseña.isEmpty() && contraseñanueva.isEmpty() && contraseñanueva1.isEmpty())){
+            bp.cambio(emailnuevo);
+            return "PaginaHome.xhtml";
+        }else if(contraseña.isEmpty() || contraseñanueva.isEmpty() || contraseñanueva1.isEmpty()){
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Los campos están vacíos"));
             return null;
+             
+        }else if(!contraseña.equals(ch.getUsuario().getPassword())){
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La contraseña introducida no es la correcta"));
+             return null;
+        }else if(!contraseñanueva.equals(contraseñanueva1)){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Las contraseñas no coinciden"));
+            return null;
+        }else{
+            if(emailnuevo.isEmpty()){
+                   bp.intercambiar(contraseñanueva);
+                   return "PaginaHome.xhtml"; 
+            }else{
+                   bp.cambio(emailnuevo);
+                   bp.intercambiar(contraseñanueva);
+                   return "PaginaHome.xhtml"; 
+        }
+          
+       
+           
+        }
+         
        
     }
     

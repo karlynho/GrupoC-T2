@@ -6,7 +6,9 @@
 package com.uma.diariosur.megusta;
 
 import BeanPrincipal.BeanPrincipal;
+import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Megusta;
 import com.uma.diariosur.modelo.Usuario;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -24,22 +26,39 @@ import javax.inject.Inject;
  *
  * @author Carmen
  */
-@Named(value = "megusta")
+@Named(value = "Mismegusta")
 @SessionScoped
 
-public class Megusta implements Serializable{
+public class Mismegusta implements Serializable{
 
     /**
-     * Creates a new instance of Megusta
+     * Creates a new instance of Mismegusta
      */
     
     @Inject
     private BeanPrincipal bp;
-    
+    @Inject
+    private ControlHome ch;
+
+    public BeanPrincipal getBp() {
+        return bp;
+    }
+
+    public void setBp(BeanPrincipal bp) {
+        this.bp = bp;
+    }
+
+    public ControlHome getCh() {
+        return ch;
+    }
+
+    public void setCh(ControlHome ch) {
+        this.ch = ch;
+    }
   
    
     
-    public String noMegusta(Evento e){
+    public String noMegusta(Megusta e){
         
         bp.eliminarMegusta(e);
         return "Megusta.xhtml";
@@ -50,7 +69,7 @@ public class Megusta implements Serializable{
     
    
     
-    public Megusta() {
+    public Mismegusta() {
   
     }
     

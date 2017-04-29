@@ -12,11 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
  *
- * @author Carmen
+ * @author Carlos
  */
 @Entity
 public class Formulario implements Serializable {
@@ -37,7 +38,31 @@ public class Formulario implements Serializable {
     private Date fecha_fin;
     private Double precio;
     private String ubicacion;
+    
+    @OneToOne(optional = false)
+    private Imagen img;
 
+    public Imagen getImg() {
+        return img;
+    }
+
+    public void setImg(Imagen img) {
+        this.img = img;
+    }
+    
+    @ManyToOne
+    private Usuario usuario;
+    
+    @ManyToOne
+    private Periodista periodista;
+    
+     public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    
     public Formulario() {
     }
 
@@ -56,20 +81,7 @@ public class Formulario implements Serializable {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
-
-    @ManyToOne
-    private Usuario usuario;
     
-    @ManyToOne
-    private Periodista periodista;
-    
-     public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -170,23 +182,7 @@ public class Formulario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Formulario[ id=" + id + " ]";
+        return  nombre;
     }
     
-    public Formulario(String nombre, String descripcion, String categoria, Date fecha_ini, Date fecha_fin, String ubicacion, 
-            Double precio,String estado, Date fecha_subida, Usuario u){
-        
-        setNombre(nombre);
-        setDescripcion(descripcion);
-        setCategoria(categoria);
-        setFecha_inicio(fecha_inicio);
-        setFecha_fin(fecha_fin);
-        setFecha_subida(fecha_subida);
-        setUbicacion(ubicacion);
-        setPrecio(precio);
-        setEstado(estado);
-        setFecha_subida(fecha_subida);
-        setUsuario(u);
-        
-    }
 }
