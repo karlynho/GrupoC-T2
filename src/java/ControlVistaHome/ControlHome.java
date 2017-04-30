@@ -68,9 +68,6 @@ public class ControlHome implements Serializable{
     }
     private List<Evento>eventos;
 
-    
-    @Inject 
-    BeanPrincipal bnp;
 
     public BeanPrincipal getBnp() {
         return bnp;

@@ -14,7 +14,7 @@
                 <h:outputText value="Eventos recomendados"/>
                 <p:dataGrid var="ev" value="#{beanPrincipal.validos}" columns="1" id="same">
 
-                    <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{ev.nombre}.jpg"/><br></br>
+                    <h:graphicImage  style="width:250px; height:200px" value="resources/#{ev.imagen.enlace}"/> <br></br>
                     <h:commandLink action="#{controlHome.verEvento(ev)}" value="#{ev.nombre}"/>
 
 
@@ -29,7 +29,7 @@
                     <table>
                         <tr><td><table id="tyf" >
                                     <tr><td> <h3><h:outputText value="#{eve.nombre}" /></h3></td> </tr>
-                                    <tr><td><h:graphicImage  style="width:400px; height:300px" value="PaginasEstilo/#{eve.nombre}.jpg"/></td> </tr>
+                                    <tr><td><h:graphicImage  style="width:400px; height:300px" value="resources/#{eve.imagen.enlace}"/></td> </tr>
                                     <h:form>
                                         <p:growl id="messages" showDetail="true" />
                                         <tr><td ><h:outputText value="Puntuación:"/>
