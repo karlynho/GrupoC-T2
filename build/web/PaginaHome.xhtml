@@ -12,16 +12,19 @@
                 <h:form id="controlHome">
                     <h:panelGrid columns="1">
                         <f:facet name="header">
-                            <h:outputText value="Filtra tu Busqueda"/>
+                            <br></br>
+                            <h:outputText id="filtrar" value="Filtra tu Busqueda" style="font-size: 25px;text-decoration: underline"/>
                         </f:facet>
-                        
-                        <p:selectOneMenu id="selectUbicacion" value="#{controlHome.ubicacion}">
+
+                        <br></br>
+                        <p:selectOneMenu id="selectUbicacion" value="#{controlHome.ubicacion}" style="width:200px ">
+
                             <f:selectItem itemLabel="Ciudad" itemValue=" "/>
                             <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
                             <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
                             <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}">
+                        <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}" style="width:200px">
                             <f:selectItem itemLabel="Evento" itemValue=" "/>
                             <f:selectItem itemLabel="Musical" itemValue="Conciertos"/>
                             <f:selectItem itemLabel="Teatro" itemValue="Teatro"/>
@@ -30,13 +33,15 @@
                     </h:panelGrid>
                     
                     <h:panelGrid columns="2">
-                        <p:calendar id="datetime1" value="#{controlHome.fecha}" pattern="MM/dd/yyyy" showOn="button"/>
+                        <p:calendar id="datetime1" value="#{controlHome.fecha}" pattern="MM/dd/yyyy" showOn="button" style="width: 100px"/>
                     </h:panelGrid>
-                    <h:messages showDetail="true" />
-                    <p:commandButton  id="buscar" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
+                    <br></br>
+                    <p:message for="principal" style="font-size: small" showDetail="true"/>
+                    <p:commandButton  id="principal" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
                     <p:commandButton value="Rehacer" action="#{controlHome.rehacer()}" ajax="false"/>
-                    
-    
+
+                    <br></br>
+
                             <c:if test="#{!empty controlHome.usuario}">
                                 <div style="top: 410px; position: absolute">
                                 <p:outputLabel value="Para solicitar la creacion de un evento rellene el siguiente formulario:       " style="padding-left: 500px; font-size: small" />

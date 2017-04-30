@@ -37,6 +37,17 @@
                                 <p:commandButton value="Autenticar" action="#{login.autenticar()}" ajax="false"/>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandLink value="Registro" action="#{controlHome.registro()}"/>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandLink value="Acceda como invitado" action="#{controlHome.home()}"/>
+                            </td> 
+                        </tr>
                     </table>
                 </h:form>
             </c:when>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registro de usuario</title>
     </h:head>
@@ -14,32 +15,28 @@
                     <h:panelGrid columns="3">
                         <h:outputText value="Nombre:"/>
                         <h:inputText id="nombre" value="#{registro.nombre}"/>
-                       <!--
-                        <h:message for="nombre"/>
+                        <p:message for="nombre" style="font-size: small" showDetail="true"/>
                         <h:outputText value="Apellidos:"/>
-                        <h:inputText id="apellidos" value="{registro.usuario.apellidos}"/>
-                        <h:message for="apellidos"/>
+                        <h:inputText id="apellidos" value="#{registro.apellidos}"/>
+                        <p:message for="apellidos" style="font-size: small" showDetail="true"/>
                         <h:outputText value="E-mail:"/>
-                        <h:inputText id="email" value="{registro.usuario.email}" required="true"
-                                     validatorMessage="Compruebe que ha introducido un e-mail correcto">
-                            <f:validateRegex pattern=".+@.+"/>
-                        </h:inputText>
-                        <h:message for="email"/>
+                        <h:inputText id="email" value="#{registro.email}" required=""/>
+                        <p:message for="email" style="font-size: small" showDetail=""/>
                         <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" value="{registro.usuario.cuenta}" required="true"/>
-                        <h:message for="user"/>
-                       -->
+                        <h:inputText id="nick" value="#{registro.nick}" required=""/>
+                        <p:message for="nick"  style="font-size: small" showDetail="true"/>
+                       
                         <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" value="#{registro.contraseña}" required="true"/>
-                        
-                 <!--
+                        <h:inputSecret id="pass" value="#{registro.contraseña}" required=""/>
+                        <p:message for ="pass"  style="font-size: small" showDetail="true"/>
                         <h:outputText value="Repita contraseña:"/>
-                        <h:inputSecret id="repass" value="{registro.repass}" required="true"/>
-                        <h:message for="repass"/>-->
+                        <h:inputSecret id="repass" value="#{registro.repas}" required=""/>
+                        <p:message for="repass" style="font-size: small" showDetail="true"/>
                         <h:commandButton value="Crear usuario" action="#{registro.registrarUsuario()}"/>
                         <h:link outcome="Login.xhtml">Volver a la página de login</h:link>
                     </h:panelGrid>
-                    <h:messages/>
+               
+                    
                     
                 </h:form>
                 
