@@ -34,6 +34,8 @@ public class Usuario implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_nacimiento;
     private String password;
+    private String nombreUsuario;
+    
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Valoracion> valoraciones;
@@ -43,6 +45,12 @@ public class Usuario implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Megusta> megusta;
+
+
+    public Usuario() {
+        
+    }
+
 
     public List<Valoracion> getValoraciones() {
         return valoraciones;
@@ -99,6 +107,10 @@ public class Usuario implements Serializable {
     public String getNombre() {
         return nombre;
     }
+    
+    public String getNick(){
+        return nick;
+    }
 
     public String getApellidos() {
         return apellidos;
@@ -115,6 +127,12 @@ public class Usuario implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public String getNick() {
+        return nick;
+    }
+    
+    
     
     @Override
     public int hashCode() {
@@ -123,6 +141,8 @@ public class Usuario implements Serializable {
         return hash;
     }
 
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -136,9 +156,33 @@ public class Usuario implements Serializable {
         return true;
     }
 
+    
+    public Usuario(String nombre, String apellidos, String nick, String email, String contrasenia){
+        this.apellidos=apellidos;
+        this.nick=nick;
+        this.nombre=nombre;
+        this.email=email;
+        this.password=contrasenia;
+        
+    }
+    
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Usuario[ nick=" + nick + " ]";
+
+        return nombre;
+
     }
+    
+    public Usuario(String nick, String nombre, String apellidos, String email, Date fecha_nacimiento, String password){
+        
+        this.nick = nick;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.password = password;
+        
+    }
+    
     
 }
