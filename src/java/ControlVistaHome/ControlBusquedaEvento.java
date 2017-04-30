@@ -7,6 +7,7 @@ package ControlVistaHome;
 
 import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Valoracion;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -34,7 +35,10 @@ public class ControlBusquedaEvento implements Serializable {
     private Date fecha;
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
+    private List<Valoracion> valoracion = new ArrayList<Valoracion>();
     
+
+
     @Inject 
     ControlHome ctrlhome;
     @Inject
@@ -93,6 +97,7 @@ public class ControlBusquedaEvento implements Serializable {
         
         //Se deben añadir los eventos que se van a buscar para testear la aplicación
         
+
     }
     
     public String comprobacion(String evento,String ubicacion,String categoria,Date fecha) throws ParseException{

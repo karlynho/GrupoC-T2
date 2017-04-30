@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,7 +49,45 @@ public class BeanPrincipal implements Serializable{
     private List<Megusta> megusta;
     private Usuario usuario;
 
-      
+    private Evento eventoV;
+     private List<Evento> validos = new ArrayList<Evento>();
+      private List<Valoracion> valoracion = new ArrayList<Valoracion>();
+  
+      public List<Valoracion> getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(List<Valoracion> valoracion) {
+        this.valoracion = valoracion;
+    }
+  public Evento getEventoV() {
+        return eventoV;
+    }
+
+    public void setEventoV(Evento eventoV) {
+        this.eventoV = eventoV;
+    }
+
+    public List<Evento> getValidos() {
+        return validos;
+    }
+
+    public void setValidos(List<Evento> validos) {
+        this.validos = validos;
+    }
+     
+  
+  
+  public Integer media(){
+        int i= 0;
+        Iterator<Valoracion> it = eventoV.getValoraciones().iterator();
+        Valoracion val = new Valoracion();
+        while(it.hasNext()){
+            val = it.next();
+            i = i+ val.getPuntuacion();
+        }
+        return i / eventoV.getValoraciones().size();
+    }
     public List<Megusta> getMegusta() {
         return megusta;
     }
@@ -242,7 +279,55 @@ public class BeanPrincipal implements Serializable{
         eventos.add(e2);
         eventos.add(e3);
        
+        Evento e4 = new Evento();
+        e4.setNombre("Melendi");
+        e4.setCategoria("Conciertos");
+        e4.setDescripcion("musical");
+        e4.setFecha_inicio(date);
+        e4.setFecha_final(date);
+        e4.setPeriodista(p);
+        e4.setPrecio(34.00);
+        e4.setUbicacion("Malaga");
+      
+        Evento e5 = new Evento();
+        e5.setNombre("Dani Martin");
+        e5.setCategoria("Conciertos");
+        e5.setDescripcion("coachella");
+        e5.setFecha_inicio(date);
+        e5.setFecha_final(date);
+        e5.setPeriodista(p);
+        e5.setPrecio(34.00);
+        e5.setUbicacion("Malaga");
         
+      Evento e6 = new Evento();
+        e6.setNombre("Leiva");
+        e6.setCategoria("Conciertos");
+        e6.setDescripcion("coachella");
+        e6.setFecha_inicio(date);
+        e6.setFecha_final(date);
+        e6.setPeriodista(p);
+        e6.setPrecio(34.00);
+        e6.setUbicacion("Malaga");
+      
+       
+        eventos.add(e4);
+        eventos.add(e5);
+        eventos.add(e6);
+        
+        Valoracion v1= new Valoracion(1234,"Me ha parecido muy bueno", 3,u, e1);
+        Valoracion v2= new Valoracion(1235,"Ha sido muy bueno", 5,u, e1);
+        Valoracion v3= new Valoracion(1236,"Me ha encantado", 4,u, e1);
+        Valoracion v4= new Valoracion(1237,"Podia haber esado algo mejor", 2,u, e1);
+       
+        List<Valoracion> v = new ArrayList();
+        v.add(v1);
+        v.add(v2);
+        v.add(v3);
+        v.add(v4);
+        e1.setValoraciones(v);
+      
+      
+      
         
         megusta = new ArrayList<Megusta>();
         Megusta m1 = new Megusta();

@@ -75,13 +75,24 @@ ul.menulist li{
   
 }
 
-#buscar{
 
-   
+#eventos, #panel, #colizq,#tyf{
+    float:left;
+}
+#colizq{
+    border-style: none;
+    background-color: orange;
 }
 
-#selectCategoria,#selectCategoria{
-   
+#same{
+   border:none;
+}
+#com{
+    clear: both;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #Bt{

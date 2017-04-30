@@ -10,7 +10,7 @@
     <ui:define name="title">Pagina Principal</ui:define>
     <ui:define name="content">
                 <h:form id="controlHome">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid id="panel" columns="1">
                         <f:facet name="header">
                             <br></br>
                             <h:outputText id="filtrar" value="Filtra tu Busqueda" style="font-size: 25px;text-decoration: underline"/>
@@ -40,6 +40,8 @@
 
                         <p:calendar id="datetime1" value="#{controlHome.fecha}" pattern="MM/dd/yyyy" showOn="button" style="width: 100px"/>
                     </h:panelGrid>
+
+
                     <br></br>
                     <p:message for="principal" style="font-size: small" showDetail="true"/>
                     <p:commandButton  id="principal" value="Buscar" action="#{creacionDeEventos.comprobacion(controlHome.evento,controlHome.ubicacion,controlHome.categoria,controlHome.fecha)}" ajax="false"/>
