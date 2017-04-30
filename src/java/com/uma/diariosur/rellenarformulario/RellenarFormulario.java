@@ -11,6 +11,7 @@ import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Imagen;
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,8 +21,12 @@ import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.text.SimpleDateFormat;
+import com.uma.diariosur.modelo.Megusta;
+import java.util.List;
 import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -257,8 +262,12 @@ public class RellenarFormulario implements Serializable{
                     
                     if(ctrlhome.getPeriodista()!=null){
                         Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im,ctrlhome.getPeriodista());
+                        List<Valoracion> v_vacia = new ArrayList();
                         im.setEvento(ev);
+                        List<Megusta> m_gusta = new ArrayList();
+                        ev.setMeGusta(m_gusta);
                         ev.setImagen(im);
+                        ev.setValoraciones(v_vacia);
                         bn.addEvent(ev);
                     }
                     

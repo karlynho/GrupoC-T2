@@ -159,10 +159,6 @@ public class ControlHome implements Serializable{
         }
     }
     
-    public String verEvento(){
-        return "VerEvento.xhtml";
-    }
-    
     public String registro(){
         return "Registro.xhtml";
     }
@@ -196,17 +192,22 @@ public class ControlHome implements Serializable{
         List<Evento> validos = new ArrayList<Evento>();
         List<Evento> Novalidos = new ArrayList<Evento>();
        for (Evento ee : bnp.getEventos()) {
-           if(ee.getCategoria().equals(ev.getCategoria()) && (!Objects.equals(ev.getId(), ee.getId()))){
+           if(ee.getCategoria().equals(ev.getCategoria()) && !(ee.getNombre().equals(ev.getNombre())) ){
                validos.add(ee);
                i++;
+               
            }else{
-               if(!Objects.equals(ev.getId(), ee.getId())){
-               Novalidos.add(ee);
-           }
+               
+               if(!(ee.getNombre().equals(ev.getNombre()))){
+                   Novalidos.add(ee);
+               }
+               
+           
                
            }
            
        }
+    
        //Para que en Recomendados siempre tenga al menos 7
        while(i<7 && !Novalidos.isEmpty()){
            validos.add(Novalidos.get(0));
