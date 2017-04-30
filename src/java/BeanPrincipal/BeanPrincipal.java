@@ -262,7 +262,7 @@ public class BeanPrincipal implements Serializable{
         e1.setFecha_inicio(date);
         e1.setFecha_final(date);
         e1.setPeriodista(p);
-        e1.setPrecio(34.00);
+        e1.setPrecio(00.00);
         e1.setUbicacion("Malaga");
         e1.setImagen(i3);
         i3.setEvento(e1);
