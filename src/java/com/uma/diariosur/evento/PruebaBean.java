@@ -31,7 +31,9 @@ public class PruebaBean implements Serializable{
     @Inject
     private ControlHome ctrh;
     private List<Valoracion> val = new ArrayList<Valoracion>();
-     private Integer rating2;  
+    private Integer rating2; 
+    private Integer ratinguser;
+    private String text;
     
 
     public BeanPrincipal getCtreve() {
@@ -74,8 +76,10 @@ public class PruebaBean implements Serializable{
         return buenas;
     }
 
-    public void guardarComentario() {
-
+    public  String guardarComentario() {
+        Valoracion var =new Valoracion(7777,text, ratinguser, ctrh.getUsuario(),ctreve.getEventoV());
+        ctreve.getEventoV().getValoraciones().add(var);
+        return null;
     }
 
     public String ponerPuntuacion() {
@@ -121,8 +125,26 @@ public class PruebaBean implements Serializable{
     public void setRating2(Integer rating2) {
         this.rating2 = rating2;
     }
+
+    public Integer getRatinguser() {
+        return ratinguser;
+    }
+
+    public void setRatinguser(Integer ratinguser) {
+        this.ratinguser = ratinguser;
+    }
     
-    
+   
+     
+ 
+    public String getText() {
+        return text;
+    }
+ 
+    public void setText(String text) {
+        this.text = text;
+        
+    }
     
     
     
