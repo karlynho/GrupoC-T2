@@ -9,14 +9,79 @@ and open the template in the editor.
 */
 
 #cabecera {
-    background-image: url("EVENTOS.jpg");
+    background: url('EVENTOS.jpg') no-repeat;
+    width: 100%;
+    height:400px;
+    padding: 0;
+    margin: 0;
 }
 
 #p_outputLabelid{
     font-size: medium;
 }
-fotosPrincipal{
-    width: 50px; height: 50px;
+
+h1{
+    color: darkblue;
+    text-decoration: underline ;
+    position: absolute;
+    font-size: 90px;
+    margin-left: 30px;
+   
+}
+
+.Encabezado1{
+    position: absolute;
+    color: white;
+    margin-top: 150px;
+    margin-left: 350px; 
+    font: bold 250% sans-serif;
+}
+
+.Encabezado2{
+    position: absolute;
+    color: white;
+    margin-top: 200px;
+    margin-left: 525px; 
+    font: bold 100% sans-serif;
+}
+
+ul.menulist{
+    top:30px;
+    position: absolute;
+    margin-left: 1100px;
+}
+
+ul.menulist li{
+    list-style: none;
+    display:inline;
+    margin: 1em;  
+}
+
+.BarraBusqueda{
+    width: 670px;
+    height: 20px;
+    margin-top:300px;
+    margin-left: 350px;
+}
+
+.eventos{
+    border:none;
+ 
+  
+}
+.eventos2{
+   border:none;
+   
+  
+}
+
+#buscar{
+
+   
+}
+
+#selectCategoria,#selectCategoria{
+   
 }
 
 #Bt{

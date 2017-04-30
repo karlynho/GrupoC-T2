@@ -46,20 +46,11 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuario")
     private List<Megusta> megusta;
 
-    
-    public Usuario(){
+
+    public Usuario() {
         
     }
-    
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-    
-    
 
     public List<Valoracion> getValoraciones() {
         return valoraciones;
@@ -116,6 +107,10 @@ public class Usuario implements Serializable {
     public String getNombre() {
         return nombre;
     }
+    
+    public String getNick(){
+        return nick;
+    }
 
     public String getApellidos() {
         return apellidos;
@@ -161,9 +156,21 @@ public class Usuario implements Serializable {
         return true;
     }
 
+    
+    public Usuario(String nombre, String apellidos, String nick, String email, String contrasenia){
+        this.apellidos=apellidos;
+        this.nick=nick;
+        this.nombre=nombre;
+        this.email=email;
+        this.password=contrasenia;
+        
+    }
+    
     @Override
     public String toString() {
-        return "com.mycompany.diariosur1.Usuario[ nick=" + nick + " ]";
+
+        return nombre;
+
     }
     
     public Usuario(String nick, String nombre, String apellidos, String email, Date fecha_nacimiento, String password){

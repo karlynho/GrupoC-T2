@@ -105,11 +105,13 @@ public class RellenarFormulario implements Serializable{
             String filename = aux2.concat(ext);
             img_aux = filename;
             InputStream input = img.getInputstream();
+
             
             String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
             String path_aux = path.substring(0, path.lastIndexOf("build"));
             
             
+
             OutputStream output = new FileOutputStream(new File(path_aux.concat("web\\resources"), filename));
             aux_ext = ext;
         
