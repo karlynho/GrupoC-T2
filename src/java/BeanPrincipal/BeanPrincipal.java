@@ -80,8 +80,10 @@ public class BeanPrincipal implements Serializable{
      
   
   
-  public Integer media(){
-        if(!(eventoV.getValoraciones() == null)){
+
+  public Integer media(){  
+      if((eventoV.getValoraciones() != null) && (eventoV.getValoraciones().size()>0)){
+            
             int i= 0;
         Iterator<Valoracion> it = eventoV.getValoraciones().iterator();
         Valoracion val = new Valoracion();
@@ -347,7 +349,12 @@ public class BeanPrincipal implements Serializable{
         v.add(v4);
         e1.setValoraciones(v);
       
-      
+         List<Valoracion> v_vacia = new ArrayList();
+         e2.setValoraciones(v_vacia);
+         e3.setValoraciones(v_vacia);
+         e4.setValoraciones(v_vacia);
+         e5.setValoraciones(v_vacia);
+         e6.setValoraciones(v_vacia);
       
         
         megusta = new ArrayList<Megusta>();

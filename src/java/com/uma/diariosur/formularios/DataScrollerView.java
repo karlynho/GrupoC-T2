@@ -4,7 +4,11 @@ import BeanPrincipal.BeanPrincipal;
 import ControlVistaHome.ControlHome;
 import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
+import com.uma.diariosur.modelo.Megusta;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
@@ -58,7 +62,10 @@ public class DataScrollerView implements Serializable {
         e.setPrecio(f.getPrecio());
         e.setImagen(f.getImg());
         e.setPeriodista(ctrlhome.getPeriodista());
-        
+        List<Valoracion> v_vacia = new ArrayList();
+        e.setValoraciones(v_vacia);
+        List<Megusta> m_gusta = new ArrayList();
+        e.setMeGusta(m_gusta);
         bp.addEvent(e);
         bp.eliminarForm(f);
         
