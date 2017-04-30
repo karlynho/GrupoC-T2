@@ -15,22 +15,26 @@
     </h:head>
     
     <h:body>
-        
         <c:choose>
             <c:when test="#{empty controlHome.usuario and empty controlHome.periodista}">
                 <h:form id="login">
                     <table>
-                        <tr>
-                            <td>Usuario: </td>
-                            <td><h:inputText value="#{login.usuario}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Contraseña: </td>
-                            <td><h:inputSecret value="#{login.contrasenia}"/></td>
-                        </tr>
+                        
+                        <p:outputLabel value="Usuario:">
+                            <p:inputText id="usuario" value="#{login.usuario}"/>
+                            <p:message for="usuario" showDetail="true" style="font-size: small"/>
+                            
+                        </p:outputLabel>
+               
+                 
+                        <p:outputLabel value="Contraseña:">
+                          <p:password id="pass" value="#{login.contrasenia}"/>
+                          <p:message for="pass" showDetail="true" style="font-size: small"/>    
+                        </p:outputLabel>
+                        
                         <tr>
                             <td colspan="2">
-                                <h:commandButton value="Autenticar" action="#{login.autenticar()}"/>
+                                <p:commandButton value="Autenticar" action="#{login.autenticar()}" ajax="false"/>
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +55,6 @@
                 <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
             </c:otherwise>
         </c:choose>
-        <h:messages/>
     </h:body>
 </html>
    
