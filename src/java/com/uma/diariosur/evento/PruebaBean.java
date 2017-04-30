@@ -91,13 +91,13 @@ public class PruebaBean implements Serializable{
         while (it.hasNext()) { //Recorro la lista de vaoraciones de ese evento
             var = it.next();
             if (var.getUsuario().getNombre().equals(ctrh.getUsuario().getNombre())) { //Compruebo las que tiene el usuario actual
-                var.setPuntuacion(rating2); //Las voy cambiando toddas por la vaoracion nueva
+                var.setPuntuacion(ratinguser); //Las voy cambiando toddas por la vaoracion nueva
                 tiene = true;
             }
             //donde secoje el usuario actual
         }
         if (!tiene) {
-            Valoracion va = new Valoracion(7777, null,rating2, ctrh.getUsuario(), ctreve.getEventoV());
+            Valoracion va = new Valoracion(7777, null,ratinguser, ctrh.getUsuario(), ctreve.getEventoV());
             ctreve.getEventoV().getValoraciones().add(va);
         }
         

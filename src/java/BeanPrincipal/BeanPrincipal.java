@@ -81,7 +81,8 @@ public class BeanPrincipal implements Serializable{
   
   
   public Integer media(){
-        int i= 0;
+        if(!(eventoV.getValoraciones() == null)){
+            int i= 0;
         Iterator<Valoracion> it = eventoV.getValoraciones().iterator();
         Valoracion val = new Valoracion();
         while(it.hasNext()){
@@ -89,6 +90,10 @@ public class BeanPrincipal implements Serializable{
             i = i+ val.getPuntuacion();
         }
         return i / eventoV.getValoraciones().size();
+        }else{
+            return 0;
+        }
+        
     }
     public List<Megusta> getMegusta() {
         return megusta;
@@ -245,7 +250,7 @@ public class BeanPrincipal implements Serializable{
         i9.setEnlace("Dani Martin.jpg");
         
         Imagen i10 = new Imagen();
-        i9.setEnlace("Leiva.jpg");
+        i10.setEnlace("Leiva.jpg");
         
         eventos = new ArrayList<>();
         Evento e1 = new Evento();
