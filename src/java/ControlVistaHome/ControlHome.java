@@ -11,12 +11,15 @@ import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 /**
  *
  * @author steven
@@ -196,8 +199,6 @@ public class ControlHome implements Serializable{
      */
     public ControlHome() {
        
-        
-        
     }
   
     

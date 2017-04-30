@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +14,8 @@
     </h:head>
     <h:body>
         <div id="cabecera">
-            <h1>SUR</h1>
+            <h1> SUR </h1>
+            
             <p class="Encabezado1">Todos los Eventos solo en un lugar</p>
             <p class="Encabezado2">Encuentra y asiste a los eventos del momento</p>
      
@@ -30,7 +32,6 @@
                     </c:if>
                     <c:if test="#{!empty controlHome.periodista}">
                         <p>¡Hola! <h:outputText value="#{controlHome.periodista}"/></p>
-                        <li><h:commandLink action="#{controlHome.RevisarEvento()}" value="Revisar Eventos"/></li>
                         <li><h:commandLink action="#{controlHome.perfil()}" value="Perfil"/></li>
                         <li><h:commandLink action="#{controlHome.logout()}" value="Cerrar Sesion"/></li>
                     </c:if>

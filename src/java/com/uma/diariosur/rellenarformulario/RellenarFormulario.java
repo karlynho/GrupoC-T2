@@ -105,7 +105,12 @@ public class RellenarFormulario implements Serializable{
             String filename = aux2.concat(ext);
             img_aux = filename;
             InputStream input = img.getInputstream();
-            OutputStream output = new FileOutputStream(new File("C:\\Users\\steven\\Documents\\NetBeansProjects\\GrupoC-T2-master\\build\\web\\resources", filename));
+            
+            String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+            String path_aux = path.substring(0, path.lastIndexOf("build"));
+            
+            
+            OutputStream output = new FileOutputStream(new File(path_aux.concat("web\\resources"), filename));
             aux_ext = ext;
         
         try {
@@ -211,7 +216,11 @@ public class RellenarFormulario implements Serializable{
                 return null;
             }
             
-          
+            if(this.fecha_inicio.after(fecha_fin)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","Introduzca fechas de inicio y fin reales (fecha inicio antes que fecha fin!!"));
+                return null;
+            }
+            
             if(!save()){
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","la imagen no se subio correctamente");
                 FacesContext.getCurrentInstance().addMessage("myform:img", message);
@@ -227,7 +236,6 @@ public class RellenarFormulario implements Serializable{
                     
                    
                     if(ctrlhome.getUsuario()!=null){
-                        System.out.print("Creando formulario");
                         Formulario form = new Formulario();
                         form.setNombre(nombre);
                         form.setDescripcion(descripcion);
@@ -246,7 +254,6 @@ public class RellenarFormulario implements Serializable{
                     }
                     
                     if(ctrlhome.getPeriodista()!=null){
-                        System.out.print("CREANDO EVENTO");
                         Evento ev = new Evento(nombre, descripcion, categoria, fecha_inicio, fecha_fin, precio, ubicacion,im,ctrlhome.getPeriodista());
                         im.setEvento(ev);
                         ev.setImagen(im);
