@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -80,6 +80,7 @@ public class BeanPrincipal implements Serializable{
      
   
   
+
   public Integer media(){  
       if((eventoV.getValoraciones() != null) && (eventoV.getValoraciones().size()>0)){
             

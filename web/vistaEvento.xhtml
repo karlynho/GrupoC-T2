@@ -98,6 +98,7 @@
             
             <c:if test="#{not (empty beanPrincipal.eventoV.valoraciones) }">
                 <h3 style="clear: both">Comentarios</h3>
+
                 <p:dataGrid var="com" value="#{pruebaBean.comentarios()}"  columns="1"  >
                     <h:panelGrid columns="1" style=" border-style: double;width: 100%;background-color:darkgray">
                         <h:outputText value="Usuario: #{com.usuario.nombre}" style="width: 100%"/>
