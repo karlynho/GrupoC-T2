@@ -83,3 +83,9 @@ ul.menulist li{
 #selectCategoria,#selectCategoria{
    
 }
+
+#Bt{
+    float: left;
+    padding: 500px;
+    border-right: 100px;
+}
