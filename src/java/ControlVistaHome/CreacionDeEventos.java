@@ -7,6 +7,7 @@ package ControlVistaHome;
 
 import BeanPrincipal.BeanPrincipal;
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,8 +28,9 @@ import javax.inject.Named;
  * @author steven
  */
 @Named(value = "creacionDeEventos")
-//@SessionScoped
 @ViewScoped
+
+
 public class CreacionDeEventos implements Serializable {
 
     private List<Evento> eventos;
@@ -38,6 +40,7 @@ public class CreacionDeEventos implements Serializable {
     BeanPrincipal bnp;
     @Inject
     ControlHome ctrlhome;
+
 
     public List<Evento> getEventos() {
         return eventos;
@@ -94,6 +97,7 @@ public class CreacionDeEventos implements Serializable {
 
     }
     
+
     /*
     public String comprobacion2(String evento, String ubicacion, String categoria, Date fecha) throws ParseException {
 
@@ -181,7 +185,7 @@ public class CreacionDeEventos implements Serializable {
             }
 
         }
-        
+    
         if (eventosFiltrados.isEmpty()) {
             System.out.println("No hay filtro");
             FacesContext ctx = FacesContext.getCurrentInstance();
@@ -193,13 +197,22 @@ public class CreacionDeEventos implements Serializable {
             System.out.println("Eventos que hay en filtrados : "+ eventosFiltrados.toString());
             return "PaginaHome.xhtml";
         }
+
         
     }
+
+    
+    
+
     */
+
+
     /**
      * Creates a new instance of CreacionDeEventos
      */
     public CreacionDeEventos() {
     }
 
+
 }
+

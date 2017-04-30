@@ -37,7 +37,6 @@ public class Evento implements Serializable {
     private Date fecha_final;
     private Double precio;
     private String ubicacion;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<Megusta> meGusta;
     
@@ -57,6 +56,10 @@ public class Evento implements Serializable {
 
     public Evento (){
         
+    }
+
+    public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_fin, Double precio, String ubicacion, Imagen im, Periodista periodista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Imagen getImagen() {
@@ -195,7 +198,9 @@ public class Evento implements Serializable {
         return "com.mycompany.diariosur1.Evento[ id=" + id + " ]";
     }
     
-     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p) {
+
+     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p, List<Valoracion> valoracion) {
+
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -203,9 +208,12 @@ public class Evento implements Serializable {
         this.fecha_final = fecha_final;
         this.precio = precio;
         this.ubicacion = ubicacion;
-        this.imagen = i;
-        this.periodista = p;
+        this.valoraciones = valoracion;
+
     }
+     
+    
 
     
 }
+

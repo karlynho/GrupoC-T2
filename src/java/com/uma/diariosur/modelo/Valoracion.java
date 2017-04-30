@@ -24,13 +24,17 @@ public class Valoracion implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String comentario;
-    private Float puntuacion;
+    private Integer puntuacion;
     
     @ManyToOne
     private Usuario usuario;
     
     @ManyToOne
     private Evento evento;
+
+    public Valoracion() {
+        
+    }
 
     public Evento getEvento() {
         return evento;
@@ -48,7 +52,7 @@ public class Valoracion implements Serializable {
         return comentario;
     }
 
-    public Float getPuntuacion() {
+    public Integer getPuntuacion() {
         return puntuacion;
     }
 
@@ -56,7 +60,7 @@ public class Valoracion implements Serializable {
         this.comentario = Comentario;
     }
 
-    public void setPuntuacion(Float Puntuacion) {
+    public void setPuntuacion(Integer Puntuacion) {
         this.puntuacion = Puntuacion;
     }
     
@@ -95,6 +99,14 @@ public class Valoracion implements Serializable {
     @Override
     public String toString() {
         return "com.mycompany.diariosur1.Valoracion[ id=" + id + " ]";
+    }
+
+    public Valoracion(Integer id, String comentario, Integer puntuacion, Usuario usuario, Evento evento) {
+        this.id = id;
+        this.comentario = comentario;
+        this.puntuacion = puntuacion;
+        this.usuario = usuario;
+        this.evento = evento;
     }
     
 }

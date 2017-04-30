@@ -9,25 +9,31 @@ import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
-import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
+
 /**
  *
  * @author steven
  */
 @Named(value = "controlHome")
 @SessionScoped
-public class ControlHome implements Serializable{
 
+
+public class ControlHome implements Serializable{
+    @Inject
+    private BeanPrincipal bnp;
+    @Inject
+    private BeanPrincipal ctreve;
     private Usuario usuario;
     private Periodista periodista;
     private String evento;
@@ -62,9 +68,6 @@ public class ControlHome implements Serializable{
     }
     private List<Evento>eventos;
 
-    
-    @Inject 
-    BeanPrincipal bnp;
 
     public BeanPrincipal getBnp() {
         return bnp;
@@ -184,6 +187,39 @@ public class ControlHome implements Serializable{
         return "PaginaHome.xhtml";
     }
 
+    public String verEvento(Evento e){   
+       int i = 0;
+       int j= 0;
+       bnp.setEventoV(e);
+       Evento ev = new Evento();
+        ev=bnp.getEventoV();
+        List<Evento> validos = new ArrayList<Evento>();
+        List<Evento> Novalidos = new ArrayList<Evento>();
+       for (Evento ee : bnp.getEventos()) {
+           if(ee.getCategoria().equals(ev.getCategoria()) && (!Objects.equals(ev.getId(), ee.getId()))){
+               validos.add(ee);
+               i++;
+           }else{
+               if(!Objects.equals(ev.getId(), ee.getId())){
+               Novalidos.add(ee);
+           }
+               
+           }
+           
+       }
+       //Para que en Recomendados siempre tenga al menos 7
+       while(i<7 && !Novalidos.isEmpty()){
+           validos.add(Novalidos.get(0));
+           Novalidos.remove(0);
+           
+       }
+       bnp.setValidos(validos);
+       return "vistaEvento.xhtml";
+    }
+    
+    
+
+
     
     public String RevisarEvento(){
         return "formularios.xhtml";
@@ -192,7 +228,7 @@ public class ControlHome implements Serializable{
     public String accederEvento(){
         return "rellenar_formulario.xhtml";
     }
-    
+
     
     /**
      * Creates a new instance of ControlHome
