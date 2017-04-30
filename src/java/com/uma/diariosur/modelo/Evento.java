@@ -58,10 +58,6 @@ public class Evento implements Serializable {
         
     }
 
-    public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_fin, Double precio, String ubicacion, Imagen im, Periodista periodista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Imagen getImagen() {
         return imagen;
     }
@@ -199,7 +195,7 @@ public class Evento implements Serializable {
     }
     
 
-     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p, List<Valoracion> valoracion) {
+     public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_final, Double precio, String ubicacion, Imagen i, Periodista p) {
 
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -208,7 +204,6 @@ public class Evento implements Serializable {
         this.fecha_final = fecha_final;
         this.precio = precio;
         this.ubicacion = ubicacion;
-        this.valoraciones = valoracion;
 
     }
      
