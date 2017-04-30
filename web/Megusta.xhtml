@@ -18,10 +18,11 @@
         <c:if test="#{!empty controlHome.usuario}">  
             <h:form>
              <br> </br>
-             <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Me gusta" />
-             <p:commandButton id="Bt" value="Atrás" action="#{ajustes.home()}" style=" right: 10px; float: right; top: -20px"/>
+             <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Me gusta"/>
+             <h:graphicImage  style="width:15px; height:15px" value="PaginasEstilo/corazones.jpg"/>
+             <p:commandButton id="Bt" value="Atrás" action="#{ajustes.home()}" style=" right: 80px; float: right; top: -10px"/>
            
-             <hr style="color: red; border-top-color: red; right: 1px"></hr>   
+             <hr style="color: red; border-top-color: red; right: 1px; border-width: 5px"></hr>   
              
              <p:dataScroller var="m" value="#{beanPrincipal.mismegusta()}"   rows="3"  id="eventos">
                
