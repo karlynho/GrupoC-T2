@@ -129,7 +129,7 @@ public class Login {
         //comprobamos primero si es usuario normal
         while(i<tam && !encontrado){
             //recorremos la lista buscando al usuario
-            if(usuarios.get(i).getNombre().equals(this.usuario)){
+            if(usuarios.get(i).getNick().equals(this.usuario)){
                 encontrado = true;
                 
                 if(usuarios.get(i).getPassword().equals(this.contrasenia)){

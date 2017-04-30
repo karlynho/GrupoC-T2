@@ -9,13 +9,9 @@ import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
-import com.uma.diariosur.modelo.Valoracion;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -127,22 +123,7 @@ public class ControlHome implements Serializable{
     }
     
     public String home(){
-
-        
-         
-
-        if(this.usuario == null){
-            if(this.periodista==null){
-                //No hay usuario Logueado, por tanto mostramos pagina principal
-                return "PaginaHome.xhtml";
-            }else{
-                //Identificado como Periodista
-                return "PaginaHome.xhtml";
-            }
-        }else{
-            //Identificado como Usuario Normal
-            return "PaginaHome.xhtml";
-        }
+       return "PaginaHome";
 
     }
     
@@ -157,10 +138,6 @@ public class ControlHome implements Serializable{
         }else{
                 return "PaginaHome.xhtml";
         }
-    }
-    
-    public String verEvento(){
-        return "VerEvento.xhtml";
     }
     
     public String registro(){
@@ -196,17 +173,22 @@ public class ControlHome implements Serializable{
         List<Evento> validos = new ArrayList<Evento>();
         List<Evento> Novalidos = new ArrayList<Evento>();
        for (Evento ee : bnp.getEventos()) {
-           if(ee.getCategoria().equals(ev.getCategoria()) && (!Objects.equals(ev.getId(), ee.getId()))){
+           if(ee.getCategoria().equals(ev.getCategoria()) && !(ee.getNombre().equals(ev.getNombre())) ){
                validos.add(ee);
                i++;
+               
            }else{
-               if(!Objects.equals(ev.getId(), ee.getId())){
-               Novalidos.add(ee);
-           }
+               
+               if(!(ee.getNombre().equals(ev.getNombre()))){
+                   Novalidos.add(ee);
+               }
+               
+           
                
            }
            
        }
+    
        //Para que en Recomendados siempre tenga al menos 7
        while(i<7 && !Novalidos.isEmpty()){
            validos.add(Novalidos.get(0));
