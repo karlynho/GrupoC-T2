@@ -128,9 +128,6 @@ public class Usuario implements Serializable {
         return password;
     }
 
-    public String getNick() {
-        return nick;
-    }
     
     
     

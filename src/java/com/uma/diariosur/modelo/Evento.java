@@ -58,6 +58,10 @@ public class Evento implements Serializable {
         
     }
 
+    public Evento(String nombre, String descripcion, String categoria, Date fecha_inicio, Date fecha_fin, Double precio, String ubicacion, Imagen im, Periodista periodista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Imagen getImagen() {
         return imagen;
     }

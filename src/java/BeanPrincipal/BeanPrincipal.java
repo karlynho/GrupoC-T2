@@ -12,12 +12,14 @@ import com.uma.diariosur.modelo.Imagen;
 import com.uma.diariosur.modelo.Megusta;
 import com.uma.diariosur.modelo.Periodista;
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
@@ -236,7 +238,14 @@ public class BeanPrincipal implements Serializable{
         Imagen i7 = new Imagen();
         i7.setEnlace("lebarbe1.jpg");
        
+        Imagen i8 = new Imagen();
+        i8.setEnlace("Melendi.jpg");
         
+        Imagen i9 = new Imagen();
+        i9.setEnlace("Dani Martin.jpg");
+        
+        Imagen i10 = new Imagen();
+        i9.setEnlace("Leiva.jpg");
         
         eventos = new ArrayList<>();
         Evento e1 = new Evento();
@@ -288,7 +297,10 @@ public class BeanPrincipal implements Serializable{
         e4.setPeriodista(p);
         e4.setPrecio(34.00);
         e4.setUbicacion("Malaga");
-      
+        e4.setImagen(i8);
+        i8.setEvento(e4);
+        
+     
         Evento e5 = new Evento();
         e5.setNombre("Dani Martin");
         e5.setCategoria("Conciertos");
@@ -298,6 +310,8 @@ public class BeanPrincipal implements Serializable{
         e5.setPeriodista(p);
         e5.setPrecio(34.00);
         e5.setUbicacion("Malaga");
+        i9.setEvento(e5);
+        e5.setImagen(i9);
         
       Evento e6 = new Evento();
         e6.setNombre("Leiva");
@@ -309,6 +323,8 @@ public class BeanPrincipal implements Serializable{
         e6.setPrecio(34.00);
         e6.setUbicacion("Malaga");
       
+        i10.setEvento(e6);
+        e6.setImagen(i10);
        
         eventos.add(e4);
         eventos.add(e5);
@@ -421,6 +437,9 @@ public class BeanPrincipal implements Serializable{
         imagenes.add(i5);
         imagenes.add(i6);
         imagenes.add(i7);
+        imagenes.add(i8);
+        imagenes.add(i9);
+        imagenes.add(i10);
     }
 
     public void eliminarForm(Formulario f) {
