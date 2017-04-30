@@ -6,6 +6,7 @@
 package ControlVistaHome;
 
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Valoracion;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -33,8 +34,26 @@ public class ControlBusquedaEvento implements Serializable {
     private Date fecha;
     private List<Evento>eventos;
     private List<Evento>eventosFiltrados;
+    private List<Valoracion> valoracion = new ArrayList<Valoracion>();
     
     @Inject ControlHome ctrlhome;
+
+    public List<Valoracion> getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(List<Valoracion> valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public ControlHome getCtrlhome() {
+        return ctrlhome;
+    }
+
+    public void setCtrlhome(ControlHome ctrlhome) {
+        this.ctrlhome = ctrlhome;
+    }
+    
     
    public String getCategoria() {
         return categoria;
@@ -94,9 +113,9 @@ public class ControlBusquedaEvento implements Serializable {
         
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Date date = (Date)formatter.parse("12/05/2017");
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Renault","concierto","Conciertos",date,date, 210.00, "Malaga"));
+        eventos.add(new Evento(1234,"Red Hot Chili Peppers","coachella","Conciertos",date, date, 210.00, "Malaga",valoracion));
+        eventos.add(new Evento(1235,"Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga",valoracion));
+        eventos.add(new Evento(1240,"Renault","concierto","Conciertos",date,date, 210.00, "Malaga",valoracion));
     }
     
     public String comprobacion(){

@@ -9,12 +9,15 @@ import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Formulario;
 import com.uma.diariosur.modelo.Imagen;
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
@@ -31,10 +34,22 @@ import javax.inject.Named;
 
 
 public class BeanPrincipal implements Serializable{
-      private List<Evento>eventos;
+      private List<Evento>eventos; 
       private List<Formulario> formularios;
       private List<Imagen> imagenes;
+      private Evento eventoV;
+      private List<Evento> validos = new ArrayList<Evento>();
+      private List<Valoracion> valoracion = new ArrayList<Valoracion>();
+      
 
+    public List<Evento> getValidos() {
+        return validos;
+    }
+
+    public void setValidos(List<Evento> validos) {
+        this.validos = validos;
+    }
+      
     public List<Formulario> getFormularios() {
         return formularios;
     }
@@ -54,20 +69,38 @@ public class BeanPrincipal implements Serializable{
     
   
     public BeanPrincipal() throws ParseException{
+        Usuario usuario = new Usuario();
+        usuario.setNick("karlynho");
+        usuario.setNombre("Carlos");
         
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy",new Locale("es","ES"));
         Date date = (Date)formatter.parse("12/05/2017");
-        
+        Evento e1,e2,e3,e4,e5,e6,e7;
+        e1 = new Evento(1234,"Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga",valoracion);
+        e2 =new Evento(1235,"Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga",valoracion);
+        e3 = new Evento(1236,"Offspring","concierto","Musical",date,date, 210.00, "Malaga",valoracion);
+        e4 = new Evento(1237,"Melendi","concierto","Musical",date,date,30.00,"Malaga",valoracion);
+        e5 = new Evento(1238,"Dani Martin","concierto","Musical",date,date,40.00,"Malaga",valoracion);
+        e6 = new Evento(1239,"Leiva","concierto","Musical",date,date,35.00,"Malaga",valoracion);
         eventos = new ArrayList<>();
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
-        eventos.add(new Evento("Melendi","concierto","Musical",date,date,30.00,"Malaga"));
-        eventos.add(new Evento("Dani Martin","concierto","Musical",date,date,40.00,"Malaga"));
-        eventos.add(new Evento("Leiva","concierto","Musical",date,date,35.00,"Malaga"));
+        eventos.add(e1);
+        eventos.add(e2);
+        eventos.add(e3);
+        eventos.add(e4);
+        eventos.add(e5);
+        eventos.add(e6);
         
-        Usuario usuario = new Usuario();
-        usuario.setNick("karlynho");
+        Valoracion v1= new Valoracion(1234,"Me ha parecido muy bueno", 3,usuario, e1);
+        Valoracion v2= new Valoracion(1235,"Ha sido muy bueno", 5,usuario, e1);
+        Valoracion v3= new Valoracion(1236,"Me ha encantado", 4,usuario, e1);
+        Valoracion v4= new Valoracion(1237,"Podia haber esado algo mejor", 2,usuario, e1);
+        Valoracion v5= new Valoracion(1234,null, 3,usuario, e1);
+        List<Valoracion> v = new ArrayList();
+        v.add(v1);
+        v.add(v2);
+        v.add(v3);
+        v.add(v4);
+        e1.setValoraciones(v);
         
         formularios = new ArrayList<>();
         Formulario f = new Formulario();
@@ -122,6 +155,40 @@ public class BeanPrincipal implements Serializable{
        
     }
 
+    public Integer media(){
+        int i= 0;
+        Iterator<Valoracion> it = eventoV.getValoraciones().iterator();
+        Valoracion val = new Valoracion();
+        while(it.hasNext()){
+            val = it.next();
+            i = i+ val.getPuntuacion();
+        }
+        return i / eventoV.getValoraciones().size();
+    }
+            
+    public List<Imagen> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<Imagen> imagenes) {
+        this.imagenes = imagenes;
+    }
+
+    public Evento getEventoV() {
+        return eventoV;
+    }
+
+    public void setEventoV(Evento eventoV) {
+        this.eventoV = eventoV;
+    }
+    
+    public void verEvento(Evento e){
+        eventoV = e;
+    }
+
+    public Evento principal(){
+        return eventos.get(0);
+    }
     public void eliminarForm(Formulario f) {
         formularios.remove(f);
     }
@@ -133,5 +200,14 @@ public class BeanPrincipal implements Serializable{
     public void addForm(Formulario f){
         formularios.add(f);
     }
+
+    public List<Valoracion> getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(List<Valoracion> valoracion) {
+        this.valoracion = valoracion;
+    }
+    
     
 }

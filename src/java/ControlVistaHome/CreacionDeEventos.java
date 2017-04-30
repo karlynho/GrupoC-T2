@@ -6,6 +6,7 @@
 package ControlVistaHome;
 
 import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Valoracion;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -31,6 +32,7 @@ public class CreacionDeEventos implements Serializable{
     private int dia;
     private int mes;
     private int año;
+    private List<Valoracion> valoracion = new ArrayList<Valoracion>();
 
     public List<Evento> getEventos() {
         return eventos;
@@ -45,9 +47,9 @@ public class CreacionDeEventos implements Serializable{
         Date date = (Date)formatter.parse("12/05/2017");
         
         eventos = new ArrayList<Evento>();
-        eventos.add(new Evento("Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga"));
-        eventos.add(new Evento("Offspring","concierto","Musical",date,date, 210.00, "Malaga"));
+        eventos.add(new Evento(1234,"Red Hot Chili Peppers","coachella","Musical",date, date, 210.00, "Malaga",valoracion));
+        eventos.add(new Evento(1235,"Uni vs RMB","baloncesto","Deportivo",date, date, 210.00, "Malaga",valoracion));
+        eventos.add(new Evento(1236,"Offspring","concierto","Musical",date,date, 210.00, "Malaga",valoracion));
         
         return eventos;
     }
@@ -55,6 +57,39 @@ public class CreacionDeEventos implements Serializable{
     public Evento principal(){
         return eventos.get(0);
     }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    public List<Valoracion> getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(List<Valoracion> valoracion) {
+        this.valoracion = valoracion;
+    }
+    
     
     /**
      * Creates a new instance of CreacionDeEventos

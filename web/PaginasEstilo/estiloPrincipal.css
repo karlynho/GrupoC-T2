@@ -20,13 +20,27 @@ and open the template in the editor.
 fotosPrincipal{
     width: 50px; height: 50px;
 }
-#eventos, #panel, #colizq,#tyf,#ineve{
+#eventos, #panel, #colizq,#tyf{
     float:left;
 }
 #colizq{
     border-style: none;
     background-color: orange;
 }
+#ineve outputText{
+   
+}
 #same{
-   text-align: center;
+   border:none;
+}
+#com{
+    clear: both;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+dataGrid{
+    border: none;
+    border-style: none;
 }

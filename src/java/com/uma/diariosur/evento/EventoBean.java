@@ -13,19 +13,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author Sergio
  */
-@Named(value = "beanEvento")
+@Named(value = "eventoBean")
 @SessionScoped
 
-public class BeanEvento implements Serializable {
+public class EventoBean implements Serializable{
 
     private Evento eve;
     @Inject
@@ -80,9 +79,9 @@ public class BeanEvento implements Serializable {
         val = ctreve.getEventoV().getValoraciones();
         Iterator<Valoracion> it = val.iterator();
         Valoracion v = new Valoracion();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             v = it.next();
-            if(!(v.getComentario() == null)){
+            if (!(v.getComentario() == null)) {
                 buenas.add(v);
             }
         }
@@ -114,10 +113,9 @@ public class BeanEvento implements Serializable {
     }
 
     /**
-     * Creates a new instance of BeanEvento
+     * Creates a new instance of EventoBean
      */
-    public BeanEvento() {
-        valoracion = new Valoracion();
-
+    public EventoBean() {
     }
+
 }

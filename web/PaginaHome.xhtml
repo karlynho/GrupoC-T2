@@ -34,18 +34,22 @@
                         <p:calendar id="datetime1" value="#{controlBusquedaEvento.fecha}" pattern="MM/dd/yyyy" showOn="button"/>
                     </h:panelGrid>
                     <h:messages showDetail="true" />
-                    <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
+                    <h:form>
+                        <h:commandButton   value="Filtrar" action="#{controlBusquedaEvento.comprobacion()}"/>
+                    </h:form>
                     
-                    <p:dataGrid  var="evento" value="#{creacionDeEventos.crearEventos()}" columns="3"  rows="3"  id="eventos">
+                    
+                    <p:dataGrid  var="evento" value="#{beanPrincipal.eventos}" columns="3"   id="eventos">
                        
                             <h:panelGrid columns="1">
                                 <h:graphicImage  style="width:250px; height:200px" value="PaginasEstilo/#{evento.nombre}.jpg"/>
                                 <h:outputText value="#{evento.fecha_inicio}"/>
                                 <h:outputText value="#{evento.nombre}"/>
                                 <h:outputText value="#{evento.ubicacion}"/>
+                                <h:commandLink action="#{controlHome.verEvento(evento)}" value="Ver evento"/>
                                 </h:panelGrid>
                 
-                        
+                                
                     </p:dataGrid>
                  </h:form>
             </c:when>

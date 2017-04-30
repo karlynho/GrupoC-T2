@@ -4,22 +4,36 @@
  * and open the template in the editor.
  */
 package ControlVistaHome;
+import BeanPrincipal.BeanPrincipal;
+import com.uma.diariosur.modelo.Evento;
 import com.uma.diariosur.modelo.Periodista;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 /**
  *
  * @author steven
  */
 @Named(value = "controlHome")
 @SessionScoped
-public class ControlHome implements Serializable{
 
+
+public class ControlHome implements Serializable{
+    @Inject
+    private BeanPrincipal bnp;
+    @Inject
+    private BeanPrincipal ctreve;
     private Usuario usuario;
     private Periodista periodista;
+    private List<Valoracion> val = new ArrayList<Valoracion>();
     
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
@@ -83,8 +97,48 @@ public class ControlHome implements Serializable{
     public String filtroEvento(){
         return "ControlHomeFiltro.xhtml";
     }
-    
-
+    public String verEvento(Evento e){   
+       int i = 0;
+       int j= 0;
+       bnp.setEventoV(e);
+       Evento ev = new Evento();
+        ev=bnp.getEventoV();
+        List<Evento> validos = new ArrayList<Evento>();
+        List<Evento> Novalidos = new ArrayList<Evento>();
+       for (Evento ee : bnp.getEventos()) {
+           if(ee.getCategoria().equals(ev.getCategoria()) && (!Objects.equals(ev.getId(), ee.getId()))){
+               validos.add(ee);
+               i++;
+           }else{
+               if(!Objects.equals(ev.getId(), ee.getId())){
+               Novalidos.add(ee);
+           }
+               
+           }
+           
+       }
+       //Para que en Recomendados siempre tenga al menos 7
+       while(i<7 && !Novalidos.isEmpty()){
+           validos.add(Novalidos.get(0));
+           Novalidos.remove(0);
+           
+       }
+       bnp.setValidos(validos);
+       return "vistaEvento.xhtml";
+    }
+    public List<Valoracion> comentarios() {
+        List<Valoracion> buenas = new ArrayList();
+        val = ctreve.getEventoV().getValoraciones();
+        Iterator<Valoracion> it = val.iterator();
+        Valoracion v = new Valoracion();
+        while(it.hasNext()){
+            v = it.next();
+            if(!(v.getComentario() == null)){
+                buenas.add(v);
+            }
+        }
+        return buenas;
+    }
     
     /**
      * Creates a new instance of ControlHome
