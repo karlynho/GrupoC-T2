@@ -35,6 +35,7 @@
                                         <tr><td ><h:outputText value="Puntuación:"/>
                                                 <p:rating value="#{beanPrincipal.media()}" stars="5" readonly="true" />
                                             </td> </tr>
+                                        <p:commandButton icon="ui-icon-star" action="#{pruebaBean.MeGusta(eve)}" ajax="false"></p:commandButton>
                                     </h:form>
                                 </table> </td>
 

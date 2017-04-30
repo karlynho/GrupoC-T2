@@ -6,6 +6,8 @@
 package com.uma.diariosur.evento;
 import BeanPrincipal.BeanPrincipal;
 import ControlVistaHome.ControlHome;
+import com.uma.diariosur.modelo.Evento;
+import com.uma.diariosur.modelo.Megusta;
 import javax.inject.Named;
 import com.uma.diariosur.modelo.Valoracion;
 import javax.enterprise.context.SessionScoped;
@@ -136,6 +138,24 @@ public class PruebaBean implements Serializable{
         
     }
     
+    public String MeGusta(Evento eve){
+        Megusta mg = new Megusta();
+        boolean encontrado = false;
+        for(Megusta m: ctrh.getUsuario().getMegusta()){
+            if(m.getEvento().getNombre().equals(eve.getNombre())){
+                encontrado=true;
+            }
+        }
+  
+     if(!encontrado){
+          Megusta me = new Megusta();
+            me.setEvento(eve);
+            me.setUsuario(ctrh.getUsuario());
+        ctreve.addMegusta(me);
+        return "vistaEvento.xhtml";
+     }   
+       return "vistaEvento.xhtml";
+    }
     
     
     /**
