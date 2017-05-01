@@ -514,17 +514,15 @@ public class BeanPrincipal implements Serializable{
     
     public void addMegusta(Megusta e){
         megusta.add(e);
-
     }
   
     public List<Megusta> mismegusta(){
         
-        List<Megusta> lista = new ArrayList<Megusta>();
+        List<Megusta> lista = new ArrayList<>();
         int i=0;
         while(i< megusta.size()){
-           if(megusta.get(i).getUsuario().getNombre().equals(ch.getUsuario().getNombre())){
+           if(megusta.get(i).getUsuario().getNick().equals(ch.getUsuario().getNick())){
                lista.add(megusta.get(i));
-               
            } 
            i++;
         }
