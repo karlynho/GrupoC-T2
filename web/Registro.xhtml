@@ -8,65 +8,56 @@
     <h:head>
         <title>Registro de usuario</title>
     </h:head>
-    <h:body>
+    <h:body style="background: azure">
         <c:choose>
             <c:when test="#{empty controlHome.usuario and empty controlHome.periodista}">
                 <h:form id="registro">
-                    <table>
+                    <h2 style="margin-left: 100px; margin-top: 50px;"><u>Formulario de Registro</u></h2>
+                <div style="margin: 20px 100px 80px 150px; background-color: #66ccff; height: 350px; width: 900px; border: 4px solid #006; -webkit-border-radius: 7px; padding: 15px">
+
+                    <table style="margin: 0 auto; margin-top:80px;">
                         <tr>
-                            <td><h:outputText value="Nombre de usuario:"/></td>
-                            <td> <h:inputText id="nick" value="#{registro.nick}" required=""/></td>
-                             <p:message for="nick"  style="font-size: small" showDetail="true"/>
+                            <td><p:outputLabel value="Nombre de usuario:"/></td>
+                            <td> <p:inputText id="nick" value="#{registro.nick}" required=""/></td>
+                            <p:message for="nick"  style="font-size: small" showDetail="true"/>
+                            <td><p:outputLabel value="Fecha de nacimiento:"/></td>
+                            <td> <p:inputText id="fecha" value="#{registro.fecha_nacimiento}" required=""/></td>
                         </tr>
                         <tr>
-                            <td><h:outputText value="Nombre:"/></td>
-                            <td> <h:inputText id="nombre" value="#{registro.nombre}"/></td>
+                            <td><p:outputLabel value="Nombre:"/></td>
+                            <td> <p:inputText id="nombre" value="#{registro.nombre}"/></td>
                             <p:message for="nombre" style="font-size: small" showDetail="true"/>
+                            <td> <p:outputLabel value="Apellidos:"/></td>
+                            <td> <p:inputText id="apellidos" value="#{registro.apellidos}"/></td>
+                            <p:message for="apellidos" style="font-size: small" showDetail="true"/>    
                         </tr>
                         <tr>
-                            <td><h:outputText value="E-mail:"/></td>
-                            <td><h:inputText id="email" value="#{registro.email}" required=""/></td>
-                            <td><p:message for="email" style="font-size: small" showDetail="true"/></td>
+                            <td><p:outputLabel value="E-mail:"/></td>
+                            <td><p:inputText id="email" value="#{registro.email}" required=""/></td>
+                            <p:message for="email" style="font-size: small" showDetail="true"/>
+                            <td><p:outputLabel value="Repetir E-mail:"/></td>
+                            <td><p:inputText id="emailrepas" value="#{registro.emailrepas}" required=""/></td>
+                            <td><p:message for="emailrepas" style="font-size: small" showDetail="true"/></td>
                         </tr>
                         <tr>
-                            <td> <h:outputText value="Contraseña:"/></td>
-                            <td> <h:inputSecret id="pass" value="#{registro.contraseña}" required=""/></td>
-                            <td> <p:message for ="pass"  style="font-size: small" showDetail="true"/></td>
+                            <td><p:outputLabel value="Contraseña:"/></td>
+                            <td><p:password id="pass" value="#{registro.contraseña}" required=""/></td>
+                            <p:message for ="pass"  style="font-size: small" showDetail="true"/>
+                            <td><p:outputLabel value="Repita contraseña:"/></td>
+                            <td><p:password id="repass" value="#{registro.repas}" required=""/></td>
+                            <p:message for="repass" style="font-size: small" showDetail="true"/>
                         </tr>
-                        
-                        
-                        <tr>
-                            <td> <h:outputText value="Apellidos:"/></td>
-                            <td> <h:inputText id="apellidos" value="#{registro.apellidos}"/></td>
-                            <p:message for="apellidos" style="font-size: small" showDetail="true"/>
-                        </tr>
-                        
+                        </table>  
+                    <table  style="margin-left: 300px">  
+                        <br></br>
+                        <br></br>
+                        <tr>  
+                            <td><p:commandButton value="Crear Cuenta" action="#{registro.registrarUsuario()}" ajax="false"/></td>
+                            <td><p:commandButton value="Cancelar" action="Login.xhtml" ajax="false"/></td>
+                            
+                        </tr>    
                     </table>
-                    
-                        
-                       
-                       
-                       
-                       
-                       
-                       
-                        
-                        
-                        
-                      
-                       
-                       
-                        
-                       
-                       
-                       
-                        
-                        <h:outputText value="Repita contraseña:"/>
-                        <h:inputSecret id="repass" value="#{registro.repas}" required=""/>
-                        <p:message for="repass" style="font-size: small" showDetail="true"/>
-                        <h:commandButton value="Crear usuario" action="#{registro.registrarUsuario()}"/>
-                        <h:link outcome="Login.xhtml">Volver a la página de login</h:link>
-                             
+                </div>
                 </h:form>
                 
             </c:when>
