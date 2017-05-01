@@ -163,6 +163,11 @@ public class Ajustes implements Serializable{
         return "PaginaHome.xhtml";
     }
       
+       public void cerrarSesion(){
+       
+          ch.logout();
+      }
+       
     public Ajustes() {
         
     }
