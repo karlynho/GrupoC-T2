@@ -93,7 +93,7 @@ public class PruebaBean implements Serializable{
         }
         
         Valoracion var =new Valoracion(7777,text, ratinguser, ctrh.getUsuario(),ctreve.getEventoV());
-        ctreve.getEventoV().getValoraciones().add(var);
+        ctreve.getEventoV().getValoraciones().add(0, var);
         return null;
     }
 
@@ -139,7 +139,7 @@ public class PruebaBean implements Serializable{
     }
     
     public String MeGusta(Evento eve){
-        Megusta mg = new Megusta();
+        
         boolean encontrado = false;
         for(Megusta m: ctrh.getUsuario().getMegusta()){
             if(m.getEvento().getNombre().equals(eve.getNombre())){
