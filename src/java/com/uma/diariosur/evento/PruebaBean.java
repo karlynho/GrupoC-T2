@@ -142,9 +142,12 @@ public class PruebaBean implements Serializable{
         
         boolean encontrado = false;
         for(Megusta m: ctrh.getUsuario().getMegusta()){
-            if(m.getEvento().getNombre().equals(eve.getNombre())){
-                encontrado=true;
+            if(m.getUsuario().getNick().equals(ctrh.getUsuario().getNick())){
+                if(m.getEvento().getNombre().equals(eve.getNombre())){
+                     encontrado=true;
+                 }
             }
+            
         }
   
      if(!encontrado){
