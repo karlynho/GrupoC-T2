@@ -9,6 +9,7 @@ package ControlVistaHome;
 import BeanPrincipal.BeanPrincipal;
 
 import com.uma.diariosur.modelo.Usuario;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Named;
@@ -16,6 +17,14 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -33,6 +42,12 @@ public class Registro {
     private String repas;
     
     private Pattern pattern;
+    
+    
+    @Inject
+    private ControlHome ch;
+    
+    
     
     public String getRepas() {
         return repas;
@@ -109,6 +124,50 @@ public class Registro {
             }
                
             bnp.añadirUsuario(usuario);
+            
+                  
+        String correoEnvia = "diariosur7@gmail.com";
+        String claveCorreo = "diariosur12";
+        
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.user", correoEnvia);
+        prop.put("mail.password", claveCorreo);
+        
+        Session ses = Session.getInstance(prop, null);
+        
+        try{
+            
+            MimeMessage mime = new MimeMessage(ses);
+            
+            mime.setFrom(new InternetAddress(correoEnvia, "Dato Java"));
+            
+            InternetAddress internetAddresses = new InternetAddress(usuario.getEmail());
+            mime.setRecipient(Message.RecipientType.TO, internetAddresses);
+            
+            mime.setSubject("Gracias por registrarse");
+            
+            MimeBodyPart mib = new MimeBodyPart();
+            mib.setText("Buenas, gracias por registrarse en Agenda Diario Sur, Un Cordial Saludo");
+            
+            Multipart multi = new MimeMultipart();
+            multi.addBodyPart(mib);
+            
+            mime.setContent(multi);
+            
+            Transport transport = ses.getTransport("smtp");
+            transport.connect(correoEnvia, claveCorreo);
+            transport.sendMessage(mime, mime.getAllRecipients());
+            transport.close();
+            
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+            
              return "Login.xhtml";   
         }
         

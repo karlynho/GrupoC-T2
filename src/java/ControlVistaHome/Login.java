@@ -177,8 +177,17 @@ public class Login {
             FacesContext.getCurrentInstance().addMessage("login:usuario", message);
             return null;
         }else{
+       
             return ctrlhome.home();
-        }    
+            
+        }  
+        
+        
+        
+        
+        
+        
+        
     }
     }
 
