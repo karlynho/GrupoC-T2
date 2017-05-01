@@ -392,6 +392,18 @@ public class BeanPrincipal implements Serializable{
                     + " pondrá a bailar al público de la cantera con su ritmo inconfundible. "
                     + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
                     + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
+                    + "podido escuchar el primer single “Swalla”"
+                    + "Jason Derulo, considerado como una de las mejores voces de la ú"
+                    + "ltima década, se subirá al escenario de Starlite el jueves 24 de agosto y"
+                    + " pondrá a bailar al público de la cantera con su ritmo inconfundible. "
+                    + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
+                    + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
+                    + "podido escuchar el primer single “Swalla”"
+                    + "Jason Derulo, considerado como una de las mejores voces de la ú"
+                    + "ltima década, se subirá al escenario de Starlite el jueves 24 de agosto y"
+                    + " pondrá a bailar al público de la cantera con su ritmo inconfundible. "
+                    + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
+                    + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
                     + "podido escuchar el primer single “Swalla”");
             f.setCategoria("Concierto");
             f.setFecha_inicio(new Date());

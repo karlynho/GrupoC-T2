@@ -100,5 +100,7 @@ ul.menulist li{
     padding: 500px;
     border-right: 100px;
 }
-
+#piedePagina{
+    position: absolute;
+}
 
