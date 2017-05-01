@@ -12,32 +12,61 @@
         <c:choose>
             <c:when test="#{empty controlHome.usuario and empty controlHome.periodista}">
                 <h:form id="registro">
-                    <h:panelGrid columns="3">
-                        <h:outputText value="Nombre:"/>
-                        <h:inputText id="nombre" value="#{registro.nombre}"/>
-                        <p:message for="nombre" style="font-size: small" showDetail="true"/>
-                        <h:outputText value="Apellidos:"/>
-                        <h:inputText id="apellidos" value="#{registro.apellidos}"/>
-                        <p:message for="apellidos" style="font-size: small" showDetail="true"/>
-                        <h:outputText value="E-mail:"/>
-                        <h:inputText id="email" value="#{registro.email}" required=""/>
-                        <p:message for="email" style="font-size: small" showDetail=""/>
-                        <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="nick" value="#{registro.nick}" required=""/>
-                        <p:message for="nick"  style="font-size: small" showDetail="true"/>
+                    <table>
+                        <tr>
+                            <td><h:outputText value="Nombre de usuario:"/></td>
+                            <td> <h:inputText id="nick" value="#{registro.nick}" required=""/></td>
+                             <p:message for="nick"  style="font-size: small" showDetail="true"/>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Nombre:"/></td>
+                            <td> <h:inputText id="nombre" value="#{registro.nombre}"/></td>
+                            <p:message for="nombre" style="font-size: small" showDetail="true"/>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="E-mail:"/></td>
+                            <td><h:inputText id="email" value="#{registro.email}" required=""/></td>
+                            <td><p:message for="email" style="font-size: small" showDetail="true"/></td>
+                        </tr>
+                        <tr>
+                            <td> <h:outputText value="Contraseña:"/></td>
+                            <td> <h:inputSecret id="pass" value="#{registro.contraseña}" required=""/></td>
+                            <td> <p:message for ="pass"  style="font-size: small" showDetail="true"/></td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td> <h:outputText value="Apellidos:"/></td>
+                            <td> <h:inputText id="apellidos" value="#{registro.apellidos}"/></td>
+                            <p:message for="apellidos" style="font-size: small" showDetail="true"/>
+                        </tr>
+                        
+                    </table>
+                    
+                        
                        
-                        <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" value="#{registro.contraseña}" required=""/>
-                        <p:message for ="pass"  style="font-size: small" showDetail="true"/>
+                       
+                       
+                       
+                       
+                       
+                        
+                        
+                        
+                      
+                       
+                       
+                        
+                       
+                       
+                       
+                        
                         <h:outputText value="Repita contraseña:"/>
                         <h:inputSecret id="repass" value="#{registro.repas}" required=""/>
                         <p:message for="repass" style="font-size: small" showDetail="true"/>
                         <h:commandButton value="Crear usuario" action="#{registro.registrarUsuario()}"/>
                         <h:link outcome="Login.xhtml">Volver a la página de login</h:link>
-                    </h:panelGrid>
-               
-                    
-                    
+                             
                 </h:form>
                 
             </c:when>
