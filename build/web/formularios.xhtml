@@ -28,7 +28,7 @@
     <p:commandButton value="Volver a pagina principal" id="volver" action="#{dataScrollerView.home()}" ajax="false" />
     </h:form>
     
-<h:form> 
+<h:form id="formularios"> 
     <br></br>
     <p:dataScroller  value="#{beanPrincipal.getFormularios()}" var="f" chunkSize="10" mode="inline" scrollHeight="500"   >
         <f:facet name="header">
@@ -62,7 +62,6 @@
                     <h:outputText value="#{f.usuario.nick}" style="font-weight: bold"/>
                     <p:commandButton id="enviar" value="Validar" action="#{dataScrollerView.validar(f)}" ajax="false"/>
                     <p:commandButton id="rechazar" value="Rechazar" action="#{dataScrollerView.rechazar(f)}" ajax="false"/>
-                    
                                     
                 </h:panelGrid>
                 <p:separator />

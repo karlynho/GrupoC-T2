@@ -174,7 +174,63 @@ public class BeanPrincipal implements Serializable{
     public BeanPrincipal() throws ParseException{
         
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy",new Locale("es","ES"));
-        Date date = (Date)formatter.parse("12/05/2017");
+        Date date_ini = (Date)formatter.parse("05/05/2017");
+        date_ini.setHours(22);
+        
+        Date date_fin = (Date)formatter.parse("05/06/2017");
+        date_fin.setHours(02);
+        
+        Date date_ini2 = (Date)formatter.parse("05/09/2017");
+        date_ini2.setHours(20);
+        
+        Date date_fin2 = (Date)formatter.parse("05/09/2017");
+        date_fin2.setHours(23);
+        
+        
+        Date date_ini3 = (Date)formatter.parse("05/03/2017");
+        date_ini3.setHours(23);
+        
+        Date date_fin3 = (Date)formatter.parse("05/04/2017");
+        date_fin3.setHours(02);
+        
+        Date date_ini4 = (Date)formatter.parse("06/10/2017");
+        date_ini4.setHours(21);
+        
+        Date date_fin4 = (Date)formatter.parse("06/11/2017");
+        date_fin4.setHours(01);
+        
+        Date date_ini5 = (Date)formatter.parse("05/17/2017");
+        date_ini5.setHours(22);
+        
+        Date date_fin5 = (Date)formatter.parse("05/18/2017");
+        date_fin5.setHours(02);
+        
+        
+        Date date_ini6 = (Date)formatter.parse("05/21/2017");
+        date_ini6.setHours(20);
+        
+        Date date_fin6 = (Date)formatter.parse("05/21/2017");
+        date_fin6.setHours(23);
+        
+        Date date_ini7 = (Date)formatter.parse("05/02/2017");
+        date_ini7.setHours(10);
+        
+        Date date_fin7 = (Date)formatter.parse("05/02/2017");
+        date_fin7.setHours(12);
+        
+        Date date_ini8 = (Date)formatter.parse("05/19/2017");
+        date_ini8.setHours(8);
+        
+        Date date_fin8 = (Date)formatter.parse("05/19/2017");
+        date_fin8.setHours(11);
+        
+        Date date_ini9 = (Date)formatter.parse("05/01/2017");
+        date_ini9.setHours(22);
+        
+        Date date_fin9 = (Date)formatter.parse("05/06/2017");
+        date_fin9.setHours(02);
+       
+        
         Date fecha= (Date)formatter.parse("12/05/1993");
         
         
@@ -254,40 +310,52 @@ public class BeanPrincipal implements Serializable{
         Imagen i10 = new Imagen();
         i10.setEnlace("Leiva.jpg");
         
+        Imagen i11 = new Imagen();
+        i11.setEnlace("chema.jpg");
+        
+        Imagen i12 = new Imagen();
+        i12.setEnlace("feriaquesojpg.jpg");
+        
+        Imagen i13 = new Imagen();
+        i13.setEnlace("feria.jpg");
+        
         eventos = new ArrayList<>();
         Evento e1 = new Evento();
         e1.setNombre("Red Hot Chili Peppers");
         e1.setCategoria("Conciertos");
-        e1.setDescripcion("coachella");
-        e1.setFecha_inicio(date);
-        e1.setFecha_final(date);
+        e1.setDescripcion("Los Red Hot Chili Peppers visitan España por primera vez desde hace 5 años y vienen a Malaga"
+                + "interpretar sus exitos y sus nuevos temas del nuevo disco");
+        e1.setFecha_inicio(date_ini);
+        e1.setFecha_final(date_fin);
         e1.setPeriodista(p);
-        e1.setPrecio(00.00);
-        e1.setUbicacion("Malaga");
+        e1.setPrecio(20.00);
+        e1.setUbicacion("Estadio de Futbol La Rosaleda (Málaga)");
         e1.setImagen(i3);
         i3.setEvento(e1);
         
         Evento e2 = new Evento();
         e2.setNombre("Uni vs RMB");
         e2.setCategoria("Deportivo");
-        e2.setDescripcion("baloncesto");
-        e2.setFecha_inicio(date);
-        e2.setFecha_final(date);
+        e2.setDescripcion("Partido perteneciente a la jornada numero 12 de la Liga Endesa entre el líder de la clasificacion"
+                + "y el siempre peligroso Unicaja");
+        e2.setFecha_inicio(date_ini2);
+        e2.setFecha_final(date_fin2);
         e2.setPeriodista(p);
         e2.setPrecio(34.00);
-        e2.setUbicacion("Malaga");
+        e2.setUbicacion("Palacio de los Deportes Martin Carpena (Málaga)");
         e2.setImagen(i4);
         i4.setEvento(e2);
         
         Evento e3 = new Evento();
         e3.setNombre("Offspring");
         e3.setCategoria("Conciertos");
-        e3.setDescripcion("musicaaal");
-        e3.setFecha_inicio(date);
-        e3.setFecha_final(date);
+        e3.setDescripcion("El mitico grupo de Rock comienza su gira europea en España en concreto en Malaga, ciudad que"
+                + "nunca han visitado");
+        e3.setFecha_inicio(date_ini3);
+        e3.setFecha_final(date_fin3);
         e3.setPeriodista(p);
         e3.setPrecio(324.00);
-        e3.setUbicacion("Malaga");
+        e3.setUbicacion("Paris 15 (Málaga)");
         e3.setImagen(i2);
         i2.setEvento(e3);
       
@@ -298,12 +366,13 @@ public class BeanPrincipal implements Serializable{
         Evento e4 = new Evento();
         e4.setNombre("Melendi");
         e4.setCategoria("Conciertos");
-        e4.setDescripcion("musical");
-        e4.setFecha_inicio(date);
-        e4.setFecha_final(date);
+        e4.setDescripcion("El cantante y compositor Melendi estrena gira de su nuevo disco Botella de vino y sus exitos 'Aterriza como puedas' y"
+                + "este vuelo no despega");
+        e4.setFecha_inicio(date_ini4);
+        e4.setFecha_final(date_fin4);
         e4.setPeriodista(p);
         e4.setPrecio(34.00);
-        e4.setUbicacion("Malaga");
+        e4.setUbicacion("Starlite (Marbella)");
         e4.setImagen(i8);
         i8.setEvento(e4);
         
@@ -311,24 +380,25 @@ public class BeanPrincipal implements Serializable{
         Evento e5 = new Evento();
         e5.setNombre("Dani Martin");
         e5.setCategoria("Conciertos");
-        e5.setDescripcion("coachella");
-        e5.setFecha_inicio(date);
-        e5.setFecha_final(date);
+        e5.setDescripcion("El cantante madrileño visita Marbella por segunda vez tras 5 años para rememorar sus viejos exitos y "
+                + "la actuación de su nuevo disco 'Chanclas'");
+        e5.setFecha_inicio(date_ini5);
+        e5.setFecha_final(date_fin5);
         e5.setPeriodista(p);
         e5.setPrecio(34.00);
-        e5.setUbicacion("Malaga");
+        e5.setUbicacion("Plaza de Toros (Marbella)");
         i9.setEvento(e5);
         e5.setImagen(i9);
         
       Evento e6 = new Evento();
         e6.setNombre("Leiva");
         e6.setCategoria("Conciertos");
-        e6.setDescripcion("coachella");
-        e6.setFecha_inicio(date);
-        e6.setFecha_final(date);
+        e6.setDescripcion("Primera vez desde su separación el ex de Pereza, protagoniza una actuación en la provincia");
+        e6.setFecha_inicio(date_ini6);
+        e6.setFecha_final(date_fin6);
         e6.setPeriodista(p);
         e6.setPrecio(34.00);
-        e6.setUbicacion("Malaga");
+        e6.setUbicacion("Plaza de Toros (Málaga)");
       
         i10.setEvento(e6);
         e6.setImagen(i10);
@@ -336,6 +406,55 @@ public class BeanPrincipal implements Serializable{
         eventos.add(e4);
         eventos.add(e5);
         eventos.add(e6);
+        
+        Evento e7 = new Evento();
+        e7.setNombre("Dialogando : Chema Alonso");
+        e7.setCategoria("Conferencia");
+        e7.setDescripcion("Seguimos celebrando nuestro 20 Aniversario con el proyecto \"Dialogando\". "
+                + "Tras tratar asuntos tan importantes para toda la sociedad como la educación y la nutrición, el próximo debate girará en torno a un tema de máxima actualidad como es la ciberseguridad y para ello contaremos con el hacker y chief data officer (CDO) de Telefónica Chema Alonso (descargar cartel)."
+                + " La entrevista la realizará la periodista de Canal Sur Radio Susana Escudero.");
+        e7.setFecha_inicio(date_ini7);
+        e7.setFecha_final(date_fin7);
+        e7.setPeriodista(p);
+        e7.setPrecio(0.00);
+        e7.setUbicacion(" Salón de Actos de la E.T.S.I. Informática (Málaga)");
+      
+        i11.setEvento(e7);
+        e7.setImagen(i11);
+        
+        Evento e8 = new Evento();
+        e8.setNombre("Feria del Queso Artesanal");
+        e8.setCategoria("Gastronomia");
+        e8.setDescripcion("El fin de semana del 1 y 2 de abril se va a celebrar la Feria del Queso Artesanal de Andalucía 2017,"
+                + " es la novena edición de esta feria que tiene lugar en la cuna del queso de la Sierra de Cádiz, en Villaluenga del Rosario."
+                + " Este año participan una treintena de quesería y además se realizarán distintas actividades y concursos");
+        e8.setFecha_inicio(date_ini8);
+        e8.setFecha_final(date_fin8);
+        e8.setPeriodista(p);
+        e8.setPrecio(5.00);
+        e8.setUbicacion("Palacio de Ferias (Málaga)");
+      
+        i12.setEvento(e8);
+        e8.setImagen(i12);
+        
+        Evento e9 = new Evento();
+        e9.setNombre("Feria de los Pueblos Fuengirola");
+        e9.setCategoria("Gastronomia");
+        e9.setDescripcion("La Feria de los Pueblos 2017 comenzará el jueves 27 de Abril y finalizará el 2 de Mayo, un día más de lo normal debido" + 
+                "a los dos días de fuertes lluvias. Durante ese tiempo podremos disfrutar de un espacio multicultural donde poder" +
+                "paladear la gastronomía y conocer el folclore de los lugares representado");
+        e9.setFecha_inicio(date_ini9);
+        e9.setFecha_final(date_fin9);
+        e9.setPeriodista(p);
+        e9.setPrecio(0.00);
+        e9.setUbicacion("Parque de España (Fuengirola)");
+      
+        i13.setEvento(e9);
+        e9.setImagen(i13);
+        
+        eventos.add(e7);
+        eventos.add(e8);
+        eventos.add(e9);
         
         Valoracion v1= new Valoracion(1234,"Me ha parecido muy bueno", 3,u, e1);
         Valoracion v2= new Valoracion(1235,"Ha sido muy bueno", 5,u, e1);
@@ -393,18 +512,7 @@ public class BeanPrincipal implements Serializable{
                     + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
                     + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
                     + "podido escuchar el primer single “Swalla”"
-                    + "Jason Derulo, considerado como una de las mejores voces de la ú"
-                    + "ltima década, se subirá al escenario de Starlite el jueves 24 de agosto y"
-                    + " pondrá a bailar al público de la cantera con su ritmo inconfundible. "
-                    + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
-                    + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
-                    + "podido escuchar el primer single “Swalla”"
-                    + "Jason Derulo, considerado como una de las mejores voces de la ú"
-                    + "ltima década, se subirá al escenario de Starlite el jueves 24 de agosto y"
-                    + " pondrá a bailar al público de la cantera con su ritmo inconfundible. "
-                    + "Este concierto es el único que tiene confirmado por el momento en España. Cantante,"
-                    + " compositor y bailarín Derulo presentará en Starlite su nuevo disco del que ya hemos "
-                    + "podido escuchar el primer single “Swalla”");
+                    );
             f.setCategoria("Concierto");
             f.setFecha_inicio(new Date());
             f.setFecha_fin(new Date());
@@ -427,7 +535,7 @@ public class BeanPrincipal implements Serializable{
             f1.setCategoria("Exposicion");
             f1.setFecha_inicio(new Date());
             f1.setFecha_fin(new Date());
-            f1.setUbicacion("Marbella (Malaga)");
+            f1.setUbicacion("Palacio de Congresos (Marbella)");
             f1.setPrecio(10.00);
             f1.setFecha_subida(new Date());
             f1.setEstado("pendiente");
@@ -438,13 +546,13 @@ public class BeanPrincipal implements Serializable{
             
         Formulario f2 = new Formulario();
             f2.setNombre("Mohas´s Moet");
-            f2.setDescripcion("Una exhibición temática dedicada a la shisha neo impresionista del pintor Moha."
-                    + " Más de 123 tabacos, dibujos, impresiones e ilustraciones relacionadas "
-                    + "con esta obra exhibida por primera vez en Marbella en 2088 serán puestas en exhibición. ");
-            f2.setCategoria("Exposicion");
+            f2.setDescripcion("Una quedada shishera dedicada a la shisha de la marca Moet"
+                    + " Más de 123 tabacos, cachimbas, accesorios y articulos relacionados "
+                    + "con este evento organizado por primera vez en Marbella en 2017. ");
+            f2.setCategoria("Charlas");
             f2.setFecha_inicio(new Date());
             f2.setFecha_fin(new Date());
-            f2.setUbicacion("Marbella (Malaga)");
+            f2.setUbicacion("Palacio de Congresos (Marbella)");
             f2.setPrecio(10.00);
             f2.setFecha_subida(new Date());
             f2.setEstado("pendiente");
@@ -464,6 +572,9 @@ public class BeanPrincipal implements Serializable{
         imagenes.add(i8);
         imagenes.add(i9);
         imagenes.add(i10);
+        imagenes.add(i11);
+        imagenes.add(i12);
+        imagenes.add(i13);
     }
 
     public void eliminarForm(Formulario f) {
