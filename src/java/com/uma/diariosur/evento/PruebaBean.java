@@ -20,6 +20,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.event.RateEvent;
+import org.primefaces.event.map.GeocodeEvent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.GeocodeResult;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 /**
  *
  * @author steven
@@ -37,6 +43,25 @@ public class PruebaBean implements Serializable{
     private Integer rating2; 
     private Integer ratinguser;
     private String text;
+    private MapModel geoModel;
+    private String centerGeoMap = "41.850033, -87.6500523";
+
+    public MapModel getGeoModel() {
+        return geoModel;
+    }
+
+    public void setGeoModel(MapModel geoModel) {
+        this.geoModel = geoModel;
+    }
+
+    public String getCenterGeoMap() {
+        return centerGeoMap;
+    }
+
+    public void setCenterGeoMap(String centerGeoMap) {
+        this.centerGeoMap = centerGeoMap;
+    }
+    
     
 
     public BeanPrincipal getCtreve() {
@@ -157,12 +182,33 @@ public class PruebaBean implements Serializable{
        return "vistaEvento.xhtml";
     }
     
+    public void onGeocode(GeocodeEvent event) {
+        List<GeocodeResult> results = event.getResults();
+         
+        if (results != null && !results.isEmpty()) {
+            LatLng center = results.get(0).getLatLng();
+            centerGeoMap = center.getLat() + "," + center.getLng();
+             
+            for (int i = 0; i < results.size(); i++) {
+                GeocodeResult result = results.get(i);
+                geoModel.addOverlay(new Marker(result.getLatLng(), result.getAddress()));
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * Creates a new instance of ControlHome
      */
     public PruebaBean() {
-        
+        geoModel = new DefaultMapModel();
     }
     
 }
