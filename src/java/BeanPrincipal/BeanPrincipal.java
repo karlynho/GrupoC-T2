@@ -295,6 +295,8 @@ public class BeanPrincipal implements Serializable{
         eventos.add(e2);
         eventos.add(e3);
        
+        
+        
         Evento e4 = new Evento();
         e4.setNombre("Melendi");
         e4.setCategoria("Conciertos");
