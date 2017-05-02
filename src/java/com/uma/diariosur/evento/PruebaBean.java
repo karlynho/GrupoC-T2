@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,15 +18,21 @@ import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.event.RateEvent;
+import org.primefaces.event.map.GeocodeEvent;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.GeocodeResult;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 /**
  *
  * @author steven
  */
 @Named(value = "pruebaBean")
-@SessionScoped
+@ViewScoped
 
 
 public class PruebaBean implements Serializable{
@@ -37,6 +44,25 @@ public class PruebaBean implements Serializable{
     private Integer rating2; 
     private Integer ratinguser;
     private String text;
+    private MapModel geoModel;
+    private String centerGeoMap = "41.850033, -87.6500523";
+
+    public MapModel getGeoModel() {
+        return geoModel;
+    }
+
+    public void setGeoModel(MapModel geoModel) {
+        this.geoModel = geoModel;
+    }
+
+    public String getCenterGeoMap() {
+        return centerGeoMap;
+    }
+
+    public void setCenterGeoMap(String centerGeoMap) {
+        this.centerGeoMap = centerGeoMap;
+    }
+    
     
 
     public BeanPrincipal getCtreve() {
@@ -93,7 +119,7 @@ public class PruebaBean implements Serializable{
         }
         
         Valoracion var =new Valoracion(7777,text, ratinguser, ctrh.getUsuario(),ctreve.getEventoV());
-        ctreve.getEventoV().getValoraciones().add(var);
+        ctreve.getEventoV().getValoraciones().add(0, var);
         return null;
     }
 
@@ -139,7 +165,7 @@ public class PruebaBean implements Serializable{
     }
     
     public String MeGusta(Evento eve){
-        Megusta mg = new Megusta();
+        
         boolean encontrado = false;
         for(Megusta m: ctrh.getUsuario().getMegusta()){
             if(m.getUsuario().getNick().equals(ctrh.getUsuario().getNick())){
@@ -150,22 +176,61 @@ public class PruebaBean implements Serializable{
             
         }
   
-     if(!encontrado){
+      if(encontrado){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso" , "Este evento ya lo añadiste a Mis MeGusta");
+            FacesContext.getCurrentInstance().addMessage("pm:bm", message);
+            return null;
+      }  
+        
+      else{
           Megusta me = new Megusta();
-            me.setEvento(eve);
-            me.setUsuario(ctrh.getUsuario());
-        ctreve.addMegusta(me);
-        return "vistaEvento.xhtml";
+          me.setEvento(eve);
+          me.setUsuario(ctrh.getUsuario());
+          ctreve.addMegusta(me);
+          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "" , "Añadido evento a mis MeGusta");
+          FacesContext.getCurrentInstance().addMessage("pm:bm", message);
+          return "vistaEvento.xhtml";
      }   
-       return "vistaEvento.xhtml";
+       
     }
     
+    public void onGeocode(GeocodeEvent event) {
+        List<GeocodeResult> results = event.getResults();
+         
+        if (results != null && !results.isEmpty()) {
+            LatLng center = results.get(0).getLatLng();
+            centerGeoMap = center.getLat() + "," + center.getLng();
+             
+            for (int i = 0; i < results.size(); i++) {
+                GeocodeResult result = results.get(i);
+                geoModel.addOverlay(new Marker(result.getLatLng(), ctreve.getEventoV().getNombre()));
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public boolean precio(Evento e){
+        if(e.getPrecio()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     
     /**
      * Creates a new instance of ControlHome
      */
     public PruebaBean() {
-        
+        geoModel = new DefaultMapModel();
     }
     
 }
+
