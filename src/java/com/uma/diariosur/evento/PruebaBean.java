@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.event.RateEvent;
 import org.primefaces.event.map.GeocodeEvent;
@@ -31,7 +31,7 @@ import org.primefaces.model.map.Marker;
  * @author steven
  */
 @Named(value = "pruebaBean")
-@SessionScoped
+@ViewScoped
 
 
 public class PruebaBean implements Serializable{
@@ -191,7 +191,7 @@ public class PruebaBean implements Serializable{
              
             for (int i = 0; i < results.size(); i++) {
                 GeocodeResult result = results.get(i);
-                geoModel.addOverlay(new Marker(result.getLatLng(), result.getAddress()));
+                geoModel.addOverlay(new Marker(result.getLatLng(), ctreve.getEventoV().getNombre()));
             }
         }
     }

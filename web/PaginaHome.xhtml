@@ -66,7 +66,7 @@
                         <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" style="margin-left: 250px" >
                     </p:link>
                     </p:outputLabel>
-                    <c:if test="#{empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha}">
+                    <c:if test="#{(empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha)and empty controlHome.busqueda}">
 
                          <p:dataGrid var="evento" value="#{beanPrincipal.eventos}" class="eventos">
 
@@ -80,7 +80,7 @@
                             </h:panelGrid>
                         </p:dataGrid>
                     </c:if>
-                    <c:if test="#{!empty controlHome.ubicacion and !empty controlHome.categoria and  !empty controlHome.fecha}">
+                    <c:if test="#{(!empty controlHome.ubicacion and !empty controlHome.categoria and  !empty controlHome.fecha)  or !empty controlHome.busqueda}">
                         <p:dataGrid var="evento" value="#{beanPrincipal.eventosFiltrados}"  class="eventos">
                             <h:panelGrid columns="1" class="eventos2">
                                 <h:graphicImage  style="width:250px; height:200px" value="resources/#{evento.imagen.enlace}"/>
