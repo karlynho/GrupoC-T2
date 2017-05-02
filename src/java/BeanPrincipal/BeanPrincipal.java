@@ -303,7 +303,7 @@ public class BeanPrincipal implements Serializable{
         e4.setFecha_final(date);
         e4.setPeriodista(p);
         e4.setPrecio(34.00);
-        e4.setUbicacion("Malaga");
+        e4.setUbicacion("Teatro Cervantes(Malaga)");
         e4.setImagen(i8);
         i8.setEvento(e4);
         
