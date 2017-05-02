@@ -1,3 +1,4 @@
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -100,7 +101,8 @@ ul.menulist li{
     padding: 500px;
     border-right: 100px;
 }
-#piedePagina{
-    position: absolute;
+
+#cuerpoLogin{
+    background: blue;
 }
 

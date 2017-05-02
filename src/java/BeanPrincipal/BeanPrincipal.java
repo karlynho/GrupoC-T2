@@ -364,6 +364,8 @@ public class BeanPrincipal implements Serializable{
         eventos.add(e2);
         eventos.add(e3);
        
+        
+        
         Evento e4 = new Evento();
         e4.setNombre("Melendi");
         e4.setCategoria("Conciertos");
@@ -373,6 +375,7 @@ public class BeanPrincipal implements Serializable{
         e4.setFecha_final(date_fin4);
         e4.setPeriodista(p);
         e4.setPrecio(34.00);
+
 
         e4.setUbicacion("Starlite (Marbella)");
 
