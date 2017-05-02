@@ -167,19 +167,30 @@ public class PruebaBean implements Serializable{
         
         boolean encontrado = false;
         for(Megusta m: ctrh.getUsuario().getMegusta()){
-            if(m.getEvento().getNombre().equals(eve.getNombre())){
-                encontrado=true;
+            if(m.getUsuario().getNick().equals(ctrh.getUsuario().getNick())){
+                if(m.getEvento().getNombre().equals(eve.getNombre())){
+                     encontrado=true;
+                 }
             }
+            
         }
   
-     if(!encontrado){
+      if(encontrado){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso" , "Este evento ya lo añadiste a Mis MeGusta");
+            FacesContext.getCurrentInstance().addMessage("pm:bm", message);
+            return null;
+      }  
+        
+      else{
           Megusta me = new Megusta();
-            me.setEvento(eve);
-            me.setUsuario(ctrh.getUsuario());
-        ctreve.addMegusta(me);
-        return "vistaEvento.xhtml";
+          me.setEvento(eve);
+          me.setUsuario(ctrh.getUsuario());
+          ctreve.addMegusta(me);
+          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "" , "Añadido evento a mis MeGusta");
+          FacesContext.getCurrentInstance().addMessage("pm:bm", message);
+          return "vistaEvento.xhtml";
      }   
-       return "vistaEvento.xhtml";
+       
     }
     
     public void onGeocode(GeocodeEvent event) {
@@ -203,6 +214,15 @@ public class PruebaBean implements Serializable{
     
     
     
+    
+    public boolean precio(Evento e){
+        if(e.getPrecio()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     
     /**
      * Creates a new instance of ControlHome

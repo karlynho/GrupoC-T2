@@ -68,7 +68,7 @@ public class CreacionDeEventos implements Serializable {
                 //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
                 eventosFiltrados.add(eventos.get(i));
                 encontrado = true;
-            } else if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
+            } else if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion) || (eventos.get(i).getUbicacion().contains(ubicacion))) {
                 System.out.println("No ha recogido el nombre");
                 //La ubicacion coincide,  comprobamos la categoria
                 if (eventos.get(i).getCategoria().equalsIgnoreCase(categoria)) {
@@ -100,19 +100,15 @@ public class CreacionDeEventos implements Serializable {
 
     /*
     public String comprobacion2(String evento, String ubicacion, String categoria, Date fecha) throws ParseException {
-
         eventos = new ArrayList<>();
         eventos = bnp.getEventos();
         eventosFiltrados = new ArrayList<Evento>();
       
-
         boolean encontrado = false;
         int tam = eventos.size();
         int i = 0;
-
         if (ubicacion.equalsIgnoreCase(" ") && categoria.equalsIgnoreCase(" ") && fecha != null) {
             while (i < tam) {
-
                 if (eventos.get(i).getFecha_inicio().equals(fecha)) {
                     System.out.println("Entra en filtrar fecha");
                     //Coinciden las tres condiciones del filtro, entonces añadimos a la lista de filtrados
@@ -120,7 +116,6 @@ public class CreacionDeEventos implements Serializable {
                 }
                 i++;
             }
-
         } else if (ubicacion.equalsIgnoreCase(" ") && !categoria.equalsIgnoreCase(" ") && fecha==null) {
             while (i < tam) {
                 System.out.println("Entra en filtrar categoria: "+categoria+ eventos.get(i).getCategoria());
@@ -135,10 +130,8 @@ public class CreacionDeEventos implements Serializable {
                 if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
                     eventosFiltrados.add(eventos.get(i));
                 }
-
                 i++;
             }
-
         } else if (!ubicacion.equalsIgnoreCase(" ") && categoria.equalsIgnoreCase(" ") && fecha != null) {
             while (i < tam) {
                 if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
@@ -150,14 +143,11 @@ public class CreacionDeEventos implements Serializable {
             }
         } else if (!ubicacion.equalsIgnoreCase(" ") && !categoria.equalsIgnoreCase(" ") && fecha == null) {
             while (i < tam) {
-
                 if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
                     if (eventos.get(i).getCategoria().equals(categoria)) {
                         eventosFiltrados.add(eventos.get(i));
-
                     }
                 }
-
                 i++;
             }
         } else if (ubicacion.equalsIgnoreCase(" ") && !categoria.equalsIgnoreCase(" ") && fecha != null) {
@@ -167,10 +157,8 @@ public class CreacionDeEventos implements Serializable {
                         eventosFiltrados.add(eventos.get(i));
                     }
                 }
-
                 i++;
             }
-
         } else if (!ubicacion.equalsIgnoreCase(" ") && !categoria.equalsIgnoreCase(" ") && fecha != null) {
             while (i < tam) {
                 if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
@@ -180,10 +168,8 @@ public class CreacionDeEventos implements Serializable {
                         }
                     }
                 }
-
                 i++;
             }
-
         }
     
         if (eventosFiltrados.isEmpty()) {
@@ -197,13 +183,10 @@ public class CreacionDeEventos implements Serializable {
             System.out.println("Eventos que hay en filtrados : "+ eventosFiltrados.toString());
             return "PaginaHome.xhtml";
         }
-
         
     }
-
     
     
-
     */
 
 
@@ -215,4 +198,5 @@ public class CreacionDeEventos implements Serializable {
 
 
 }
+
 
