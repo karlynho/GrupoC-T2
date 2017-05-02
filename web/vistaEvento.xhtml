@@ -30,12 +30,13 @@
                         <tr><td><table id="tyf" >
                                     <tr><td> <h3><h:outputText value="#{eve.nombre}" /></h3></td> </tr>
                                     <tr><td><h:graphicImage  style="width:400px; height:300px" value="resources/#{eve.imagen.enlace}"/></td> </tr>
-                                    <h:form>
+                                    <h:form id="pm">
                                         <p:growl id="messages" showDetail="true" />
                                         <tr><td ><h:outputText value="Puntuación:"/>
                                                 <p:rating value="#{beanPrincipal.media()}" stars="5" readonly="true" />
                                                 <c:if test="#{!empty controlHome.usuario}"> 
-                                                    <p:commandButton icon="ui-icon-star" action="#{pruebaBean.MeGusta(eve)}" ajax="false"></p:commandButton>
+                                                    <p:commandButton id="bm" icon="ui-icon-star" action="#{pruebaBean.MeGusta(eve)}" ajax="false"></p:commandButton>
+                                                    <p:message for="bm" showDetail="true"/>
                                                 </c:if>
                                             </td> </tr>
                                     </h:form>
@@ -58,19 +59,13 @@
                                         </td> </tr>
                                     <tr><td> <h:outputText value="Fecha de inicio: #{eve.fecha_inicio}" /></td></tr>
                                     <tr><td> <h:outputText value="Fecha de final: #{eve.fecha_final}" /></td></tr>
+                                    
                                     <h:form>
-                                        <c:choose>
-                                            <c:when test="#{ !(eve.precio >0) }">
-                                                <tr> <td><h:outputText value="Precio: Gratis" /></td></tr>
-                                            </c:when>
-                                            <c:otherwise>
-
-                                                <tr> <td><h:outputText value="Precio: #{eve.precio} €" /></td></tr>
-                                                <tr><td><h:commandLink action="vistaEvento.xhtml" value="Comprar entrada "/></td></tr>
-
-                                            </c:otherwise>
-                                        </c:choose>
+                                   <tr> <td><h:outputText value="Precio: #{eve.precio} €" /></td></tr>
+                                   <tr><td><h:commandLink action="vistaEvento.xhtml" value="Comprar entrada "/></td></tr>
                                     </h:form>
+                                   
+                                   
                                     <tr><td><h:outputText value="Categoria: #{eve.categoria}" /></td></tr>
                                     <tr> <td>
                                             <h:outputText value="Ubicación: #{eve.ubicacion}" /></td></tr>
