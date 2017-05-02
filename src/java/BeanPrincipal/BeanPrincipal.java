@@ -240,7 +240,7 @@ public class BeanPrincipal implements Serializable{
        u.setApellidos("Velazquez");
        u.setPassword("buenooo");
        u.setNick("karlynho");
-       u.setEmail("carlospuli@gmail,com");
+       u.setEmail("carlospuli10@gmail.com");
        u.setFecha_nacimiento(fecha);
        usuarios.add(u);
        
@@ -640,7 +640,6 @@ public class BeanPrincipal implements Serializable{
     }
   
     public List<Megusta> mismegusta(){
-        
         List<Megusta> lista = new ArrayList<>();
         int i=0;
         while(i< megusta.size()){
@@ -653,12 +652,19 @@ public class BeanPrincipal implements Serializable{
     }
     
     public void intercambiar(String password){
-        
         ch.getUsuario().setPassword(password);
     }
     
     public void cambio(String correo){
         ch.getUsuario().setEmail(correo);
+    }
+    
+    public void cambiar_pass (int a, String pass){
+        
+       
+       usuarios.get(a).setPassword(pass);
+       
+        
         
     }
     
