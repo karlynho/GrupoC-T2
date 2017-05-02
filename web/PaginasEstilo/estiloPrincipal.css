@@ -26,7 +26,7 @@ h1{
     position: absolute;
     font-size: 90px;
     margin-left: 30px;
-   
+
 }
 
 .Encabezado1{
@@ -66,13 +66,13 @@ ul.menulist li{
 
 .eventos{
     border:none;
- 
-  
+
+
 }
 .eventos2{
-   border:none;
-   
-  
+    border:none;
+
+
 }
 
 
@@ -85,7 +85,7 @@ ul.menulist li{
 }
 
 #same{
-   border:none;
+    border:none;
 }
 #com{
     clear: both;
@@ -103,4 +103,7 @@ ul.menulist li{
 #piedePagina{
     position: absolute;
 }
-
+.ui-panelgrid>*>tr,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}

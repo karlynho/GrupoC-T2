@@ -328,7 +328,7 @@ public class BeanPrincipal implements Serializable{
         e6.setFecha_final(date);
         e6.setPeriodista(p);
         e6.setPrecio(34.00);
-        e6.setUbicacion("Malaga");
+        e6.setUbicacion("Estadio municipal Miguel Fijones (Alhaurín el Grande)");
       
         i10.setEvento(e6);
         e6.setImagen(i10);
