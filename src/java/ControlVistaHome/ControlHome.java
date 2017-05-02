@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -38,7 +39,55 @@ public class ControlHome implements Serializable{
     private Date fecha;
     private String stringVacio;
     private Date   fechaVacia;
+    private String busqueda;
+    private String busquedaVacia;
 
+    public String getBusquedaVacia() {
+        return busquedaVacia;
+    }
+
+    public void setBusquedaVacia(String busquedaVacia) {
+        this.busquedaVacia = busquedaVacia;
+    }
+
+    
+    
+    
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+
+    public String buscar(){
+        if(busqueda == null){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El campo de búsqueda está vacio");
+            FacesContext.getCurrentInstance().addMessage("menu:bus", message);
+        }
+        List<Evento> ev = new ArrayList();
+        int i=0;
+        Evento event = new Evento();
+        while(i<ctreve.getEventos().size()){
+            event = ctreve.getEventos().get(i);
+            if(event.getNombre().toUpperCase().contains(busqueda.toUpperCase())){
+                ev.add(event);
+               
+            }
+            i++;
+        }
+        if(!ev.isEmpty()){
+            ctreve.setEventosFiltrados(ev);
+            return "PaginaHome.xhtml";
+        }else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "No se han encontrado coincidencias.");
+            FacesContext.getCurrentInstance().addMessage("menu:bus", message);
+            
+            return null;
+        }      
+    }
+    
     public String getStringVavio() {
         return stringVacio;
     }
@@ -161,6 +210,7 @@ public class ControlHome implements Serializable{
         this.ubicacion = stringVacio;
         this.categoria = stringVacio;
         this.fecha     = fechaVacia;
+        this.busqueda = busquedaVacia;
         return "PaginaHome.xhtml";
     }
 

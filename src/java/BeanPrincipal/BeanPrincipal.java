@@ -328,6 +328,7 @@ public class BeanPrincipal implements Serializable{
         e1.setFecha_inicio(date_ini);
         e1.setFecha_final(date_fin);
         e1.setPeriodista(p);
+
         e1.setPrecio(20.00);
         e1.setUbicacion("Estadio de Futbol La Rosaleda (Málaga)");
         e1.setImagen(i3);
@@ -372,7 +373,9 @@ public class BeanPrincipal implements Serializable{
         e4.setFecha_final(date_fin4);
         e4.setPeriodista(p);
         e4.setPrecio(34.00);
+
         e4.setUbicacion("Starlite (Marbella)");
+
         e4.setImagen(i8);
         i8.setEvento(e4);
         
@@ -398,7 +401,9 @@ public class BeanPrincipal implements Serializable{
         e6.setFecha_final(date_fin6);
         e6.setPeriodista(p);
         e6.setPrecio(34.00);
+
         e6.setUbicacion("Plaza de Toros (Málaga)");
+
       
         i10.setEvento(e6);
         e6.setImagen(i10);
