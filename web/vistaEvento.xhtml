@@ -32,10 +32,10 @@
         <!-- Fin columna izquierda-->
         
         <!-- Información sobre el evento-->
-            <p:dataGrid value="#{beanPrincipal.eventoV}" var="eve" id="eventos" style="position: absolute;margin-left: 280px;" styleClass="ui-noborder" >
+            <p:dataGrid value="#{beanPrincipal.eventoV}" var="eve" id="eventos" style="position: absolute;margin-left: 280px;"  >
 
-                <h:panelGrid columns="2" style="width:100%;" >
-                    <p:outputPanel >
+                <h:panelGrid columns="2" style="width:100%;"  styleClass="outerpanelgrid"  >
+                    <p:outputPanel>
                         <table>
                             <tr><td><table id="tyf"  >
                                         <tr><td> <h3><h:outputText value="#{eve.nombre}" /></h3></td> </tr>
@@ -44,7 +44,7 @@
                                             <p:growl id="messages" showDetail="true" />
                                             <tr><td ><h:outputText value="Puntuación:"/></td>
                                                     <c:if test="#{!empty controlHome.usuario}"> 
-                                                        <td><p:commandButton icon="ui-icon-star" action="#{pruebaBean.MeGusta(eve)}" ajax="false"></p:commandButton></td>
+                                                        <td><p:commandButton icon="ui-icon-star" action="#{pruebaBean.MeGusta(eve)}" ajax="false" ></p:commandButton></td>
                                                     </c:if>
                                             </tr>      
                                                     <tr><td><p:rating value="#{beanPrincipal.media()}" stars="5" readonly="true" /></td></tr>
@@ -57,7 +57,7 @@
                                         <tr><td> <h:outputText value="Fecha de final: #{eve.fecha_final}" /></td></tr>
                                         <h:form>
                                             <c:choose>
-                                                <c:when test="#{ !(eve.precio >0) }">
+                                                <c:when test="${beanPrincipal.eventoV.precio == 0}">
                                                     <tr> <td><h:outputText value="Precio: Gratis" /></td></tr>
                                                 </c:when>
                                                 <c:otherwise>
@@ -92,7 +92,7 @@
 
         <!-- Ubicación y Comentarios -->
             <p:outputPanel id="com" style="padding-top: 20px">
-                <p:dataGrid value="#{beanPrincipal.eventoV}" var="v" style="width: 100%;border:none">
+                <p:dataGrid value="#{beanPrincipal.eventoV}" var="v" style="width: 100%;">
                     <h:outputText value="Ubicación: #{v.ubicacion}" />
                     <input type="hidden" value="#{v.ubicacion}" id="ub" />
                     <script type="text/javascript">
@@ -111,7 +111,7 @@
                 <c:if test="#{empty controlHome.usuario and empty controlHome.periodista}"> 
                     <h:form id="val" style="padding-top: 10px;">
                         <p:outputLabel value="Introduzca una valoracion"/>
-                        <p:rating id="p" value="#{pruebaBean.ratinguser}" disabled="true" stars="5" cancel="false" onRate="alert('Has votado con ' + value + ' estrellas')" style="background-color: aqua" />
+                        <p:rating id="p" value="#{pruebaBean.ratinguser}" disabled="true" stars="5" cancel="false" onRate="alert('Has votado con ' + value + ' estrellas')"  />
                         <p:inputTextarea id="c" disabled="true" placeholder="Para realizar un comentario debe de estar logeado" style="width: 100%; height: 250px" value="#{pruebaBean.text}" queryDelay="750" minQueryLength="4" />
                         <p:commandButton value="Comentar" action="#{pruebaBean.guardarComentario()}" style="float: right;margin-top: 5px;" ajax="false" disabled="true"/>
                     </h:form>

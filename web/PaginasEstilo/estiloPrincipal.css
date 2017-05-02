@@ -103,7 +103,11 @@ ul.menulist li{
 #piedePagina{
     position: absolute;
 }
-.ui-panelgrid>*>tr,
-.ui-panelgrid .ui-panelgrid-cell {
+.companyHeaderGrid.ui-panelgrid>*>tr,
+.companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
+}
+body td{
+    border:none;
+    
 }
