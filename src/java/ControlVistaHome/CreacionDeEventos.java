@@ -68,7 +68,7 @@ public class CreacionDeEventos implements Serializable {
                 //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
                 eventosFiltrados.add(eventos.get(i));
                 encontrado = true;
-            } else if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion)) {
+            } else if (eventos.get(i).getUbicacion().equalsIgnoreCase(ubicacion) || (eventos.get(i).getUbicacion().contains(ubicacion))) {
                 System.out.println("No ha recogido el nombre");
                 //La ubicacion coincide,  comprobamos la categoria
                 if (eventos.get(i).getCategoria().equalsIgnoreCase(categoria)) {
