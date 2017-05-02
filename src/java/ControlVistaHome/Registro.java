@@ -143,7 +143,7 @@ public class Registro {
             
             MimeMessage mime = new MimeMessage(ses);
             
-            mime.setFrom(new InternetAddress(correoEnvia, "Dato Java"));
+            mime.setFrom(new InternetAddress(correoEnvia, "Registro"));
             
             InternetAddress internetAddresses = new InternetAddress(usuario.getEmail());
             mime.setRecipient(Message.RecipientType.TO, internetAddresses);
