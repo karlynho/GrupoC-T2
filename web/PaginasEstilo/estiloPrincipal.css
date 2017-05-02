@@ -1,3 +1,4 @@
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -26,7 +27,7 @@ h1{
     position: absolute;
     font-size: 90px;
     margin-left: 30px;
-
+   
 }
 
 .Encabezado1{
@@ -66,13 +67,13 @@ ul.menulist li{
 
 .eventos{
     border:none;
-
-
+ 
+  
 }
 .eventos2{
-    border:none;
-
-
+   border:none;
+   
+  
 }
 
 
@@ -85,12 +86,12 @@ ul.menulist li{
 }
 
 #same{
-    border:none;
+   border:none;
 }
 #com{
     clear: both;
-    margin-left: 290px;
-    margin-right: 15%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -100,14 +101,8 @@ ul.menulist li{
     padding: 500px;
     border-right: 100px;
 }
-#piedePagina{
-    position: absolute;
+
+#cuerpoLogin{
+    background: blue;
 }
-.companyHeaderGrid.ui-panelgrid>*>tr,
-.companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
-    border: none;
-}
-body td{
-    border:none;
-    
-}
+

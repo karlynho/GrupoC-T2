@@ -1,5 +1,9 @@
 
 /dist/
 /build/
+<<<<<<< HEAD
+nbproject/project.properties
+=======
 nbproject/project.properties
 /nbproject/private/
+>>>>>>> master

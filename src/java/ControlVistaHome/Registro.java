@@ -9,6 +9,11 @@ package ControlVistaHome;
 import BeanPrincipal.BeanPrincipal;
 
 import com.uma.diariosur.modelo.Usuario;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Named;
@@ -31,8 +36,17 @@ public class Registro {
     private String Nick;
     private String email;
     private String repas;
-    
     private Pattern pattern;
+    private String fecha_nacimiento;
+    private String emailrepas;
+
+    public String getEmailrepas() {
+        return emailrepas;
+    }
+
+    public void setEmailrepas(String emailrepas) {
+        this.emailrepas = emailrepas;
+    }
     
     public String getRepas() {
         return repas;
@@ -47,9 +61,28 @@ public class Registro {
     @Inject
     BeanPrincipal bnp;
     
-    public String registrarUsuario(){
+    public String registrarUsuario() throws ParseException{
          usuario = new Usuario();
-         System.out.println("Entra en funcion");
+
+                 if(this.Nick.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Nombre de Usuario no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:nick", message);
+            return null;
+        }else{
+            
+            for(Usuario u:bnp.getUsuarios()){
+                if(u.getNick().equals(this.Nick)){
+                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"Este nombre de usuario no esta disponible");
+                     FacesContext.getCurrentInstance().addMessage("registro:nick", message);
+                     return null;
+                }else{
+                    usuario.setNick(Nick);
+                }
+            }
+            
+          
+        }
+         
         if(this.nombre.isEmpty()){
              FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo nombre no puede estar vacio");
              FacesContext.getCurrentInstance().addMessage("registro:nombre", message);
@@ -57,6 +90,18 @@ public class Registro {
         }else{
             usuario.setNombre(nombre);
         }
+        
+        if(this.fecha_nacimiento.isEmpty()){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Fecha  no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:fecha", message);
+            return null;
+        }else{
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy",new Locale("es","ES"));
+            Date fecha_buena_nacimiento = (Date)formatter.parse(fecha_nacimiento);
+            usuario.setFecha_nacimiento(fecha_buena_nacimiento);
+            
+        }
+        
         
         if(this.apellidos.isEmpty()){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo apellido no puede estar vacio");
@@ -66,6 +111,8 @@ public class Registro {
             usuario.setApellidos(apellidos);
         }
         
+        
+           
         if(this.email.isEmpty()){
            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no puede estar vacio");
            FacesContext.getCurrentInstance().addMessage("registro:email", message);
@@ -74,7 +121,7 @@ public class Registro {
             pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
            Matcher mather = pattern.matcher(email);
            if (mather.find() == true) {
-              usuario.setEmail(email);
+             
            } else {
              FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no tiene la estructura adecuada");
              FacesContext.getCurrentInstance().addMessage("registro:email", message);
@@ -82,15 +129,31 @@ public class Registro {
             }
        }
         
+        if(this.emailrepas.isEmpty()){
+           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Debe repetir el email");
+           FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+           return null;
+       }else{
+            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+           Matcher mather = pattern.matcher(email);
+           if (mather.find() == true) {
+              if(this.email.equals(this.emailrepas)){
+                  usuario.setEmail(email);
+              }else{
+                  FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Los email no coinciden");
+                  FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+                  return null;
+              }
+           } else {
+             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email repetido no tiene la estructura adecuada");
+             FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+             return null;
+            }
+       }
         
-        if(this.Nick.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Nombre de Usuario no puede estar vacio");
-            FacesContext.getCurrentInstance().addMessage("registro:nick", message);
-            return null;
-        }else{
-            usuario.setNick(Nick);
-        }
-         
+        
+        
+
         if(this.contraseña.isEmpty()){
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "La contraseña no puede estar vacia");
             FacesContext.getCurrentInstance().addMessage("registro:pass", message);
@@ -111,6 +174,22 @@ public class Registro {
             bnp.añadirUsuario(usuario);
              return "Login.xhtml";   
         }
+
+    public Pattern getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(Pattern pattern) {
+        this.pattern = pattern;
+    }
+
+    public String getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
         
        
        
