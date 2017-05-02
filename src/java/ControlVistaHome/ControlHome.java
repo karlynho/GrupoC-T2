@@ -203,7 +203,7 @@ public class ControlHome implements Serializable{
     }
     
     public String perfil(){
-        return "ajustes.xhtml";
+        return "Ajustes.xhtml";
     }
     
 
@@ -262,6 +262,9 @@ public class ControlHome implements Serializable{
         return "rellenar_formulario.xhtml";
     }
 
+    public String accederMismegusta(){
+        return "Megusta.xhtml";
+    }
     
     /**
      * Creates a new instance of ControlHome
