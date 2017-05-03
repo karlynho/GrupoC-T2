@@ -11,12 +11,14 @@
     <ui:define name="content">
         <h:head >
             <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBgMlZOMCg3IPQUgX6f_2MquEZcntBirEg" async="" defer="defer" type="text/javascript"></script>
-               <style>
+
+            <style>
+
                 .ui-widget-content{
                     border:none;
                 }
             </style>
-            
+
         </h:head>
         <h:body onload="geocode()">
             <h:form >
@@ -107,14 +109,11 @@
                             PF('geoMap').geocode(document.getElementById('ub').value);
                         }
                     </script>
-
                     <h:form prependId="false">
                         <p:gmap id="geoGmap" widgetVar="geoMap" center="#{pruebaBean.centerGeoMap}" zoom="15" type="HYBRID" model="#{pruebaBean.geoModel}" style="width:100%;height:200px;border-bottom: 5px;">
                             <p:ajax event="geocode" listener="#{pruebaBean.onGeocode}" update="@this" />
                         </p:gmap>
                     </h:form>
-
-
                 </p:dataGrid>
                 <c:if test="#{empty controlHome.usuario and empty controlHome.periodista}"> 
                     <h:form id="val" style="padding-top: 10px;">
@@ -142,7 +141,7 @@
                     <h3 style="clear: both">Comentarios</h3>
 
                     <p:dataGrid var="com" value="#{pruebaBean.comentarios()}"  columns="1" paginator="true"
-                                currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                currentPageReportTemplate="{currentPage} de {totalPages}"
                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
                                 rowsPerPageTemplate="6,10,15" >
                         <h:panelGrid columns="1" style="width: 100%;" id="coment">

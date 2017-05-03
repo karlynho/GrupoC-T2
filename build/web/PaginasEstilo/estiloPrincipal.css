@@ -80,10 +80,7 @@ ul.menulist li{
 #eventos, #panel, #colizq,#tyf{
     float:left;
 }
-#colizq{
-    border-style: none;
-    background-color: orange;
-}
+
 
 #same{
    border:none;
@@ -108,4 +105,6 @@ ul.menulist li{
 .ui-widget-content{
     border:0 none white;
 }
+
+
 
