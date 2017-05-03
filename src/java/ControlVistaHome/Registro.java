@@ -5,14 +5,17 @@
  */
 package ControlVistaHome;
 
-
 import BeanPrincipal.BeanPrincipal;
+import com.uma.diariosur.modelo.Megusta;
 
 import com.uma.diariosur.modelo.Usuario;
+import com.uma.diariosur.modelo.Valoracion;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +33,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
+
 /**
  *
  * @author francis
@@ -37,6 +41,7 @@ import java.util.Properties;
 @Named(value = "registro")
 @RequestScoped
 public class Registro {
+
     private Usuario usuario;
     private String contraseña;
     private String nombre;
@@ -55,7 +60,7 @@ public class Registro {
     public void setEmailrepas(String emailrepas) {
         this.emailrepas = emailrepas;
     }
-    
+
     public String getRepas() {
         return repas;
     }
@@ -64,126 +69,134 @@ public class Registro {
         this.repas = repas;
     }
 
-  
-  
     @Inject
     BeanPrincipal bnp;
-    
-    public String registrarUsuario() throws ParseException{
-         usuario = new Usuario();
 
-                 if(this.Nick.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Nombre de Usuario no puede estar vacio");
+    public String registrarUsuario() throws ParseException {
+        usuario = new Usuario();
+
+        if (this.Nick.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El campo Nombre de Usuario no puede estar vacio");
             FacesContext.getCurrentInstance().addMessage("registro:nick", message);
             return null;
-        }else{
-            
-            for(Usuario u:bnp.getUsuarios()){
-                if(u.getNick().equals(this.Nick)){
-                     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"Este nombre de usuario no esta disponible");
-                     FacesContext.getCurrentInstance().addMessage("registro:nick", message);
-                     return null;
-                }else{
+        } else {
+
+            for (Usuario u : bnp.getUsuarios()) {
+                if (u.getNick().equals(this.Nick)) {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Este nombre de usuario no esta disponible");
+                    FacesContext.getCurrentInstance().addMessage("registro:nick", message);
+                    return null;
+                } else {
                     usuario.setNick(Nick);
                 }
             }
-            
-          
+
         }
-         
-        if(this.nombre.isEmpty()){
-             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo nombre no puede estar vacio");
-             FacesContext.getCurrentInstance().addMessage("registro:nombre", message);
-             return null;
-        }else{
+
+        if (this.nombre.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El campo nombre no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:nombre", message);
+            return null;
+        } else {
             usuario.setNombre(nombre);
         }
-        
-        if(this.fecha_nacimiento.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo Fecha  no puede estar vacio");
+
+        if (this.fecha_nacimiento.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El campo Fecha  no puede estar vacio");
             FacesContext.getCurrentInstance().addMessage("registro:fecha", message);
             return null;
-        }else{
-            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy",new Locale("es","ES"));
-            Date fecha_buena_nacimiento = (Date)formatter.parse(fecha_nacimiento);
+        } else {
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", new Locale("es", "ES"));
+            Date fecha_buena_nacimiento = (Date) formatter.parse(fecha_nacimiento);
             usuario.setFecha_nacimiento(fecha_buena_nacimiento);
-            
+
         }
-        
-        
-        if(this.apellidos.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" ,"El campo apellido no puede estar vacio");
+
+        if (this.apellidos.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El campo apellido no puede estar vacio");
             FacesContext.getCurrentInstance().addMessage("registro:apellidos", message);
             return null;
-        }else{
+        } else {
             usuario.setApellidos(apellidos);
         }
-        
-        
-           
-        if(this.email.isEmpty()){
-           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no puede estar vacio");
-           FacesContext.getCurrentInstance().addMessage("registro:email", message);
-           return null;
-       }else{
-            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-           Matcher mather = pattern.matcher(email);
-           if (mather.find() == true) {
-             
-           } else {
-             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email no tiene la estructura adecuada");
-             FacesContext.getCurrentInstance().addMessage("registro:email", message);
-             return null;
-            }
-       }
-        
-        if(this.emailrepas.isEmpty()){
-           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Debe repetir el email");
-           FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
-           return null;
-       }else{
-            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-           Matcher mather = pattern.matcher(email);
-           if (mather.find() == true) {
-              if(this.email.equals(this.emailrepas)){
-                  usuario.setEmail(email);
-              }else{
-                  FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Los email no coinciden");
-                  FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
-                  return null;
-              }
-           } else {
-             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "El email repetido no tiene la estructura adecuada");
-             FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
-             return null;
-            }
-       }
-        
-        
-        
 
-        if(this.contraseña.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "La contraseña no puede estar vacia");
+        if (this.email.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El email no puede estar vacio");
+            FacesContext.getCurrentInstance().addMessage("registro:email", message);
+            return null;
+        } else {
+            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+            Matcher mather = pattern.matcher(email);
+            if (mather.find() == true) {
+
+            } else {
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El email no tiene la estructura adecuada");
+                FacesContext.getCurrentInstance().addMessage("registro:email", message);
+                return null;
+            }
+        }
+
+        if (this.emailrepas.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe repetir el email");
+            FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+            return null;
+        } else {
+            pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+            Matcher mather = pattern.matcher(email);
+
+            if (mather.find() == true) {
+
+                if (this.email.equals(this.emailrepas)) {
+
+                    for (Usuario u : bnp.getUsuarios()) {
+                        if (u.getEmail().equals(this.email)) {
+                            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Este correo ya esta asociado a otra cuenta");
+                            FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+                            return null;
+                        } else {
+                            usuario.setEmail(email);
+                        }
+                    }
+
+                } else {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Los email no coinciden");
+                    FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+                    return null;
+                }
+            } else {
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El email repetido no tiene la estructura adecuada");
+                FacesContext.getCurrentInstance().addMessage("registro:emailrepas", message);
+                return null;
+            }
+        }
+
+        if (this.contraseña.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "La contraseña no puede estar vacia");
             FacesContext.getCurrentInstance().addMessage("registro:pass", message);
             return null;
-        }else if(this.repas.isEmpty()){
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Debe repetir la contraseña");
+        } else if (this.repas.isEmpty()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe repetir la contraseña");
             FacesContext.getCurrentInstance().addMessage("registro:repass", message);
             return null;
-        }else if(this.contraseña.equals(this.repas)){
-               usuario.setPassword(contraseña);
-        }else{
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error" , "Las contraseña no coinciden");
+        } else if (this.contraseña.equals(this.repas)) {
+            usuario.setPassword(contraseña);
+        } else {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Las contraseña no coinciden");
             FacesContext.getCurrentInstance().addMessage("registro:repass", message);
-            return null;       
-               
-            }
-               
-            bnp.añadirUsuario(usuario);
-            
-            String correoEnvia = "diariosur7@gmail.com";
+            return null;
+
+        }
+        List<Megusta> megusta = new ArrayList<>();
+        List<Valoracion> valoracions = new ArrayList<>();
+
+        usuario.setMegusta(megusta);
+        usuario.setValoraciones(valoracions);
+
+        bnp.añadirUsuario(usuario);
+
+        String correoEnvia = "diariosur7@gmail.com";
         String claveCorreo = "diariosur12";
-        
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.starttls.enable", "true");
@@ -191,40 +204,39 @@ public class Registro {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.user", correoEnvia);
         prop.put("mail.password", claveCorreo);
-        
+
         Session ses = Session.getInstance(prop, null);
-        
-        try{
-            
+
+        try {
+
             MimeMessage mime = new MimeMessage(ses);
-            
+
             mime.setFrom(new InternetAddress(correoEnvia, "Registro"));
-            
+
             InternetAddress internetAddresses = new InternetAddress(usuario.getEmail());
             mime.setRecipient(Message.RecipientType.TO, internetAddresses);
-            
+
             mime.setSubject("Gracias por registrarse");
-            
+
             MimeBodyPart mib = new MimeBodyPart();
             mib.setText("Buenas, gracias por registrarse en Agenda Diario Sur, Un Cordial Saludo");
-            
+
             Multipart multi = new MimeMultipart();
             multi.addBodyPart(mib);
-            
+
             mime.setContent(multi);
-            
+
             Transport transport = ses.getTransport("smtp");
             transport.connect(correoEnvia, claveCorreo);
             transport.sendMessage(mime, mime.getAllRecipients());
             transport.close();
-            
-            
-        }catch(Exception ex){
+
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-            
-             return "Login.xhtml";   
-        }
+
+        return "Login.xhtml";
+    }
 
     public Pattern getPattern() {
         return pattern;
@@ -241,10 +253,6 @@ public class Registro {
     public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-        
-       
-       
-    
 
     public String getApellidos() {
         return apellidos;
@@ -269,13 +277,11 @@ public class Registro {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 
-    public String login(){
+    public String login() {
         return "Login.xhtml";
     }
-    
+
     public Usuario getUsusario() {
         return usuario;
     }
@@ -296,8 +302,6 @@ public class Registro {
         this.bnp = bnp;
     }
 
- 
-
     public String getContraseña() {
         return contraseña;
     }
@@ -313,11 +317,5 @@ public class Registro {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
-    
-
-
-    
 
 }

@@ -11,6 +11,12 @@
     <ui:define name="content">
         <h:head >
             <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBgMlZOMCg3IPQUgX6f_2MquEZcntBirEg" async="" defer="defer" type="text/javascript"></script>
+               <style>
+                .ui-widget-content{
+                    border:none;
+                }
+            </style>
+            
         </h:head>
         <h:body onload="geocode()">
             <h:form >
@@ -32,7 +38,7 @@
         <!-- Fin columna izquierda-->
         
         <!-- Información sobre el evento-->
-            <p:dataGrid value="#{beanPrincipal.eventoV}" var="eve" id="eventos" style="position: absolute;margin-left: 280px;"  >
+            <p:dataGrid value="#{beanPrincipal.eventoV}" var="eve" id="eventos" style="position: absolute;margin-left: 290px;"  >
 
                 <h:panelGrid columns="2" style="width:100%;"  styleClass="outerpanelgrid"  >
                     <p:outputPanel>
