@@ -26,9 +26,20 @@
                         <li><h:commandLink action="#{controlHome.registro()}" value="Registro"/></li>
                     </c:if>
                     <c:if test="#{!empty controlHome.usuario}">
-                        <p>¡Hola! <h:outputText value="#{controlHome.usuario}"/></p>
-                        <li><h:commandLink action="#{controlHome.perfil()}" value="Perfil"/></li>
-                        <li><h:commandLink action="#{controlHome.logout()}" value="Cerrar Sesion"/></li>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p>¡Hola! <h:outputText value="#{controlHome.usuario}"/></p>
+                                </td>
+                                <td> <li><h:commandLink action="#{controlHome.perfil()}" value="Perfil"/></li></td>
+                                <td>
+                                     <li><h:commandLink action="#{controlHome.logout()}" value="Cerrar Sesion"/></li>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        
+                       
                     </c:if>
                     <c:if test="#{!empty controlHome.periodista}">
                         <p>¡Hola! <h:outputText value="#{controlHome.periodista}"/></p>

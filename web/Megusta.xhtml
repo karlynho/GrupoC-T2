@@ -16,8 +16,9 @@
             </h:form>
         </c:if>
         <c:if test="#{!empty controlHome.usuario}">  
-            <h:form>
+            <h:form id="meg">
              <br> </br>
+             <p:messages/>
              <p:outputLabel style="font-size: medium; padding: 20px; color: #006" value="Me gusta"/>
              <h:graphicImage  style="width:15px; height:15px" value="resources/corazones.jpg"/>
              <p:commandButton id="Bt" value="Atrás" action="#{ajustes.home()}" style=" right: 80px; float: right; top: -10px"/>
@@ -35,7 +36,8 @@
                                           <h:outputText value="#{m.evento.nombre}"/>
                                 <h:outputText value="#{m.evento.ubicacion}" style="color: darkgray"/>
                                 <h:outputText value="#{m.evento.fecha_inicio}" style="color: darkgray"/>
-                                <p:commandButton icon="ui-icon-star" action="#{Mismegusta.noMegusta(m)}" ajax="false"></p:commandButton>
+                                <p:commandButton id="mg_bt" icon="ui-icon-star" action="#{Mismegusta.noMegusta(m)}" ajax="false"></p:commandButton>
+                                
                                 </h:panelGrid>
                                   </h:panelGrid>
                                 </p:outputPanel>

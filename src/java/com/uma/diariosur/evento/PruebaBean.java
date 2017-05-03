@@ -120,6 +120,10 @@ public class PruebaBean implements Serializable{
         
         Valoracion var =new Valoracion(7777,text, ratinguser, ctrh.getUsuario(),ctreve.getEventoV());
         ctreve.getEventoV().getValoraciones().add(0, var);
+        
+        this.text=null;
+        ratinguser=null; /// para despues de actualizar resetear atributos de val
+        
         return null;
     }
 

@@ -525,8 +525,8 @@ public class BeanPrincipal implements Serializable{
                     + "podido escuchar el primer single “Swalla”"
                     );
             f.setCategoria("Concierto");
-            f.setFecha_inicio(new Date());
-            f.setFecha_fin(new Date());
+            f.setFecha_inicio(date_ini2);
+            f.setFecha_fin(date_fin2);
             f.setUbicacion("Marbella (Malaga)");
             f.setPrecio(70.00);
             f.setFecha_subida(new Date());
@@ -544,8 +544,8 @@ public class BeanPrincipal implements Serializable{
                     + " Más de cien pinturas, dibujos, impresiones e ilustraciones relacionadas "
                     + "con esta obra exhibida por primera vez en París en 1888 serán puestas en exhibición. ");
             f1.setCategoria("Exposicion");
-            f1.setFecha_inicio(new Date());
-            f1.setFecha_fin(new Date());
+            f1.setFecha_inicio(date_ini5);
+            f1.setFecha_fin(date_fin5);
             f1.setUbicacion("Palacio de Congresos (Marbella)");
             f1.setPrecio(10.00);
             f1.setFecha_subida(new Date());
@@ -561,8 +561,8 @@ public class BeanPrincipal implements Serializable{
                     + " Más de 123 tabacos, cachimbas, accesorios y articulos relacionados "
                     + "con este evento organizado por primera vez en Marbella en 2017. ");
             f2.setCategoria("Charlas");
-            f2.setFecha_inicio(new Date());
-            f2.setFecha_fin(new Date());
+            f2.setFecha_inicio(date_ini6);
+            f2.setFecha_fin(date_fin6);
             f2.setUbicacion("Palacio de Congresos (Marbella)");
             f2.setPrecio(10.00);
             f2.setFecha_subida(new Date());

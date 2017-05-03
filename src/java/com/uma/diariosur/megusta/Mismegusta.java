@@ -20,6 +20,8 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -59,9 +61,13 @@ public class Mismegusta implements Serializable{
    
     
     public String noMegusta(Megusta e){
-        
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Evento eliminado de Mis Me gusta" , "Evento eliminado de Mis Me gusta");
+        FacesContext.getCurrentInstance().addMessage(null, message);
         bp.eliminarMegusta(e);
-        return "Megusta.xhtml";
+        
+       
+       
+       return null;
         
         
     }
