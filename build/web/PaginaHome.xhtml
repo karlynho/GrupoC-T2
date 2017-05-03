@@ -25,7 +25,8 @@
                             <f:selectItem itemLabel="Malaga" itemValue="Málaga"/>
                             <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
                             <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
-                                
+                            <f:selectItem itemLabel="Fuengirola" itemValue="Fuengirola"/>
+                            <f:selectItem itemLabel="Torremolinos" itemValue="Torremolinos"/>
                         </p:selectOneMenu>
 
                         <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}" style="width:200px">
@@ -79,7 +80,7 @@
                             </c:if>
                             </div>
                     <p:outputLabel style="padding-left: 700px;">
-                        <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" style="margin-left: 250px" >
+                        <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" style="position: absolute; margin-left: 250px" >
                     </p:link>
                     </p:outputLabel>
                     <c:if test="#{(empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha)and empty controlHome.busqueda}">

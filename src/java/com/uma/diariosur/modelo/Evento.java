@@ -43,9 +43,6 @@ public class Evento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
     private List<Valoracion> valoraciones;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-    private List<Anuncio> anuncios;
-    
     
     @OneToOne(optional = false)
     private Imagen imagen;
@@ -145,13 +142,7 @@ public class Evento implements Serializable {
         this.valoraciones = valoraciones;
     }
 
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
-    }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
-    }
 
     public Periodista getPeriodista() {
         return periodista;

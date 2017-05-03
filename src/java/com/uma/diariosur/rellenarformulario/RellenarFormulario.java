@@ -117,7 +117,7 @@ public class RellenarFormulario implements Serializable{
             
             
 
-            OutputStream output = new FileOutputStream(new File(path_aux.concat("web\\resources"), filename));
+            OutputStream output = new FileOutputStream(new File(path_aux.concat("web//resources"), filename));
             aux_ext = ext;
         
         try {
