@@ -36,6 +36,15 @@ public class CreacionDeEventos implements Serializable {
 
     private List<Evento> eventos;
     private List<Evento> eventosFiltrados;
+    private Date fechaVacia;
+
+    public Date getFechaVacia() {
+        return fechaVacia;
+    }
+
+    public void setFechaVacia(Date fechaVacia) {
+        this.fechaVacia = fechaVacia;
+    }
 
     @Inject
     BeanPrincipal bnp;
@@ -61,9 +70,24 @@ public class CreacionDeEventos implements Serializable {
         boolean encontrado = false;
         int tam = eventos.size();
         int i = 0;
+        int valor = 0;
+        int dia = 0;
+        int mes = 0;
+        int año=0;
+        
+        if(fecha==null){
+            valor =1;
+                    
+        } else{
+             dia = fecha.getDay();
+             mes = fecha.getMonth();
+             año = fecha.getYear();
+        }
 
+        
+        
+        
         while (i < tam && !encontrado) {
-
             if (eventos.get(i).getNombre().equalsIgnoreCase(evento) && evento != null) {
                 System.out.println("Se ha recogido el nombre");
                 //El nombre coincide con uno o muchos eventos, lo añadimos al la lista de filtrados
@@ -74,7 +98,8 @@ public class CreacionDeEventos implements Serializable {
                 //La ubicacion coincide,  comprobamos la categoria
                 if (eventos.get(i).getCategoria().equalsIgnoreCase(categoria)) {
                     //La categoria coincide, comprobamos la fecha
-                    if (eventos.get(i).getFecha_inicio().equals(fecha)) {
+                    if (eventos.get(i).getFecha_inicio().getDay()==dia && eventos.get(i).getFecha_inicio().getMonth()==mes && 
+                            eventos.get(i).getFecha_inicio().getYear()==año && valor==0) {
                         //Coinciden las tres condiciones del filtro, entonces añadimos a la lista de filtrados
                         eventosFiltrados.add(eventos.get(i));
 

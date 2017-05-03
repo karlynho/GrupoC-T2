@@ -42,6 +42,8 @@ public class ControlHome implements Serializable{
     private Date   fechaVacia;
     private String busqueda;
     private String busquedaVacia;
+    private List<Evento> listaEventosVacia;
+    
 
     public String getBusquedaVacia() {
         return busquedaVacia;
@@ -212,7 +214,32 @@ public class ControlHome implements Serializable{
         this.categoria = stringVacio;
         this.fecha     = fechaVacia;
         this.busqueda = busquedaVacia;
+        bnp.setEventosFiltrados(listaEventosVacia);
         return "PaginaHome.xhtml";
+    }
+
+    public BeanPrincipal getCtreve() {
+        return ctreve;
+    }
+
+    public void setCtreve(BeanPrincipal ctreve) {
+        this.ctreve = ctreve;
+    }
+
+    public String getStringVacio() {
+        return stringVacio;
+    }
+
+    public void setStringVacio(String stringVacio) {
+        this.stringVacio = stringVacio;
+    }
+
+    public List<Evento> getListaEventosVacia() {
+        return listaEventosVacia;
+    }
+
+    public void setListaEventosVacia(List<Evento> listaEventosVacia) {
+        this.listaEventosVacia = listaEventosVacia;
     }
 
     public String verEvento(Evento e){   

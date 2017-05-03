@@ -33,10 +33,6 @@ public class Ajustes implements Serializable{
     @Inject
     private ControlHome ch;
     private Usuario usuario;
-    private String Usuario = "Carlos";
-    private String Nombre = "Carlos Dominguez";
-    private String Correo = "carlos_@hotmail.com";
-    private String fecha_nacimiento = "03/02/1991";
     private String contraseña;
     private String contraseñanueva;
     private String contraseñanueva1;
@@ -63,37 +59,12 @@ public class Ajustes implements Serializable{
    
     
     
-    public String getUsuario() {
-        return Usuario;
-    }
 
     public void setusuario(ControlHome ch) {
         this.usuario = ch.getUsuario();
     }
 
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public String getCorreo() {
-        return Correo;
-    }
-
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
-    }
-
-    public String getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(String fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
+    
 
     public String getContraseña() {
         return contraseña;
@@ -162,6 +133,12 @@ public class Ajustes implements Serializable{
       public String home() {
         return "PaginaHome.xhtml";
     }
+      
+      
+      public void cerrarSesion(){
+       
+          ch.logout();
+      }
       
     public Ajustes() {
         
