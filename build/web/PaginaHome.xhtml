@@ -25,7 +25,6 @@
                             <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
                             <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
                             <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
-                                
                         </p:selectOneMenu>
 
                         <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}" style="width:200px">
@@ -34,20 +33,7 @@
                             <f:selectItem itemLabel="Musical" itemValue="Conciertos"/>
                             <f:selectItem itemLabel="Teatro" itemValue="Teatro"/>
                             <f:selectItem itemLabel="Deportivo" itemValue="Deportivo"/>
-                            <f:selectItem itemLabel="Charlas" itemValue="Charlas"/>
-                            <f:selectItem itemLabel="Conferencias" itemValue="Conferencias"/>
-                            <f:selectItem itemLabel="Espectaculo" itemValue="Espectaculo"/>
-                            <f:selectItem itemLabel="Exposicion" itemValue="Exposicion"/>
-                            <f:selectItem itemLabel="Ferias y Fiestas" itemValue="Ferias y Fiestas"/>
-                            <f:selectItem itemLabel="Gastronomia" itemValue="Gastronomia"/>
-                            <f:selectItem itemLabel="Moda" itemValue="Moda"/>
-
-
-
- 
-
-
-                           </p:selectOneMenu>
+                        </p:selectOneMenu>
                     </h:panelGrid>
                     
                     <h:panelGrid columns="2">
@@ -68,8 +54,6 @@
                                 <div style="top: 410px; position: absolute">
                                 <p:outputLabel value="Para solicitar la creacion de un evento rellene el siguiente formulario:       " style="padding-left: 500px; font-size: small" />
                             <p:commandButton value="Rellenar formulario" action="#{controlHome.accederEvento()}"/>
-                             <p:outputLabel value="Acceder a mis me gustas:" style="padding-left: 500px; font-size: small" />
-                            <p:commandButton value="Mis me gusta" action="#{controlHome.accederMismegusta()}" style="float: right; right: 155px"/>
                                 </div>
                             </c:if>
                     <div style="padding-left: 900px; top: 410px; position: absolute" >
@@ -92,7 +76,7 @@
                                     <h:outputText value="#{evento.fecha_inicio}"/>
                                     <h:outputText value="#{evento.nombre}"/>
                                     <h:outputText value="#{evento.ubicacion}"/>
-                                    <h:commandLink action="#{controlHome.verEvento(evento)}" value="VER EVENTO"/>
+                                    <h:commandLink action="#{controlHome.verEvento(evento)}" value="VER EVENTO" style="text-align: center"/>
                             </h:panelGrid>
                         </p:dataGrid>
                     </c:if>
@@ -112,5 +96,4 @@
           
     </ui:define>
                     
-
 </ui:composition>

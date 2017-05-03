@@ -482,6 +482,10 @@ public class BeanPrincipal implements Serializable{
          e4.setValoraciones(v_vacia);
          e5.setValoraciones(v_vacia);
          e6.setValoraciones(v_vacia);
+         e7.setValoraciones(v_vacia);
+         e8.setValoraciones(v_vacia);
+         e9.setValoraciones(v_vacia);
+         
       
         
         megusta = new ArrayList<Megusta>();
