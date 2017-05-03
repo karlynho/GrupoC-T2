@@ -22,10 +22,11 @@
 
 
                             <f:selectItem itemLabel="Ciudad" itemValue=" "/>
-                            <f:selectItem itemLabel="Malaga" itemValue="Malaga"/>
+                            <f:selectItem itemLabel="Malaga" itemValue="Málaga"/>
                             <f:selectItem itemLabel="Marbella" itemValue="Marbella"/> 
                             <f:selectItem itemLabel="Torre del Mar" itemValue="Torre del Mar"/>
-                                
+                            <f:selectItem itemLabel="Fuengirola" itemValue="Fuengirola"/>
+                            <f:selectItem itemLabel="Torremolinos" itemValue="Torremolinos"/>
                         </p:selectOneMenu>
 
                         <p:selectOneMenu id="selectCategoria" value="#{controlHome.categoria}" style="width:200px">
@@ -66,10 +67,10 @@
 
                             <c:if test="#{!empty controlHome.usuario}">
                                 <div style="top: 410px; position: absolute">
-                                <p:outputLabel value="Para solicitar la creacion de un evento rellene el siguiente formulario:       " style="padding-left: 500px; font-size: small" />
+                                <p:outputLabel value="Para solicitar la creacion de un evento rellene el siguiente formulario:" style="padding-left: 500px; font-size: small" />
                             <p:commandButton value="Rellenar formulario" action="#{controlHome.accederEvento()}"/>
                              <p:outputLabel value="Acceder a mis me gustas:" style="padding-left: 500px; font-size: small" />
-                            <p:commandButton value="Mis me gusta" action="#{controlHome.accederMismegusta()}" style="float: right; right: 155px"/>
+                            <p:commandButton value="Mis me gusta" action="#{controlHome.accederMismegusta()}" />
                                 </div>
                             </c:if>
                     <div style="padding-left: 900px; top: 410px; position: absolute" >
@@ -79,7 +80,7 @@
                             </c:if>
                             </div>
                     <p:outputLabel style="padding-left: 700px;">
-                        <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" style="margin-left: 250px" >
+                        <p:link value="Actualice para ver los ultimos eventos" outcome="PaginaHome.xhtml" style="position: absolute; margin-left: 250px" >
                     </p:link>
                     </p:outputLabel>
                     <c:if test="#{(empty controlHome.ubicacion or empty controlHome.categoria or  empty controlHome.fecha)and empty controlHome.busqueda}">

@@ -23,12 +23,12 @@
             </h:form>
         <!-- Columna izquierda con eventos relacionados -->
             <h:form id="colizq" >
-                <p:scrollPanel style="height: 500px; text-align: center;padding-top: 5px;" >
+                <p:scrollPanel style="height: 500px; text-align: center;padding-top: 5px;padding-bottom: 50px;" >
                     <h:outputText value="Eventos recomendados"/>
                     <p:dataGrid var="ev" value="#{beanPrincipal.validos}" columns="1" id="same">
 
                         <h:graphicImage  style="width:250px; height:200px" value="resources/#{ev.imagen.enlace}"/> <br></br>
-                        <h:commandLink action="#{controlHome.verEvento(ev)}" value="#{ev.nombre}"/>
+                        <h:commandLink action="#{controlHome.verEvento(ev)}" value="#{ev.nombre}" />
 
 
                     </p:dataGrid>
